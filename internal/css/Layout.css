@@ -1,0 +1,44 @@
+body{
+    margin: 0px; 
+}
+
+div#main{
+    width:100%;
+   
+}
+div#header{
+    height:45px;
+    background-color: #111;
+}
+div#navi{
+    height:50px;
+}
+div#contents{
+    min-height: 400px;
+}
+div#footer{
+    height: 100px;
+}
+
+.hea{
+    text-align: center; font-size: 25px; padding-top: 10px; color: #fff;
+    
+}
+.fo{
+    text-align: center; font-style: italic; font-size: -1;
+    
+}
+.ali{text-align: center}
+
+
+
+
+
+
+
+
+
+
+
+
+
