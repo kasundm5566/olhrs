@@ -53,7 +53,7 @@
                             </div>
 
                             <button type="submit" class="login login-submit btn btn-info" name="login" id="loginButton">
-                                <span class="glyphicon glyphicon-send"></span>&nbsp; Login
+                                <span>Login</span>
                             </button>
 
                         </form>

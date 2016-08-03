@@ -15,6 +15,9 @@
     </head>
     <body>
 
+        <?php
+        header("Refresh:60");
+        ?>
         <div id="header">
             <?php include '../../../common/header.php'; ?>
         </div>
