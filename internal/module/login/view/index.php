@@ -1,13 +1,12 @@
 <html>
     <head> 
-        <title>Hotel Reservation System-Login</title>
+        <title>Login-Hotel Reservation System</title>
         <link rel="icon" href="../../../images/bi.png" />
         <link rel="stylesheet" type="text/css" 
               href="../../../bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="../../../css/layout.css" />
+        <link rel="stylesheet" type="text/css" href="../../../css/mainlayout.css" />
         <link rel="stylesheet" type="text/css" href="../../../css/style.css" /> 
         <script type="text/javascript" src="../../../js/jquery-1.8.3.min.js">
-
         </script>
         <script type="text/javascript" src="../../../js/loginvalidate.js">
         </script>
@@ -28,7 +27,7 @@
                     <div id="login-form">
 
                         <?php
-                        //To display invalid user name or password
+                        // To display invalid user name or password
                         if (isset($_REQUEST['msg'])) {
                             echo '<p class="alert-danger" id="msg" style="font-size: medium;">'
                             . '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>';
@@ -62,15 +61,11 @@
 
                 </div>
 
-
-
-            </div>      
+            </div>  
+            
             <div id="footer">
-
                 <?php include '../../../common/footer.php'; ?> 
             </div>            
         </div>
-
     </body>
-
 </html>

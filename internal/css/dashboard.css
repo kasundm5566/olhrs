@@ -1,19 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100);
 
-body {
-    background-color: #4f4f4f;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    font-family: 'Roboto', sans-serif;
-    background-image: url(../images/Lime-Green-Desktop-Picture.jpg);
-
-    background-attachment: fixed;
-}
-
-
-
 #box{
     padding: 25px;
     max-width: 1500px;
@@ -38,8 +24,8 @@ body {
 
 .tile:hover{
     -webkit-transform: scale(1.01);
-/*    -ms-transform: scale(1.01);
-    transform: scale(1.01);*/
+    /*    -ms-transform: scale(1.01);
+        transform: scale(1.01);*/
     opacity:0.9;
 }
 
@@ -52,7 +38,8 @@ body {
 
 .icontext {
     color: white;
-    font-size: 27px;
+    font-size: 20px;
+    font-family: Segoe UI;
 }
 
 .bigicondark {
@@ -64,13 +51,8 @@ body {
 
 .icontextdark {
     color: black;
-    font-size: 27px;
+    font-size: 15px;
 }
-
-/*#tile-block{
-    margin-top: 50px;
-    margin-left: 200px;
-}*/
 
 .row{
     padding: 5px;
@@ -81,60 +63,68 @@ body {
 }
 
 #tile1 {
-    background: #7C91C7;
+    background: black;
 }
 
 #tile2 {
-    background: #3B579D;
+    background: black;
 }
 
 #tile3 {
-    background: #153178;
+    background: black;
 }
 
 #tile4 {
-    background: #EACF46;
+    background: black;
 }
 
 #tile5 {
-    background: #EACF46;
+    background: black;
 }
 
 #tile6 {
-    background: #FFED94;
+    background: black;
 }
 
 #tile7 {
-    background: white;
+    background: black;
 }
 
 #tile8 {
-    background: #03133C;
+    background: black;
 }
 
 #tile9 {
-    background: #EACF46;
+    background: black;
 }
 
 #tile10 {
-    background: #EACF46;
+    background: black;
 }
 
 .tilecaption {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    margin: 0!important;
-    text-align: center;
-    color: white;
+    /*    transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        margin: 0!important;
+        text-align: center;*/
+    color: whitesmoke;
+    /*    -webkit-text-fill-color: black;  Will override color (regardless of order) 
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: white;*/
     border-width: thick;
     font-family: Segoe UI;
-    font-weight: 400;
-    font-size: 2em;
+    font-weight: 500;
+    font-size: 30px;
 }
 
 .small-tile-images{
     width: 800px;
+}
+
+a {
+    text-decoration: none !important;
+    cursor: default;
 }
