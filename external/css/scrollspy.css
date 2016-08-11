@@ -1,0 +1,44 @@
+body {
+    position: relative;
+}
+
+#welcome-section {
+    padding-top:50px;
+    height:500px;
+    color: #fff;
+    background-color: #1E88E5;
+}
+
+#overview-section {
+    padding-top:50px;
+    height:500px;
+    color: #fff; 
+    background-color: #673ab7;
+}
+
+#gallery-section {
+    padding-top:50px;
+    height:500px;
+    color: #fff; 
+    background-color: #ff9800;
+}
+
+#reservation-section {
+    padding-top:50px;
+    height:500px;color: #fff; 
+    background-color: #00bcd4;
+}
+
+#contact-section {
+    padding-top:50px;
+    height:500px;
+    color: #fff; 
+    background-color: green;
+}
+
+#login-section {
+    padding-top:50px;
+    height:500px;
+    color: #fff; 
+    background-color: #c3325f;
+}
