@@ -42,3 +42,11 @@ body {
     color: #fff; 
     background-color: #c3325f;
 }
+
+.navbar{
+    opacity: 0.6;
+}
+
+.navbar:hover{
+    opacity: 1;
+}

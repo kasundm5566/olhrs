@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="css/scrollspy.css"/>
         <link rel="stylesheet" href="css/site-layout.css"/>
         <script src="js/jquery-1.12.2.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>        
+        <script src="bootstrap/js/bootstrap.min.js"></script>  
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
         <nav class="navbar navbar-inverse navbar-fixed-top">
