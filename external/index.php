@@ -7,14 +7,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/scrollspy.css"/>
-        <link rel="stylesheet" href="css/animate.css"/>
         <link rel="stylesheet" href="css/site-layout.css"/>
         <script src="js/jquery-1.12.2.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>  
         <script src="js/scroll-nav.js"></script>
         <script src="js/loader.js"></script>
         <script src="js/modernizr.min.js"></script>
-        <script src="js/viewportchecker.js"></script>
+        <script src="js/jquery.easing.1.3.min.js"></script>
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
         <div class="loader-anim"></div>
@@ -31,12 +30,12 @@
                 <div>
                     <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li><a href="#welcome-section">Welcome</a></li>
-                            <li><a href="#overview-section">Overview</a></li>
-                            <li><a href="#gallery-section">Gallery</a></li>
-                            <li><a href="#reservation-section">Reservations</a></li>
-                            <li><a href="#contact-section">Contact us</a></li>
-                            <li><a href="#login-section">Login/Sign up</a></li>
+                            <li><a class="page-scroll" href="#welcome-section">Welcome</a></li>
+                            <li><a class="page-scroll" href="#overview-section">Overview</a></li>
+                            <li><a class="page-scroll" href="#gallery-section">Gallery</a></li>
+                            <li><a class="page-scroll" href="#reservation-section">Reservations</a></li>
+                            <li><a class="page-scroll" href="#contact-section">Contact us</a></li>
+                            <li><a class="page-scroll" href="#login-section">Login/Sign up</a></li>
                         </ul>
                     </div>
                 </div>
