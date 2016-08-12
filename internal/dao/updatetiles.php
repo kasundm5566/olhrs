@@ -1,14 +1,11 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// Create a database connection
 include '../common/dbconnection.php';
 $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
 
+// What kind of operation ajax need to do. According to the parameter
+// 'operation', suitable switch case will execute.
 $operation = $_REQUEST['operation'];
 
 switch ($operation) {

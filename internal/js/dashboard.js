@@ -1,3 +1,4 @@
+// Customize dashboard tile animating settings
 $(document).ready(function () {
     // Tile sliding related settings
     $(".tile").height($("#tile1").width());

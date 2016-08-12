@@ -1,10 +1,4 @@
-<?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+<?php ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,12 +7,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/scrollspy.css"/>
+        <link rel="stylesheet" href="css/animate.css"/>
         <link rel="stylesheet" href="css/site-layout.css"/>
         <script src="js/jquery-1.12.2.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>  
+        <script src="js/scroll-nav.js"></script>
+        <script src="js/loader.js"></script>
+        <script src="js/modernizr.min.js"></script>
+        <script src="js/viewportchecker.js"></script>
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="se-pre-con"></div>
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -45,25 +45,61 @@
 
         <div id="welcome-section" class="container-fluid">
             <h1>Welcome</h1>
+<!--            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width: 100%; height:500px;">
+                 Indicators 
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                 Wrapper for slides 
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="" alt="..."  style="width: 100%; height:500px;">
+                        <div class="carousel-caption">
+                            Welcome
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="" alt="..."  style="width: 100%; height:500px;">
+                        <div class="carousel-caption">
+                            ...
+                        </div>
+                    </div>
+                    ...
+                </div>
+
+                 Controls 
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>-->
         </div>
 
         <div id="overview-section" class="container-fluid">
             <h1>Overview</h1>
         </div>
 
-        <div id="gallery-section" class="container-fluid">
+        <div id="gallery-section" class="container-fluid dynamic-section">
             <h1>Gallery</h1>
+            <p>sfsdfsdfsd dfs fs sdfsd fssdfssdfsd<br>dfsdf dfs d.</p>
         </div>
 
-        <div id="reservation-section" class="container-fluid">
+        <div id="reservation-section" class="container-fluid dynamic-section">
             <h1>Reservations</h1>
         </div>
 
-        <div id="contact-section" class="container-fluid">
+        <div id="contact-section" class="container-fluid dynamic-section">
             <h1>Contact us</h1>
         </div>
 
-        <div id="login-section" class="container-fluid">
+        <div id="login-section" class="container-fluid dynamic-section">
             <h1>Login</h1>
         </div>       
 

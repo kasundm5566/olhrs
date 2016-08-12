@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100);
 
+/* Tile container box styles */
 #box{
     padding: 25px;
     max-width: 1500px;
@@ -14,6 +15,8 @@
     overflow: hidden;
 }
 
+/* Styles of the tiles */
+/*---------------------*/
 .dynamicTile .col-sm-2.col-xs-4 {
     padding: 5px;
 }
@@ -123,7 +126,9 @@
 .small-tile-images{
     width: 800px;
 }
+/*---------------------*/
 
+/* Set anchor tag cursor type to default. */
 a {
     text-decoration: none !important;
     cursor: default;

@@ -6,23 +6,31 @@ div#main{
     width:100%;
    
 }
+
+/* Header style */
 div#header{
     height:45px;
     background-color: #111;
 }
+.hea{
+    text-align: center; 
+    font-size: 25px; 
+    padding-top: 10px; 
+    color: #fff;  
+}
+/* Navigation bar related styles */
 div#navi{
     height:50px;
 }
+
+/* Set a minimum height for the contents view. */
 div#contents{
     min-height: 400px;
 }
+
+/* Footer style */
 div#footer{
     height: 100px;
-}
-
-.hea{
-    text-align: center; font-size: 25px; padding-top: 10px; color: #fff;
-    
 }
 .fo{
     text-align: center; font-style: italic; font-size: -1;

@@ -1,3 +1,4 @@
+// Validate the username and password user entered.
 $(document).ready(function(){
    $('form').submit(function(event){
    if($('#username').val()=="" && $('#password').val()==""){ //Both 

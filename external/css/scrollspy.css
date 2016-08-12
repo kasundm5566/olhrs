@@ -2,8 +2,11 @@ body {
     position: relative;
 }
 
+/* Scrollspy section styles */
+/*--------------------------*/
 #welcome-section {
-    padding-top:50px;
+    padding-top:70px;
+    margin-top: 80px;
     height:500px;
     color: #fff;
     background-color: #1E88E5;
@@ -42,11 +45,8 @@ body {
     color: #fff; 
     background-color: #c3325f;
 }
+/*--------------------------*/
 
-.navbar{
-    opacity: 0.6;
-}
-
-.navbar:hover{
-    opacity: 1;
+.dynamic-section{
+    opacity: 0;
 }

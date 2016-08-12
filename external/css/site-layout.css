@@ -1,3 +1,4 @@
+/* Website footer styles */
 #site-footer{
     text-align: right;
     width: 100%;
@@ -5,5 +6,35 @@
     padding: 20px;
 }
 
+/* set navigation bar initial padding and transitions when padding changes. */
+.navbar {
+    padding: 15px 0;
+    -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+    transition: background .5s ease-in-out,padding .5s ease-in-out;
+}
+/* set navigation bar padding to 0. */
+.nav-collapse {
+    padding: 0;
+}
 
-
+/* Loading animation customization */
+/*--------------------------*/
+.no-js #loader { 
+    display: none; 
+}
+.js #loader { 
+    display: block; 
+    position: absolute; 
+    left: 100px; 
+    top: 0; }
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(../images/Preloader_3.gif) center no-repeat #fff;
+}
+/*--------------------------*/
