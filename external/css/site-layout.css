@@ -6,6 +6,10 @@
     padding: 20px;
 }
 
+body{
+    background-color: #333333;
+}
+
 /* set navigation bar initial padding and transitions when padding changes. */
 .navbar {
     padding: 15px 0;
@@ -13,6 +17,7 @@
     -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
     transition: background .5s ease-in-out,padding .5s ease-in-out;
 }
+
 /* set navigation bar padding to 0. */
 .nav-collapse {
     padding: 0;
@@ -23,11 +28,14 @@
 .no-js #loader { 
     display: none; 
 }
+
 .js #loader { 
     display: block; 
     position: absolute; 
     left: 100px; 
-    top: 0; }
+    top: 0; 
+}
+
 .loader-anim {
     position: fixed;
     left: 0px;

@@ -5,48 +5,50 @@ body {
 /* Scrollspy section styles */
 /*--------------------------*/
 #welcome-section {
-    padding-top:70px;
-    margin-top: 80px;
-    height:500px;
+    padding-top:25px;
+    height:650px;
     color: #fff;
-    background-color: #1E88E5;
+    background-color: #3c3c3c;
 }
 
 #overview-section {
-    padding-top:50px;
+    padding-top:25px;
     height:500px;
     color: #fff; 
     background-color: #673ab7;
 }
 
 #gallery-section {
-    padding-top:50px;
+    padding-top:25px;
     height:500px;
     color: #fff; 
     background-color: #ff9800;
 }
 
 #reservation-section {
-    padding-top:50px;
+    padding-top:25px;
     height:500px;color: #fff; 
     background-color: #00bcd4;
 }
 
 #contact-section {
-    padding-top:50px;
-    height:500px;
-    color: #fff; 
-    background-color: green;
+    padding-top:25px;
+    height:630px;
+    background-color: whitesmoke;
 }
 
 #login-section {
-    padding-top:50px;
-    height:500px;
+    padding-top:25px;
+    height:600px;
     color: #fff; 
-    background-color: #c3325f;
+    background-color: transparent;
 }
 /*--------------------------*/
 
 .dynamic-section{
     opacity: 0;
+}
+
+#site-footer{
+    color: #777777;
 }

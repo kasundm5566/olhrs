@@ -37,7 +37,7 @@ function reservationTileUpdate() {
 function userTileUpdate() {
     // Send an ajax request to get the current user count
     $.ajax({
-        url: "../../../dao/updatetiles.php",
+        url: "../../dao/updatetiles.php",
         type: "GET",
         data: {operation: "userTileUpdate"},
         dataType: "json",
@@ -46,7 +46,7 @@ function userTileUpdate() {
             $("#lblUserCount").text(data["count"]);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert(errorThrown);
+            alert("Error"+ errorThrown);
         }
     });
 }
