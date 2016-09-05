@@ -24,3 +24,16 @@ textarea{
     border-radius: 200px;
     width: 200px;
 }
+
+.overview-images{
+    border-style: inset;
+}
+
+.overview-row{
+    padding-left: 80px;
+    padding-top: 10px;
+}
+
+.modal{
+    color: black;
+}
