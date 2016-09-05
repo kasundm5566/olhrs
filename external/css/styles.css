@@ -7,6 +7,11 @@ textarea{
     height: 30px;
 }
 
+.header-icons{
+    width: 45px;
+    height: 45px;
+}
+
 .contactfrm-details{
     padding-left: 38px;
 }
@@ -15,7 +20,7 @@ textarea{
     margin-top: 30px;
 }
 
-.btn-contactfrm, #btn-loginsubmit{
+.btn-contactfrm, #btn-loginsubmit, .btn-signupfrm{
     width: 150px;
 }
 
@@ -36,4 +41,12 @@ textarea{
 
 .modal{
     color: black;
+}
+
+.lbl-signup-errors{
+    color: red;
+}
+
+.header-modals{
+    display: inline-block;
 }
