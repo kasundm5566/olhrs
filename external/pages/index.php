@@ -19,6 +19,7 @@
         <script src="../js/anchorHoverEffect.js"></script>
         <script src="../js/login.js"></script>
         <script src="../js/validations/signup-validate.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
         <div class="loader-anim"></div>

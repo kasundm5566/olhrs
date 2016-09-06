@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-5">
-        <form role="form">
+        <form role="form" method="POST" action="validatecapcha.php">
             <div class="form-group">
                 <label class="control-label">Name</label>
                 <input class="form-control" type="text" placeholder="Enter your name" id="txt-contactfrm-name">
@@ -20,9 +20,11 @@
                 <label class="control-label">Message</label>
                 <textarea class="form-control" id="txt-contactfrm-message" rows="7" placeholder="Enter your message"></textarea>
             </div>
-            <div style="text-align: right;">
-                <input type="reset" class="btn btn-primary btn-contactfrm">
-                <input type="submit" class="btn btn-success btn-contactfrm">
+            <div class="row">
+                <div class="g-recaptcha col-md-6" id="recaptcha" data-sitekey="6LfgcykTAAAAAJ-vPjIhaR_FIx-tmwoqbCR4txW0"></div>
+                <div class="col-md-6" style="text-align: right; display: inline-block;">
+                    <input type="submit" class="btn btn-success btn-contactfrm" id="btn-contact-submit">
+                </div>
             </div>
         </form>
     </div>
