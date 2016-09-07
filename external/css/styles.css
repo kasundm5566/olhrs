@@ -7,6 +7,11 @@ textarea{
     height: 30px;
 }
 
+.popup-icons{
+    width: 80px;
+    height: 80px;
+}
+
 .header-icons{
     width: 45px;
     height: 45px;
@@ -43,10 +48,22 @@ textarea{
     color: black;
 }
 
-.lbl-signup-errors{
+.lbl-signup-errors, .lbl-errors{
     color: red;
 }
 
 .header-modals{
     display: inline-block;
+}
+
+.modal-body{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #00b300;
+}
+
+.modal-header{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #00b300;
 }

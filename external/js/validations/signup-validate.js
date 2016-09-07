@@ -2,180 +2,204 @@ var background_color = "#fde99c";
 
 $(document).ready(function () {
     $("#signup-firstname").focusout(function () {
-        validateFirstName();
+        validateFirstName($("#signup-firstname"), $("#lbl-signup-fname-error"));
     });
     $("#signup-firstname").keyup(function () {
-        validateFirstName();
+        validateFirstName($("#signup-firstname"), $("#lbl-signup-fname-error"));
     });
 
     $("#signup-lastname").focusout(function () {
-        validateLastName();
+        validateLastName($("#signup-lastname"), $("#lbl-signup-lname-error"));
     });
     $("#signup-lastname").keyup(function () {
-        validateLastName();
+        validateLastName($("#signup-lastname"), $("#lbl-signup-lname-error"));
     });
 
     $("#signup-email").focusout(function () {
-        validateEmail();
+        validateEmail($("#signup-email"), $("#lbl-signup-email-error"));
     });
     $("#signup-email").keyup(function () {
-        validateEmail();
+        validateEmail($("#signup-email"), $("#lbl-signup-email-error"));
     });
 
     $("#signup-contactno").focusout(function () {
-        validateContactNo();
+        validateContactNo($("#signup-contactno"), $("#lbl-signup-contactno-error"));
     });
     $("#signup-contactno").keyup(function () {
-        validateContactNo();
+        validateContactNo($("#signup-contactno"), $("#lbl-signup-contactno-error"));
     });
 
     $("#signup-password").focusout(function () {
-        validatePassword();
+        validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
     });
     $("#signup-password").keyup(function () {
-        validatePassword();
+        validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
     });
-    
+
     $("#signup-repassword").focusout(function () {
-        validateRetypedPass();
+        validateRetypedPass($("#signup-repassword"), $("#lbl-signup-repassword-error"), $("#signup-password"));
     });
     $("#signup-repassword").keyup(function () {
-        validateRetypedPass();
+        validateRetypedPass($("#signup-repassword"), $("#lbl-signup-repassword-error"), $("#signup-password"));
     });
+
+    $("#btn-signup").click(function () {
+        $('#modal-signup').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+        $("#btn-signup-ok").click(function () {
+            var isFirstNameValid = validateFirstName($("#signup-firstname"), $("#lbl-signup-fname-error"));
+            var isLastNameValid = validateLastName($("#signup-lastname"), $("#lbl-signup-lname-error"));
+            var isEmailValid = validateEmail($("#signup-email"), $("#lbl-signup-email-error"));
+            var isContactNoValid = validateContactNo($("#signup-contactno"), $("#lbl-signup-contactno-error"));
+            var isPasswordValid = validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
+            var isRetypedPasswordValid = validateRetypedPass($("#signup-repassword"), $("#lbl-signup-repassword-error"), $("#signup-password"));
+
+            if (isFirstNameValid == false || isLastNameValid == false || isEmailValid == false || isContactNoValid == false || isPasswordValid == false || isRetypedPasswordValid == false) {
+                $("#validation-error-popup").modal("show");
+                return false;
+            } else {
+                alert("ok");
+            }
+        });
+    });
+
+
 });
 
 // Validate the first name
-function validateFirstName() {
-    if ($("#signup-firstname").val().length == 0) {
-        $("#lbl-signup-fname-error").show();
-        $("#signup-firstname").css("background-color", background_color);
-        $("#lbl-signup-fname-error").text("First name should not be empty.");
+function validateFirstName(field, error_field) {
+    if ($(field).val().length == 0) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Name should not be empty.");
         return false;
     } else {
-        var inputVal = $("#signup-firstname").val();
+        var inputVal = $(field).val();
         var numericReg = /^[a-zA-Z]+$/;
         if (!numericReg.test(inputVal)) {
-            $("#lbl-signup-fname-error").show();
-            $("#signup-firstname").css("background-color", background_color);
-            $("#lbl-signup-fname-error").text("Invalid first name. Only alphabetic characters without spaces allowed.");
+            $(error_field).show();
+            $(field).css("background-color", background_color);
+            $(error_field).text("Invalid name. Only alphabetic characters without spaces allowed.");
             return false;
         } else {
-            $("#signup-firstname").css("background-color", "white");
-            $("#lbl-signup-fname-error").hide();
+            $(field).css("background-color", "white");
+            $(error_field).hide();
         }
     }
 }
 
 // Validate the last name
-function validateLastName() {
-    if ($("#signup-lastname").val().length == 0) {
-        $("#signup-lastname").css("background-color", "white");
-        $("#lbl-signup-lname-error").hide();
+function validateLastName(field, error_field) {
+    if ($(field).val().length == 0) {
+        $(field).css("background-color", "white");
+        $(error_field).hide();
     } else {
-        var inputVal = $("#signup-lastname").val();
+        var inputVal = $(field).val();
         var numericReg = /^[a-zA-Z]+$/;
         if (!numericReg.test(inputVal)) {
-            $("#lbl-signup-lname-error").show();
-            $("#signup-lastname").css("background-color", background_color);
-            $("#lbl-signup-lname-error").text("Invalid last name. Only alphabetic characters without spaces allowed.");
+            $(error_field).show();
+            $(field).css("background-color", background_color);
+            $(error_field).text("Invalid last name. Only alphabetic characters without spaces allowed.");
             return false;
         } else {
-            $("#signup-lastname").css("background-color", "white");
-            $("#lbl-signup-lname-error").hide();
+            $(field).css("background-color", "white");
+            $(error_field).hide();
         }
     }
 }
 
 //Validate the email address
-function validateEmail() {
-    if ($("#signup-email").val().length == 0) {
-        $("#lbl-signup-email-error").show();
-        $("#signup-email").css("background-color", background_color);
-        $("#lbl-signup-email-error").text("Email should not be empty.");
+function validateEmail(field, error_field) {
+    if ($(field).val().length == 0) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Email should not be empty.");
         return false;
     } else {
-        var inputVal = $("#signup-email").val();
+        var inputVal = $(field).val();
         var emailReg = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
         if (!emailReg.test(inputVal)) {
-            $("#lbl-signup-email-error").show();
-            $("#signup-email").css("background-color", background_color);
-            $("#lbl-signup-email-error").text("Please enter a valid email.");
+            $(error_field).show();
+            $(field).css("background-color", background_color);
+            $(error_field).text("Please enter a valid email.");
             return false;
         } else {
-            $("#signup-email").css("background-color", "white");
-            $("#lbl-signup-email-error").hide();
+            $(field).css("background-color", "white");
+            $(error_field).hide();
         }
     }
 }
 
 // Validate the tel no
-function validateContactNo() {
-    if ($("#signup-contactno").val().length != 10) {
-        $("#lbl-signup-contactno-error").show();
-        $("#signup-contactno").css("background-color", background_color);
-        $("#lbl-signup-contactno-error").text("Telephone no should contain 11 characters without the leading zero.");
+function validateContactNo(field, error_field) {
+    if ($(field).val().length != 10) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Telephone no should contain 11 characters without the leading zero.");
         return false;
     } else {
-        var inputVal = $("#signup-contactno").val();
+        var inputVal = $(field).val();
         var telReg = /^0[^0]\d+$/;
         if (!telReg.test(inputVal)) {
-            $("#lbl-signup-contactno-error").show();
-            $("#signup-contactno").css("background-color", background_color);
-            $("#lbl-signup-contactno-error").text("Please enter a valid telephone no.");
+            $(error_field).show();
+            $(field).css("background-color", background_color);
+            $(error_field).text("Please enter a valid telephone no.");
             return false;
         } else {
-            $("#signup-contactno").css("background-color", "white");
-            $("#lbl-signup-contactno-error").hide();
+            $(field).css("background-color", "white");
+            $(error_field).hide();
         }
     }
 }
 
 // Validate the password
-function validatePassword() {
-    if ($("#signup-password").val().length > 7 && $("#signup-password").val().length < 17) {
-        var inputVal = $("#signup-password").val();
+function validatePassword(field, error_field) {
+    if ($(field).val().length > 7 && $(field).val().length < 17) {
+        var inputVal = $(field).val();
         var oneDigit = /^(?=.*\d).+$/;
         var oneSpecChar = /^(?=.*[_\W]).+$/;
         if (!oneDigit.test(inputVal)) {
-            $("#lbl-signup-password-error").show();
-            $("#signup-password").css("background-color", background_color);
-            $("#lbl-signup-password-error").text("Password should contain at least one digit.");
+            $(error_field).show();
+            $(field).css("background-color", background_color);
+            $(error_field).text("Password should contain at least one digit.");
             return false;
         } else if (!oneSpecChar.test(inputVal)) {
-            $("#lbl-signup-password-error").show();
-            $("#signup-password").css("background-color", background_color);
-            $("#lbl-signup-password-error").text("Password should contain at least one special character.");
+            $(error_field).show();
+            $(field).css("background-color", background_color);
+            $(error_field).text("Password should contain at least one special character.");
             return false;
         } else {
-            $("#signup-password").css("background-color", "white");
-            $("#lbl-signup-password-error").hide();
+            $(field).css("background-color", "white");
+            $(error_field).hide();
         }
     } else {
-        $("#lbl-signup-password-error").text("Password length should be in between 8 to 16.");
-        $("#signup-password").css("background-color", background_color);
-        $("#lbl-signup-password-error").show();
+        $(error_field).text("Password length should be in between 8 to 16.");
+        $(field).css("background-color", background_color);
+        $(error_field).show();
         return false;
     }
 }
 
 // Validate the re-typed password
-function validateRetypedPass() {
-    if ($("#signup-repassword").val().length == 0) {
-        $("#lbl-signup-repassword-error").show();
-        $("#signup-repassword").css("background-color", background_color);
-        $("#lbl-signup-repassword-error").text("Please re-type the password.");
+function validateRetypedPass(field, error_field, entered_password) {
+    if ($(field).val().length == 0) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Please re-type the password.");
         return false;
     } else {
-        var pass = $("#signup-password").val();
-        var repass = $("#signup-repassword").val();
+        var pass = $(field).val();
+        var repass = $(entered_password).val();
         if (pass != repass) {
-            $("#lbl-signup-repassword-error").show();
-            $("#signup-repassword").css("background-color", background_color);
-            $("#lbl-signup-repassword-error").text("Passwords do not match.");
+            $(error_field).show();
+            $(field).css("background-color", background_color);
+            $(error_field).text("Passwords do not match.");
             return false;
         } else {
-            $("#signup-repassword").css("background-color", "white");
-            $("#lbl-signup-repassword-error").hide();
+            $(field).css("background-color", "white");
+            $(error_field).hide();
         }
     }
 }

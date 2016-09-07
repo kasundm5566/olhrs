@@ -64,9 +64,30 @@
             </div>
             <div class="modal-footer">
                 <a class="btn btn-default btn-signupfrm" data-dismiss="modal">Cancel</a>
-                <a class="btn btn-success btn-signupfrm">Sign up</a>
+                <a class="btn btn-success btn-signupfrm" id="btn-signup-ok">Sign up</a>
             </div>
         </div>
     </div>
 </div>
 <!-- End Sign up modal -->
+
+<!-- Validation error popup -->
+<div id="validation-error-popup" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><img src="../images/icons/error.png" class="popup-icons">&nbsp;&nbsp;Validation Error</h4>
+            </div>
+            <div class="modal-body">
+                <p>Can not submit your message since the There are <strong>validation errors</strong>.
+                    <br>Please go through the highlighted fields, correct them.<br>
+                    Please try again once you are done.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Validation error popup -->
