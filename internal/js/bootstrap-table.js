@@ -1,48 +1,60 @@
 $(document).ready(function () {
-    $('#table-javascript').bootstrapTable({
-        url: '../../dao/data2.json',
-        height: 400,
-        pageSize: 20,
-        singleSelect: true,
-        minimumCountColumns: 3,
-        columns: [{
-                field: 'id',
-                title: 'User ID',
-                align: 'right',
-                valign: 'bottom',
-                sortable: true
-            }, {
-                field: 'fistname',
-                title: 'First Name',
-                align: 'right',
-                valign: 'bottom',
-                sortable: true
-            }, {
-                field: 'lastname',
-                title: 'Last Name',
-                align: 'right',
-                valign: 'bottom',
-                sortable: true
-            }, {
-                field: 'email',
-                title: 'Email',
-                align: 'right',
-                valign: 'bottom',
-                sortable: true
-            }, {
-                field: 'contactno',
-                title: 'Contact No',
-                align: 'right',
-                valign: 'bottom',
-                sortable: true
-            }, {
-                field: 'operate',
-                title: 'Item Operate',
-                align: 'center',
-                valign: 'middle',
-                formatter: operateFormatter,
-                events: operateEvents
-            }]
+    $.ajax({
+        url: "../../dao/get_users.php",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            $('#table-javascript').bootstrapTable({
+                height: 400,
+                pageSize: 20,
+                data: data,
+                singleSelect: true,
+                columns: [{
+                        field: 'first_name',
+                        title: 'First Name',
+                        align: 'right',
+                        valign: 'bottom',
+                        sortable: true
+                    }, {
+                        field: 'last_name',
+                        title: 'Last Name',
+                        align: 'right',
+                        valign: 'bottom',
+                        sortable: true
+                    }, {
+                        field: 'username',
+                        title: 'username',
+                        align: 'right',
+                        valign: 'bottom',
+                        sortable: true
+                    }, {
+                        field: 'email',
+                        title: 'Email',
+                        align: 'right',
+                        valign: 'bottom'
+                    }, {
+                        field: 'telephone',
+                        title: 'telephone',
+                        align: 'right',
+                        valign: 'bottom'
+                    }, {
+                        field: 'status',
+                        title: 'Status',
+                        align: 'right',
+                        valign: 'bottom'
+                    }, {
+                        field: 'operate',
+                        title: 'Item Operate',
+                        align: 'center',
+                        valign: 'middle',
+                        formatter: operateFormatter,
+                        events: operateEvents
+                    }]
+            });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("Error" + errorThrown);
+        }
     });
 });
 

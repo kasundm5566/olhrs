@@ -25,6 +25,17 @@
 
         <div class="center-div">
             <div class="section">          
+                <!--                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <img class="icons" src="../../images/icons/customer.png">
+                                        <h3 class="header-panel">&nbsp;Customer Management</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="container" style="min-width: 800px;">
+                                            <table id="table-javascript"></table>
+                                        </div>
+                                    </div>
+                                </div>-->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <img class="icons" src="../../images/icons/customer.png">
@@ -32,16 +43,34 @@
                     </div>
                     <div class="panel-body">
                         <div class="container" style="min-width: 800px;">
-                            <table id="table-javascript"></table>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li class="active"><a href="#">Home</a></li>
+                                        <li><a href="#">Menu 1</a></li>
+                                        <li><a href="#">Menu 2</a></li>
+                                        <li><a href="#">Menu 3</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-10">
+                                    <table id="table-javascript"></table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
             </div> 
         </div> 
 
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
         </div>
-        
+
     </body>
 </html>
