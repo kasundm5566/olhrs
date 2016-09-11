@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 unset($_SESSION['userinfo']); //Remove session
 unset($_SESSION['session_id']);
-header('refresh:3,url=../../login/view/index.php'); //Redirection
+header('refresh:3,url=../../index.php'); //Redirection
 ?>
 <html>
     <head> 

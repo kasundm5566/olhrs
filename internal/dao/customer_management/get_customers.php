@@ -1,11 +1,14 @@
 <?php
 
 // Create a database connection
-include '../common/dbconnection.php';
+include '../../common/dbconnection.php';
 $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
 
-$sql = "SELECT * FROM user;";
+$page = $_REQUEST['page'];
+$offset = ($page - 1) * 10;
+
+$sql = "SELECT first_name, last_name, username, password, email, telephone, status FROM user LIMIT 10 OFFSET $offset;";
 $dataArray = [];
 
 $result = $connection->query($sql);

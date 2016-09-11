@@ -3,14 +3,16 @@
         <title>Customer Management</title>        
         <link rel="stylesheet" type="text/css" 
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css"/>
+        <link rel="stylesheet" href="../../css/bootstrap-table.min.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
-        <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
-        </script>
         <script type="text/javascript" src="../../js/jquery-1.10.2.min.js">
-        </script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-        <script src="../../js/bootstrap-table.js"></script>
+        </script>       
+        <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
+        </script>        
+        <script src="../../js/bootstrap-table.min.js"></script>
+        <script src="../../js/customer-management.js"></script>
+        <script src="../../js/validations/signup-validate.js"></script>
+        <script src="../../js/simple-bootstrap-paginator.js"></script>
     </head>
 
     <body>
@@ -25,17 +27,6 @@
 
         <div class="center-div">
             <div class="section">          
-                <!--                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <img class="icons" src="../../images/icons/customer.png">
-                                        <h3 class="header-panel">&nbsp;Customer Management</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="container" style="min-width: 800px;">
-                                            <table id="table-javascript"></table>
-                                        </div>
-                                    </div>
-                                </div>-->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <img class="icons" src="../../images/icons/customer.png">
@@ -43,30 +34,34 @@
                     </div>
                     <div class="panel-body">
                         <div class="container" style="min-width: 800px;">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li class="active"><a href="#">Home</a></li>
-                                        <li><a href="#">Menu 1</a></li>
-                                        <li><a href="#">Menu 2</a></li>
-                                        <li><a href="#">Menu 3</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-10">
-                                    <table id="table-javascript"></table>
+                            <div class="pull-left">
+                                <button class="btn btn-success btn-sm" id="btn-addcustomer"><i class="glyphicon glyphicon-plus-sign"></i> Add new customer</button>
+                            </div>
+                            <div class="input-group pull-right" style="margin-bottom: 5px;">
+                                <div class="input-group">
+                                    <input type="text" id="txtSearch" class="search form-control"
+                                           placeholder="Search customer">
+
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" id="btnSearchCustomers" type="submit"><i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                        <button class="btn btn-default" id="btnRefreshCustomers" type="submit"><i class="glyphicon glyphicon-refresh"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div><table id="table-customers"></table></div>
+                            <div id="pagination" class="text-right"></div>
+
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
             </div> 
         </div> 
+
+        <?php include './modals.php'; ?>
+        <?php include '../../common/common_modals.php'; ?>
 
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 

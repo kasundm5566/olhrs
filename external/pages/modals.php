@@ -72,7 +72,7 @@
 <!-- End Sign up modal -->
 
 <!-- Validation error popup -->
-<div id="validation-error-popup" class="modal fade">
+<div id="modal-validation-error-popup" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
