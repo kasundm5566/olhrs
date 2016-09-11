@@ -7,15 +7,18 @@ $connection = $objDBConnection->connection();
 
 $username = $_REQUEST['username'];
 
-$preSql = "SET SQL_SAFE_UPDATES = 0;";
-$sql = "DELETE FROM user_group WHERE user_id IN (SELECT user_id FROM user where username='$username');";
-$sql .= "DELETE FROM user WHERE username='$username';";
-$postSql = "SET SQL_SAFE_UPDATES = 1;";
+$sql1 = "DELETE FROM user_group WHERE user_id IN (SELECT user_id FROM user where username='$username');";
+$sql2 = "DELETE FROM user WHERE username='$username';";
 
+$connection->query("START TRANSACTION;");
 
-if ($connection->multi_query($sql) === TRUE) {
-    echo 1;
+$res1 = $connection->query($sql1);
+$res2 = $connection->query($sql2);
+
+if ($res1 and $res2) {
+    $connection->query("COMMIT;");
+    echo '1';
 } else {
-    echo $connection->error;
+    $connection->query("ROLLBACK;");
+    echo '2';
 }
-

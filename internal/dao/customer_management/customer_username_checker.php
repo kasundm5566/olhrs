@@ -1,13 +1,13 @@
 <?php
 
-// Create a database connection
 include '../../common/dbconnection.php';
 $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
+$GLOBALS['connection'] = $connection;
 
-$sql = "SELECT COUNT(*) AS count FROM user u, user_group ug WHERE u.user_id=ug.user_id "
-        . "AND group_id IN (SELECT group_id FROM groups WHERE group_name='customer');";
+$username = $_REQUEST['username'];
 
+$sql = "SELECT COUNT(user_id) AS count FROM user WHERE username='$username';";
 $result = $connection->query($sql);
 
 while ($row = $result->fetch_assoc()) {

@@ -10,7 +10,7 @@ include 'login.php'; //Server Side Include
 $objLogin = new login(); //To create an object using login class
 $result = $objLogin->loginvalidate($username, $password); //To call a method and passing parameters
 $records_count = $result->num_rows; //To count the rows
-if ($records_count == 1) {
+if ($records_count >= 1) {
     $row = $result->fetch_assoc(); // To create an array
     $user_id = $row['id'];
     $_SESSION['session_id'] = $session_id = time() . "_" . $user_id;

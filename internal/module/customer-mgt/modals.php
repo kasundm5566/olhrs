@@ -63,9 +63,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-primary btn-signupfrm" data-dismiss="modal">Cancel</a>
+                <a class="btn btn-primary btn-signupfrm" id="btn-addcust-cancel" data-dismiss="modal">Cancel</a>
                 <a class="btn btn-success btn-signupfrm" id="btn-addcustomer-ok">Add customer</a>
-            </div>
+            </div></form>
         </div>
     </div>
 </div>

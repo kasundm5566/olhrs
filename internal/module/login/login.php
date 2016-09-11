@@ -12,8 +12,12 @@ class login {
         $connection = $GLOBALS['connection'];
 // $sql="SELECT * FROM user u,login l, role r WHERE u.user_id=l.user_id AND 
 //     u.role_id=r.role_id AND l.username='$u' AND l.password='$p'";
+//        $sql = "SELECT * FROM user WHERE username='$username' AND password='$password';";
 
-        $sql = "SELECT * FROM user WHERE username='$username' AND password='$password';";
+        $sql = "SELECT * FROM user u, user_group ug WHERE u.user_id=ug.user_id AND group_id IN (SELECT group_id FROM groups WHERE group_name != 'customer' AND username='$username' and password='$password');";
+
+
+
         $result = $connection->query($sql); //To execute query
         return $result;
         //$nor=$result->num_rows; //To count no of rows

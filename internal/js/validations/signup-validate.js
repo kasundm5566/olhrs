@@ -29,6 +29,13 @@ $(document).ready(function () {
         validateContactNo($("#signup-contactno"), $("#lbl-signup-contactno-error"));
     });
 
+    $("#signup-username").focusout(function () {
+        validateCustomerUserName($("#signup-username"), $("#lbl-signup-username-error"));
+    });
+    $("#signup-username").keyup(function () {
+        validateCustomerUserName($("#signup-username"), $("#lbl-signup-username-error"));
+    });
+
     $("#signup-password").focusout(function () {
         validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
     });
@@ -57,10 +64,11 @@ $(document).ready(function () {
             var isLastNameValid = validateLastName($("#signup-lastname"), $("#lbl-signup-lname-error"));
             var isEmailValid = validateEmail($("#signup-email"), $("#lbl-signup-email-error"));
             var isContactNoValid = validateContactNo($("#signup-contactno"), $("#lbl-signup-contactno-error"));
+            var isUsernameValid = validateCustomerUserName($("#signup-username"), $("#lbl-signup-username-error"));
             var isPasswordValid = validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
             var isRetypedPasswordValid = validateRetypedPass($("#signup-repassword"), $("#lbl-signup-repassword-error"), $("#signup-password"));
 
-            if (isFirstNameValid === false || isLastNameValid === false || isEmailValid === false || isContactNoValid === false || isPasswordValid === false || isRetypedPasswordValid === false) {
+            if (isFirstNameValid === false || isLastNameValid === false || isEmailValid === false || isContactNoValid === false || isUsernameValid === false || isPasswordValid === false || isRetypedPasswordValid === false) {
                 $("#modal-validation-error-popup").modal("show");
                 return false;
             } else {
@@ -85,7 +93,7 @@ $(document).ready(function () {
                             if ($.trim(data) == 1) {
                                 $("#modal-addCustomer-ConfirmPopup").modal('hide');
                                 $("#modal-customer-signup").modal('hide');
-                                $("#form-addcustomer").trigger('reset')
+                                $("#form-addcustomer").trigger('reset');
                                 $("#modal-addCustomerSuccess").modal('show');
                             } else {
                                 $("#modal-addCustomer-ConfirmPopup").modal('hide');
@@ -238,5 +246,41 @@ function validateRetypedPass(field, error_field, entered_password) {
             $(field).css("background-color", "white");
             $(error_field).hide();
         }
+    }
+}
+
+// Validate the username password
+function validateCustomerUserName(field, error_field) {
+    $(error_field).css("color", "red");
+    var userName = $(field).val();
+    var unameRegex = /^[a-zA-z][a-zA-Z0-9_]+$/;
+    if ($(field).val().length == 0) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("User name should not empty.");
+        return false;
+    } else {
+        $.ajax({
+            type: 'GET',
+            url: "../../dao/customer_management/customer_username_checker.php",
+            data: {"username": userName},
+            success: function (result) {
+                if ($.trim(result) != 0) {
+                    $(error_field).show();
+                    $(field).css("background-color", background_color);
+                    $(error_field).text("That user name is already used.");
+                    return false;
+                } else {
+                    $(error_field).css("color", "#009900");
+                    $(error_field).show();
+                    $(field).css("background-color", "white");
+                    $(error_field).text("User name is valid.");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $("#modal-commonError").modal('show');
+                $("#common-error-msg").text("Error validating the username. Message: " + errorThrown);
+            }
+        });
     }
 }
