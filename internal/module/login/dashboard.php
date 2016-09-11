@@ -1,3 +1,13 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+if ($_SESSION['username'] == "") {
+    header("Location:index.php");
+    exit;
+}
+?>
+
 <html>
     <head>
         <title>Dashboard-Hotel Reservation System</title>
@@ -6,14 +16,12 @@
         <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
         <link rel="stylesheet" type="text/css" 
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
-
         <script type="text/javascript" src="../../js/jquery-1.10.2.min.js">
         </script>
         <script type="text/javascript" src="../../js/dashboard.js">
         </script>
         <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
         </script>
-
     </head>
     <body>
 

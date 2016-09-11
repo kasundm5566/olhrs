@@ -1,3 +1,13 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+if ($_SESSION['username'] == "") {
+    header("Location:index.php");
+    exit;
+}
+?>
+
 <html>
     <head>
         <title>Customer Management</title>        
@@ -13,6 +23,7 @@
         <script src="../../js/customer-management.js"></script>
         <script src="../../js/validations/signup-validate.js"></script>
         <script src="../../js/simple-bootstrap-paginator.js"></script>
+        <script src="../../js/bootstrap3-typeahead.min.js"></script>
     </head>
 
     <body>
@@ -39,8 +50,8 @@
                             </div>
                             <div class="input-group pull-right" style="margin-bottom: 5px;">
                                 <div class="input-group">
-                                    <input type="text" id="txtSearch" class="search form-control"
-                                           placeholder="Search customer">
+                                    <input type="text" id="txtSearchCustomer" class="search form-control"
+                                           placeholder="Search customer by first name">
 
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" id="btnSearchCustomers" type="submit"><i class="glyphicon glyphicon-search"></i>
@@ -53,7 +64,7 @@
 
                             <div><table id="table-customers"></table></div>
                             <div id="pagination" class="text-right"></div>
-
+                            <div id="pagination2" class="text-right"></div>
                         </div>
                     </div>
                 </div>

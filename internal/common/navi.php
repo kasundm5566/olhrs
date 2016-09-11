@@ -1,2 +1,5 @@
-<?php echo "kdm" /*$userinfo['username']."(".$userinfo['role_name'].")"*/; ?>
-<a href="logout.php">Logout</a>
+<?php
+echo $_SESSION['username'];
+?>
+
+<a href="../../common/logout.php">Logout</a>

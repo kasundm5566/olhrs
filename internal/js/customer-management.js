@@ -8,6 +8,17 @@ $(document).ready(function () {
         refreshCustomerTablePage(currentPage);
     });
 
+    $('#txtSearchCustomer').keyup(function () {
+        autoFillSearch();
+    });
+    $('#txtSearchCustomer').keydown(function () {
+        autoFillSearch();
+    });
+
+    $("#btnSearchCustomers").click(function () {
+        search();
+    });
+
 });
 
 // Initialize the bootstrap table with data
@@ -134,6 +145,9 @@ function initCustomerTable() {
 
 // Function to refresh the table data
 function refreshCustomerTablePage(pageNo) {
+    $("#txtSearchCustomer").val("");
+    $("#pagination2").hide();
+    $("#pagination").show();
     $.ajax({
         url: "../../dao/customer_management/get_customers.php",
         type: "GET",
@@ -186,7 +200,105 @@ function pagination() {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             $("#modal-commonError").modal('show');
-            $("#common-error-msg").text("Error getting user count. Message: " + errorThrown);
+            $("#common-error-msg").text("Error getting customers count. Message: " + errorThrown);
         }
     });
+}
+
+// Setup Typeahead
+function autoFillSearch() {
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "../../dao/customer_management/typeahead.php",
+        success: function (result) {
+            $('#txtSearchCustomer').typeahead({
+                name: 'txtSearchCustomer',
+                limit: 10,
+                minLength: 1,
+                source: result
+            }).focus();
+        }
+    });
+}
+
+// Search customer
+/*function searchCustomers() {
+    var fName = $("#txtSearchCustomer").val();
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "../../dao/customer_management/search_customer.php",
+        data: {"firstname": fName},
+        success: function (result) {
+            $('#table-customers').bootstrapTable('load', result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $("#modal-commonError").modal('show');
+            $("#common-error-msg").text("Error searching customers. Message: " + errorThrown);
+        }
+    });
+}*/
+
+function search() {
+    var searchName = $('#txtSearchCustomer').val();
+    if (searchName.length == 0) {
+        $('#pagination2').hide();
+        $('#pagination').show();
+
+        $.ajax({
+            type: "POST",
+            url: "../../dao/customer_management/get_customers.php",
+            dataType: "json",
+            data: {"page": "1"},
+            success: function (result) {
+                $('#table-customers').bootstrapTable('load', result);
+                paginationBar.simplePaginator('changePage', 1);
+            }
+        });
+    } else {
+        $('#pagination').hide();
+        $('#pagination2').show();
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "../../dao/customer_management/search_customer.php",
+            data: {"searchName": searchName, "page": 1},
+            success: function (result) {
+                $('#table-customers').bootstrapTable('load', result);
+            }
+        });
+
+        $.ajax({
+            type: "get",
+            url: "../../dao/customer_management/pagination_search.php",
+            data: {"searchName": searchName},
+            success: function (result) {
+                var pageCount = Math.ceil(result / 10);
+                paginationBar2.simplePaginator('setTotalPages', pageCount);
+            }
+        });
+
+        paginationBar2 = $('#pagination2').simplePaginator({
+            totalPages: 1,
+            maxButtonsVisible: 5,
+            currentPage: 1,
+            nextLabel: 'Next',
+            prevLabel: 'Prev',
+            firstLabel: 'First',
+            lastLabel: 'Last',
+            pageChange: function (page) {
+                $.ajax({
+                    type: "GET",
+                    url: "../../dao/customer_management/search_customer.php",
+                    dataType: "json",
+                    data: {"searchName": searchName, "page": page},
+                    success: function (result) {
+                        $('#table-customers').bootstrapTable('load', result);
+                    }
+                });
+            }
+        });
+    }
 }

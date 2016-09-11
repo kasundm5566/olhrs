@@ -1,6 +1,6 @@
 <html>
     <head> 
-        <title>Login-Hotel Reservation System</title>
+        <title>Login</title>
         <link rel="icon" href="../../../images/bi.png" />
         <link rel="stylesheet" type="text/css" 
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
@@ -18,8 +18,6 @@
         </div>
 
         <div id="navi">
-            <?php include '../../common/navi.php'; ?>
-            &nbsp;
         </div>
 
         <div class="center-div">

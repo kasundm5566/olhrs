@@ -14,9 +14,9 @@ class login {
 //     u.role_id=r.role_id AND l.username='$u' AND l.password='$p'";
 //        $sql = "SELECT * FROM user WHERE username='$username' AND password='$password';";
 
-        $sql = "SELECT * FROM user u, user_group ug WHERE u.user_id=ug.user_id AND group_id IN (SELECT group_id FROM groups WHERE group_name != 'customer' AND username='$username' and password='$password');";
-
-
+        $sql = "SELECT * FROM user u, user_group ug WHERE u.user_id=ug.user_id AND"
+                . " group_id IN (SELECT group_id FROM groups WHERE group_name != 'customer'"
+                . " AND username='$username' and password='$password');";
 
         $result = $connection->query($sql); //To execute query
         return $result;
@@ -26,7 +26,7 @@ class login {
 
     function log($date, $time, $username, $sessionId) { //To Insert login Details
         $con = new mysqli("127.0.0.1", "root", "", "olhrs"); //Conncection string
-        $sql = "INSERT INTO log (log_date,log_time,username,session_id) VALUES('$date','$time','$username','$sessionId')";
+        $sql = "INSERT INTO log (log_date,log_time,username,session_id) VALUES('$date','$time','$username','$sessionId');";
         $con->query($sql);
     }
 
