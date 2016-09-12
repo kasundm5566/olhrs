@@ -7,9 +7,12 @@
         <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
         </script>
         <link rel="stylesheet" type="text/css" href="../../css/styles.css" /> 
+        <link rel="stylesheet" type="text/css" href="../../css/pace-theme-center-simple.css" /> 
         <script type="text/javascript" src="../../js/jquery-1.8.3.min.js">
         </script>
         <script type="text/javascript" src="../../js/validations/loginvalidate.js">
+        </script>
+        <script type="text/javascript" src="../../js/pace.js">
         </script>
     </head>
     <body>
