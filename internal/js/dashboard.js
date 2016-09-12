@@ -11,17 +11,17 @@ $(document).ready(function () {
             $(this).trigger('resizeEnd');
         }, 10);
     });
-    
+
     $(window).bind('resizeEnd', function () {
         $(".tile").height($("#tile1").width());
         $(".carousel").height($("#tile1").width());
         $(".item").height($("#tile1").width());
     });
-    
+
     // Title content updates each time dashboard refreshes
     reservationTileUpdate();
     userTileUpdate();
-    
+
     // Bootstrap tooltip
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -46,7 +46,7 @@ function userTileUpdate() {
             $("#lblUserCount").text(data["count"]);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert("Error"+ errorThrown);
+            alert("Error" + errorThrown);
         }
     });
 }

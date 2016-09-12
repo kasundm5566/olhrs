@@ -30,7 +30,7 @@ function initCustomerTable() {
         data: {'page': 1},
         success: function (data) {
             $('#table-customers').bootstrapTable({
-                height: 400,
+                height: 380,
                 pageSize: 10,
                 data: data,
                 singleSelect: true,

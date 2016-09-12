@@ -40,14 +40,14 @@ unset($_SESSION['session_id']);
                                 <div>
                                     <h2 align="center">Logged out</h2>
                                     <div style="text-align: center; padding-top: 20px;">
-                                        <img src="../images/icons/logout_2.png" width="160px" height="160px"/>
+                                        <img src="../images/icons/logout_2.png" width="140px" height="140px"/>
                                     </div>                                   
-                                    <p align="center" style="padding-top: 20px;">You have logged out from the system successfully...<br>
+                                    <p style="padding-top: 20px;">You have logged out from the system successfully...<br>
                                         <strong>You will redirect to the home page in few seconds.</strong>
                                         If not redirected, please click the following link to go to the login page.
                                     </p>
-                                    <div style="margin-left: 340px;" class="timer"></div>
-                                    <a href="../module/login/index.php"><p align="center" style="font-size: large;"><strong>Go to login page</strong></p></a>
+                                    <div style="margin-left: 150px;" class="timer"></div>
+                                    <a href="../module/login/index.php"><p style="font-size: large;"><strong>Go to login page</strong></p></a>
                                 </div>
                             </div>
                         </div>

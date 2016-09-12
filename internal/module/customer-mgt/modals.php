@@ -13,7 +13,8 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Personal Details</a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        <span class="glyphicon glyphicon-user" style="padding-right: 5px;"></span>Personal Details</a>
                                 </h4>
                             </div>
                             <div id="collapse1" class="panel-collapse collapse in">
@@ -40,7 +41,8 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Account Details</a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                        <span class="glyphicon glyphicon-lock" style="padding-right: 5px;"></span>Account Details</a>
                                 </h4>
                             </div>
                             <div id="collapse2" class="panel-collapse collapse">

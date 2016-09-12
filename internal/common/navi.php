@@ -1,5 +1,6 @@
 <?php
-echo $_SESSION['username'];
+echo '( Welcome '.$_SESSION['username'].' )';
 ?>
 
-<a href="../../common/logout.php">Logout</a>
+<!--<a href="../../common/logout.php">Logout</a>-->
+<button class="btn-link" id="link-logout-nav">Logout</button>

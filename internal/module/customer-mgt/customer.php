@@ -27,6 +27,8 @@ if ($_SESSION['username'] == "") {
         <script src="../../js/bootstrap3-typeahead.min.js"></script>
         <script type="text/javascript" src="../../js/pace.js">
         </script>
+        <script type="text/javascript" src="../../js/common.js">
+        </script>
     </head>
 
     <body>

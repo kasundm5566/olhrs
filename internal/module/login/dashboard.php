@@ -25,6 +25,8 @@ if ($_SESSION['username'] == "") {
         </script>
         <script type="text/javascript" src="../../js/pace.js">
         </script>
+        <script type="text/javascript" src="../../js/common.js">
+        </script>
     </head>
     <body>
 
@@ -270,6 +272,8 @@ if ($_SESSION['username'] == "") {
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
         </div>
+        
+        <?php include '../../common/common_modals.php'; ?>
     </body>
 </html>
 <?php
