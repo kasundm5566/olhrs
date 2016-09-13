@@ -16,7 +16,7 @@ if ($_SESSION['username'] == "") {
         <link rel="stylesheet" href="../../css/bootstrap-table.min.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
         <link rel="stylesheet" type="text/css" href="../../css/pace-theme-center-simple.css" /> 
-        <script type="text/javascript" src="../../js/jquery-1.10.2.min.js">
+        <script type="text/javascript" src="../../js/jquery-1.12.2.min.js">
         </script>       
         <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
         </script>        
@@ -68,6 +68,20 @@ if ($_SESSION['username'] == "") {
                             </div>
 
                             <div><table id="table-customers"></table></div>
+                            <div class="input-group pull-right" style="margin-top:21px; margin-left:5px;">
+                                <label class="pagiTexts" style="display: inline;">Go to page: </label>
+                                <select id="comboPages" style="height: 32px; border-radius:4px; background-color: transparent;">
+                                </select>
+                                &nbsp;&nbsp;
+                                <label class="pagiTexts" style="display: inline;">Records per page: </label>
+                                <select id="comboRecCount" style="height: 32px; border-radius:4px; background-color: transparent;">
+                                    <option value="10" selected>10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="1000">1000</option>
+                                </select>
+                            </div>
                             <div id="pagination" class="text-right"></div>
                             <div id="pagination2" class="text-right"></div>
                         </div>

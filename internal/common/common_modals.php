@@ -27,7 +27,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/logout.png"/>
-                <h3 class="modal-title header-panel">Confirm logout</h3>
+                <h3 class="modal-title header-panel">Confirm Logout</h3>
             </div>
             <div class="modal-body">
                 <p>You are about to logout from the system.<br>

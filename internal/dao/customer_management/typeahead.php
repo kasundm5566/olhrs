@@ -5,7 +5,7 @@ include '../../common/dbconnection.php';
 $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
 
-$sql = "SELECT first_name FROM user;";
+$sql = "SELECT first_name FROM customer;";
 
 $result = $connection->query($sql);
 

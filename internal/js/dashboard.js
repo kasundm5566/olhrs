@@ -20,7 +20,8 @@ $(document).ready(function () {
 
     // Title content updates each time dashboard refreshes
     reservationTileUpdate();
-    userTileUpdate();
+    staffTileUpdate();
+    customerTileUpdate();
 
     // Bootstrap tooltip
     $('[data-toggle="tooltip"]').tooltip();
@@ -34,16 +35,30 @@ function reservationTileUpdate() {
 }
 
 // User tile update configuration
-function userTileUpdate() {
+function staffTileUpdate() {
     // Send an ajax request to get the current user count
     $.ajax({
         url: "../../dao/updatetiles.php",
-        type: "GET",
-        data: {operation: "userTileUpdate"},
-        dataType: "json",
-        success: function (data) {
+        data: {operation: "staffTileUpdate"},
+        success: function (count) {
             // Place the user count result in the tile
-            $("#lblUserCount").text(data["count"]);
+            $("#lblStaffCount").text(count);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("Error" + errorThrown);
+        }
+    });
+}
+
+// Customer tile update configuration
+function customerTileUpdate() {
+    // Send an ajax request to get the current user count
+    $.ajax({
+        url: "../../dao/updatetiles.php",
+        data: {operation: "customerTileUpdate"},
+        success: function (count) {
+            // Place the user count result in the tile
+           $("#lblcustomerTilteCap01").text(count);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert("Error" + errorThrown);

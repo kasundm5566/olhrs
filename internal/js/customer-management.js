@@ -1,5 +1,6 @@
 var paginationBar;
 var currentPage = 1;
+var recPerPage = 10;
 $(document).ready(function () {
     initCustomerTable();
     pagination();
@@ -19,6 +20,28 @@ $(document).ready(function () {
         search();
     });
 
+    $('#comboPages').change(function () {
+        jumpToPage();
+    });
+
+    $('#comboRecCount').change(function () {
+        loadDataByPageSize();
+    });
+
+    $('#btn-addcustomer').off('click');
+    $("#btn-addcustomer").click(function () {
+
+        $('#modal-customer-signup').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+
+        $('#btn-addcustomer-ok').off('click');
+        $("#btn-addcustomer-ok").click(function () {
+            addCustomer();
+        });
+    });
+
 });
 
 // Initialize the bootstrap table with data
@@ -27,11 +50,11 @@ function initCustomerTable() {
         url: "../../dao/customer_management/get_customers.php",
         type: "GET",
         dataType: "json",
-        data: {'page': 1},
+        data: {'page': 1, "recordsCount": recPerPage},
         success: function (data) {
             $('#table-customers').bootstrapTable({
                 height: 380,
-                pageSize: 10,
+                pageSize: recPerPage,
                 data: data,
                 singleSelect: true,
                 columns: [{
@@ -48,7 +71,7 @@ function initCustomerTable() {
                         sortable: true
                     }, {
                         field: 'username',
-                        title: 'username',
+                        title: 'Username',
                         align: 'left',
                         valign: 'bottom',
                         sortable: true
@@ -59,13 +82,19 @@ function initCustomerTable() {
                         valign: 'bottom'
                     }, {
                         field: 'telephone',
-                        title: 'telephone',
+                        title: 'Conatct no',
                         align: 'right',
                         valign: 'bottom'
                     }, {
                         field: 'status',
                         title: 'Status',
                         align: 'center',
+                        valign: 'bottom',
+                        sortable: true
+                    }, {
+                        field: 'registered_date',
+                        title: 'Registered date',
+                        align: 'right',
                         valign: 'bottom',
                         sortable: true
                     }, {
@@ -127,6 +156,7 @@ function initCustomerTable() {
                         if ($.trim(result) == 1) {
                             $("#modal-deleteCustomerPopup").modal('hide');
                             $("#modal-deleteCustomerSuccess").modal('show');
+                            refreshCustomerTablePage(currentPage);
                         } else {
                             $("#modal-deleteCustomerPopup").modal('hide');
                             $("#modal-deleteUserFail").modal('show');
@@ -152,7 +182,7 @@ function refreshCustomerTablePage(pageNo) {
         url: "../../dao/customer_management/get_customers.php",
         type: "GET",
         dataType: "json",
-        data: {"page": pageNo},
+        data: {"page": pageNo, "recordsCount": recPerPage},
         success: function (data) {
             $('#table-customers').bootstrapTable('load', data);
         },
@@ -179,9 +209,10 @@ function pagination() {
                 url: "../../dao/customer_management/get_customers.php",
                 type: "GET",
                 dataType: "json",
-                data: {"page": page},
+                data: {"page": page, "recordsCount": recPerPage},
                 success: function (result) {
                     $('#table-customers').bootstrapTable('load', result);
+                    $('#comboPages').val(page);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $("#modal-commonError").modal('show');
@@ -193,10 +224,12 @@ function pagination() {
 
     // Get the user count and set the page count of the pagination bar
     $.ajax({
+        type: "get",
         url: "../../dao/customer_management/get_customers_count.php",
         success: function (result) {
-            var pageCount = Math.ceil(result / 10);
+            var pageCount = Math.ceil(result / recPerPage);
             paginationBar.simplePaginator('setTotalPages', pageCount);
+            loadPageSelect(pageCount);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             $("#modal-commonError").modal('show');
@@ -208,7 +241,7 @@ function pagination() {
 // Setup Typeahead
 function autoFillSearch() {
     $.ajax({
-        type: "POST",
+        type: "GET",
         dataType: "json",
         url: "../../dao/customer_management/typeahead.php",
         success: function (result) {
@@ -223,34 +256,20 @@ function autoFillSearch() {
 }
 
 // Search customer
-/*function searchCustomers() {
-    var fName = $("#txtSearchCustomer").val();
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "../../dao/customer_management/search_customer.php",
-        data: {"firstname": fName},
-        success: function (result) {
-            $('#table-customers').bootstrapTable('load', result);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            $("#modal-commonError").modal('show');
-            $("#common-error-msg").text("Error searching customers. Message: " + errorThrown);
-        }
-    });
-}*/
-
 function search() {
     var searchName = $('#txtSearchCustomer').val();
     if (searchName.length == 0) {
         $('#pagination2').hide();
         $('#pagination').show();
+        $('#comboPages').show();
+        $('#comboRecCount').show();
+        $('.pagiTexts').show();
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "../../dao/customer_management/get_customers.php",
             dataType: "json",
-            data: {"page": "1"},
+            data: {"page": "1", "recordsCount": recPerPage},
             success: function (result) {
                 $('#table-customers').bootstrapTable('load', result);
                 paginationBar.simplePaginator('changePage', 1);
@@ -259,6 +278,9 @@ function search() {
     } else {
         $('#pagination').hide();
         $('#pagination2').show();
+        $('#comboPages').hide();
+        $('#comboRecCount').hide();
+        $('.pagiTexts').hide();
 
         $.ajax({
             type: "GET",
@@ -275,8 +297,8 @@ function search() {
             url: "../../dao/customer_management/pagination_search.php",
             data: {"searchName": searchName},
             success: function (result) {
-                var pageCount = Math.ceil(result / 10);
-                paginationBar2.simplePaginator('setTotalPages', pageCount);
+                var pageCount = Math.ceil(result / recPerPage);
+                paginationBar.simplePaginator('setTotalPages', pageCount);
             }
         });
 
@@ -299,6 +321,108 @@ function search() {
                     }
                 });
             }
+        });
+    }
+}
+
+// Load page amount to the go to page dropdown
+function loadPageSelect(pages) {
+    var select = $("#comboPages"), options = '';
+    select.empty();
+    for (var i = 1; i <= pages; i++) {
+        options += "<option>" + i + "</option>";
+    }
+    select.append(options);
+}
+
+// Go to the page selected by the dropdown
+function jumpToPage() {
+    var selectedPage = $('#comboPages').val();
+    $.ajax({
+        type: "GET",
+        url: "../../dao/customer_management/get_customers.php",
+        dataType: "json",
+        data: {"page": selectedPage, "recordsCount": recPerPage},
+        success: function (result) {
+            $('#table-customers').bootstrapTable('load', result);
+            $('#comboPages').val(selectedPage);
+            $('#pagination').simplePaginator('change', selectedPage);
+        }
+    });
+}
+
+// Load selected amount of records per page
+function loadDataByPageSize() {
+    recPerPage = $('#comboRecCount').val();
+    $.ajax({
+        type: "GET",
+        url: "../../dao/customer_management/get_customers.php",
+        dataType: "json",
+        data: {"page": "1", "recordsCount": recPerPage},
+        success: function (result) {
+            $('#table').bootstrapTable('load', result);
+            paginationBar.simplePaginator('changePage', 1);
+        }
+    });
+
+    $.ajax({
+        url: "../../dao/customer_management/get_customers_count.php",
+        success: function (result) {
+            var totalPages = Math.ceil(result / recPerPage);
+            paginationBar.simplePaginator('setTotalPages', totalPages);
+            loadPageSelect(totalPages);
+        }
+    });
+}
+
+// Add a new customer record to the database
+function addCustomer() {
+    var isFirstNameValid = validateFirstName($("#signup-firstname"), $("#lbl-signup-fname-error"));
+    var isLastNameValid = validateLastName($("#signup-lastname"), $("#lbl-signup-lname-error"));
+    var isEmailValid = validateEmail($("#signup-email"), $("#lbl-signup-email-error"));
+    var isContactNoValid = validateContactNo($("#signup-contactno"), $("#lbl-signup-contactno-error"));
+    var isUsernameValid = validateCustomerUserName($("#signup-username"), $("#lbl-signup-username-error"));
+    var isPasswordValid = validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
+    var isRetypedPasswordValid = validateRetypedPass($("#signup-repassword"), $("#lbl-signup-repassword-error"), $("#signup-password"));
+
+    if (isFirstNameValid === false || isLastNameValid === false || isEmailValid === false || isContactNoValid === false || isUsernameValid === false || isPasswordValid === false || isRetypedPasswordValid === false) {
+        $("#modal-validation-error-popup").modal("show");
+        return false;
+    } else {
+        $("#modal-addCustomer-ConfirmPopup").modal('show');
+        $("#lblFname").text("");
+        $("#lblFname").text("First name: " + $("#signup-firstname").val());
+        $("#lblLname").text("");
+        $("#lblLname").text("Last name: " + $("#signup-lastname").val());
+        $("#lblEmail").text("");
+        $("#lblEmail").text("Email: " + $("#signup-email").val());
+        $("#lblTel").text("");
+        $("#lblTel").text("Contact no: " + $("#signup-contactno").val());
+        $("#lblUsrname").text("");
+        $("#lblUsrname").text("username: " + $("#signup-username").val());
+
+        $('#addCustOk').off('click');
+        $("#addCustOk").click(function () {
+            $.ajax({
+                url: "../../dao/customer_management/add_customer.php",
+                data: $("#form-addcustomer").serialize(),
+                success: function (result) {
+                    if ($.trim(result) == 1) {
+                        $("#modal-addCustomer-ConfirmPopup").modal('hide');
+                        $("#modal-customer-signup").modal('hide');
+                        $("#form-addcustomer").trigger('reset');
+                        $("#modal-addCustomerSuccess").modal('show');
+                        refreshCustomerTablePage(currentPage);
+                    } else {
+                        $("#modal-addCustomer-ConfirmPopup").modal('hide');
+                        $("#modal-addCustomerFail").modal('show');
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $("#modal-commonError").modal('show');
+                    $("#common-error-msg").text("Error adding new customer. Message: " + errorThrown);
+                }
+            });
         });
     }
 }

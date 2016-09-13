@@ -15,11 +15,12 @@ if ($records_count != 0) {
     $user_id = $row['user_id'];
     $_SESSION['session_id'] = $session_id = time() . "_" . $user_id;
     $_SESSION['username'] = $row['username'];
+    $_SESSION['group'] = $row['group_name'];
     $date = date("Y-m-d"); //Date
     $time = date("H:i:s"); //Time
     $username = $row['username'];
-    $objLogin->log($date, $time, $username, $session_id); //To call log function
 
+    $objLogin->log($date, $time, $username, $session_id); //To call log function
     header("Location:dashboard.php");
 } else {
     $msg = "Invalid User Name or Password";

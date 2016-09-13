@@ -1,5 +1,7 @@
 <?php
-echo '( Welcome '.$_SESSION['username'].' )';
+$username=$_SESSION['username'];
+$group=$_SESSION['group'];
+echo '<img class="nav-icon" src="../../images/icons/user.png"/>'.' Welcome '.$username.' ('.$group.')';
 ?>
 
 <!--<a href="../../common/logout.php">Logout</a>-->

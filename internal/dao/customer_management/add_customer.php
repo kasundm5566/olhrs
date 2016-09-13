@@ -12,12 +12,16 @@ $contactNo = $_REQUEST['customer-contactno'];
 $username = $_REQUEST['customer-username'];
 $password = sha1($_REQUEST['customer-password']);
 
-//echo ($firstName . " " . $lastName . " " . $email . " " . $contactNo . " " . $username . " " . $password);
+$date = date("Y-m-d");
 
-$sql = "INSERT INTO user (username,password,first_name,last_name,email,telephone,status) "
-        . "VALUES ('$username','$password','$firstName','$lastName','$email','$contactNo','verified');";
-$sql.="INSERT INTO user_group VALUES ((SELECT user_id FROM user WHERE username='$username'),4);";
+$sql1 = "INSERT INTO customer (username,password,first_name,last_name,email,telephone,status,registered_date)"
+        . "VALUES ('$username','$password','$firstName','$lastName','$email','$contactNo','verified','$date');";
 
-$result = $connection->multi_query($sql);
 
-echo $result;
+$res1 = $connection->query($sql1);
+
+if ($res1) {
+    echo '1';
+} else {
+    echo $connection->error;
+}

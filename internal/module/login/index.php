@@ -1,15 +1,16 @@
 <html>
     <head> 
         <title>Login</title>
-        <link rel="icon" href="../../../images/bi.png" />
         <link rel="stylesheet" type="text/css" 
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/pace-theme-center-simple.css" /> 
+        <script type="text/javascript" src="../../js/jquery-1.12.2.min.js">
+        </script>       
         <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
-        </script>
+        </script>        
         <link rel="stylesheet" type="text/css" href="../../css/styles.css" /> 
         <link rel="stylesheet" type="text/css" href="../../css/pace-theme-center-simple.css" /> 
-        <script type="text/javascript" src="../../js/jquery-1.8.3.min.js">
-        </script>
         <script type="text/javascript" src="../../js/validations/loginvalidate.js">
         </script>
         <script type="text/javascript" src="../../js/pace.js">
@@ -61,8 +62,10 @@
                                 <button type="submit" class="login login-submit btn btn-success" name="login" id="loginButton">
                                     <span>Login</span>
                                 </button>
-
                             </form>
+                            <div>
+                                <a id="link-forgot-password">Forgot password</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,6 +75,30 @@
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
         </div> 
+
+        <!-- Start-Forgot password popup -->
+        <div id="modal-forgotPassword" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <img class="header-icons" src="../../images/icons/Forgotten-Password.png"/>
+                        <h3 class="modal-title header-panel">&nbsp;Password Reset</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            To maintain the security of the system, you will not be able to reset the password
+                            by yourself.<br>Feature only available to the admin users.<br>
+                            <strong>Please contact an admin user to reset your password.</strong>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End-Forgot password popup -->      
 
     </body>
 </html>

@@ -17,7 +17,7 @@ if ($_SESSION['username'] == "") {
         <link rel="stylesheet" type="text/css" 
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
         <link rel="stylesheet" type="text/css" href="../../css/pace-theme-center-simple.css" /> 
-        <script type="text/javascript" src="../../js/jquery-1.10.2.min.js">
+        <script type="text/javascript" src="../../js/jquery-1.12.2.min.js">
         </script>
         <script type="text/javascript" src="../../js/dashboard.js">
         </script>
@@ -30,9 +30,11 @@ if ($_SESSION['username'] == "") {
     </head>
     <body>
 
+        <!-- Page refreshes every 60 seconds -->
         <?php
         header("Refresh:60");
         ?>
+        
         <div id="header">
             <?php include '../../common/header.php'; ?>
         </div>
@@ -169,7 +171,7 @@ if ($_SESSION['username'] == "") {
                                                     </div>
                                                     <div class="item">
                                                         <img src="../../images/tiles/customer2.jpg" class="img-responsive" />
-                                                        <h1 class="tilecaption">Registered customers</h1>
+                                                        <h1 class="tilecaption">Registered customers: <label class="mainTileLabels" id="lblcustomerTilteCap01"></label></h1>
                                                     </div>
                                                     <div class="item">
                                                         <img src="../../images/tiles/customer3.jpg" class="img-responsive" />
@@ -190,7 +192,7 @@ if ($_SESSION['username'] == "") {
                                                     <div class="item active text-center">
                                                         <div class="item active text-center">
                                                             <img src="../../images/tiles/users.jpg" style="height: 100%;"/>
-                                                            <h1 class="tilecaption">Users</h1>
+                                                            <h1 class="tilecaption">Manage Staff</h1>
                                                         </div>
                                                     </div>
                                                     <div class="item text-center">
@@ -198,10 +200,10 @@ if ($_SESSION['username'] == "") {
                                                             <span class="fa fa-bank bigicon"></span>
                                                         </div>
                                                         <div class="icontext">
-                                                            User count
+                                                            Staff count
                                                         </div>
                                                         <div class="icontext">
-                                                            <label id="lblUserCount"></label>
+                                                            <label id="lblStaffCount" style="font-size: large;"></label>
                                                         </div>
                                                     </div>
                                                 </div>

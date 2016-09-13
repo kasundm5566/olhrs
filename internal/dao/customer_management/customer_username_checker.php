@@ -7,7 +7,7 @@ $GLOBALS['connection'] = $connection;
 
 $username = $_REQUEST['username'];
 
-$sql = "SELECT COUNT(user_id) AS count FROM user WHERE username='$username';";
+$sql = "SELECT COUNT(customer_id) AS count FROM customer WHERE username='$username';";
 $result = $connection->query($sql);
 
 while ($row = $result->fetch_assoc()) {

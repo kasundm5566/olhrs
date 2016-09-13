@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/signup-header-icon.png"/>
-                <h3 class="modal-title header-panel">&nbsp;Add new customer</h3>
+                <h3 class="modal-title header-panel">&nbsp;Add New Customer</h3>
             </div>
             <div class="modal-body">
                 <form id="form-addcustomer">
@@ -102,7 +102,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/customer-add-confirm.png"/>
-                <h3 class="modal-title header-panel">&nbsp;Confirm details</h3>
+                <h3 class="modal-title header-panel">&nbsp;Confirm Details</h3>
             </div>
             <div class="modal-body">
                 <p id="dat" style="text-align: left; display: block;">
@@ -132,7 +132,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/customer-add-success.png"/>
-                <h3 class="modal-title header-panel">&nbsp;Confirm details</h3>
+                <h3 class="modal-title header-panel">&nbsp;Confirm Details</h3>
             </div>
             <div class="modal-body">
                 <p>New user added to the database successfully
@@ -153,7 +153,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/customer-add-error.png"/>
-                <h3 class="modal-title header-panel">&nbsp;Error occurred</h3>
+                <h3 class="modal-title header-panel">&nbsp;Error Occurred</h3>
             </div>
             <div class="modal-body">
                 <p>
@@ -178,7 +178,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/customer-remove-confirm.png"/>
-                <h3 class="modal-title header-panel">&nbsp;Remove customer</h3>
+                <h3 class="modal-title header-panel">&nbsp;Remove Customer</h3>
             </div>
             <div class="modal-body">
                 <p>Do you want to remove the selected user from database?
@@ -205,7 +205,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/customer-remove.png"/>
-                <h3 class="modal-title header-panel">&nbsp;Customer removed</h3>
+                <h3 class="modal-title header-panel">&nbsp;Customer Removed</h3>
             </div>
             <div class="modal-body">
                 <p>Customer record remove from the database successfully.
@@ -226,7 +226,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/customer-add-error.png"/>
-                <h3 class="modal-title header-panel">&nbsp;Error occurred</h3>
+                <h3 class="modal-title header-panel">&nbsp;Error Occurred</h3>
             </div>
             <div class="modal-body">
                 <p>

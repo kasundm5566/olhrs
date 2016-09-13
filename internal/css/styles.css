@@ -1,7 +1,7 @@
 .login-gly{
     margin-bottom: 20px;
 
-/* Start-Login button appearance styles */
+    /* Start-Login button appearance styles */
 }
 
 .login-submit {
@@ -149,6 +149,12 @@ div#footer{
     height: 50px;
 }
 
+/* Styles applied for the icons in navbar */
+.nav-icon{
+    width: 30px;
+    height: 30px;
+}
+
 /* Styles of the headings of panel headers */
 .header-panel{
     display: inline-block;
@@ -178,14 +184,14 @@ div#footer{
 .modal-body{
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-bottom-color: #00b300;
+    border-bottom-color: #029ae5;
 }
 
 /* Styles for the modals' header content */
 .modal-header{
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    border-bottom-color: #00b300;
+    border-bottom-color: #029ae5;
 }
 
 /* Styles for the labels showing the validation errors in signup modal */

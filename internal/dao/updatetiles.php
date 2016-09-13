@@ -1,4 +1,5 @@
 <?php
+
 // Create a database connection
 include '../common/dbconnection.php';
 $objDBConnection = new dbconnection();
@@ -9,11 +10,19 @@ $connection = $objDBConnection->connection();
 $operation = $_REQUEST['operation'];
 
 switch ($operation) {
-    case "userTileUpdate":
+    case "staffTileUpdate":
         $sql = "SELECT COUNT(*) AS count FROM user;";
         $result = $connection->query($sql);
-        $dataArray = $result->fetch_assoc();
-        echo json_encode($dataArray);
+        while ($row = $result->fetch_assoc()) {
+            echo $row['count'];
+        }
+        break;
+    case "customerTileUpdate":
+        $sql = "SELECT COUNT(*) AS count FROM customer;";
+        $result = $connection->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            echo $row['count'];
+        }
         break;
     default :
         echo 'wrong operation...';
