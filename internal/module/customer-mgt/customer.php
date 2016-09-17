@@ -2,8 +2,8 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-if ($_SESSION['username'] == "") {
-    header("Location:index.php");
+if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
+    header("Location:../login/index.php");
     exit;
 }
 ?>
@@ -23,6 +23,7 @@ if ($_SESSION['username'] == "") {
         <script src="../../js/bootstrap-table.min.js"></script>
         <script src="../../js/customer-management.js"></script>
         <script src="../../js/validations/signup-validate.js"></script>
+        <script src="../../js/validations/update-validate.js"></script>
         <script src="../../js/simple-bootstrap-paginator.js"></script>
         <script src="../../js/bootstrap3-typeahead.min.js"></script>
         <script type="text/javascript" src="../../js/pace.js">

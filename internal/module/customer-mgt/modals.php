@@ -21,19 +21,19 @@
                                 <div class="panel-body">
                                     <label>First name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-fname-error"></label>
-                                    <input type="text" name="customer-fname" class="form-control" id="signup-firstname" placeholder="Enter your first name">
+                                    <input type="text" name="customer-fname" class="form-control signup-input-fields" id="signup-firstname" placeholder="Enter your first name">
 
                                     <label>Last name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-lname-error"></label>
-                                    <input type="text" name="customer-lname" class="form-control" id="signup-lastname" placeholder="Enter your last name">
+                                    <input type="text" name="customer-lname" class="form-control signup-input-fields" id="signup-lastname" placeholder="Enter your last name">
 
                                     <label>Email </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-email-error"></label>
-                                    <input type="email" name="customer-email" class="form-control" id="signup-email" placeholder="Enter your email">
+                                    <input type="email" name="customer-email" class="form-control signup-input-fields" id="signup-email" placeholder="Enter your email">
 
                                     <label>Contact no </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-contactno-error"></label>
-                                    <input type="text" name="customer-contactno" class="form-control" id="signup-contactno" placeholder="Enter your contact no. Eg: ">
+                                    <input type="text" name="customer-contactno" class="form-control signup-input-fields" id="signup-contactno" placeholder="Enter your contact no. Eg: ">
                                 </div>
                             </div>
                         </div>
@@ -49,15 +49,15 @@
                                 <div class="panel-body">
                                     <label>User name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-username-error"></label>
-                                    <input type="text" name="customer-username" class="form-control" id="signup-username" placeholder="Enter a user name">
+                                    <input type="text" name="customer-username" class="form-control signup-input-fields" id="signup-username" placeholder="Enter a user name">
 
                                     <label>Password </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-password-error"></label>
-                                    <input type="password" name="customer-password" class="form-control" id="signup-password" placeholder="Enter a password">
+                                    <input type="password" name="customer-password" class="form-control signup-input-fields" id="signup-password" placeholder="Enter a password">
 
                                     <label>Re-type password </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-repassword-error"></label>
-                                    <input type="password" name="customer-repassword" class="form-control" id="signup-repassword" placeholder="Re enter your password">
+                                    <input type="password" name="customer-repassword" class="form-control signup-input-fields" id="signup-repassword" placeholder="Re enter your password">
                                 </div>
                             </div>
                         </div>
@@ -243,3 +243,99 @@
     </div>
 </div>
 <!-- End-Delete customer failed message popup -->
+
+<!-- Start Update modal -->
+<div class="modal fade" id="modal-customer-update">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <img class="header-icons" src="../../images/icons/customer-update.ico"/>
+                <h3 class="modal-title header-panel">&nbsp;Update Customer</h3>
+                <button class="btn btn-warning btn-sm" id="btn-reset-password"><i class="glyphicon glyphicon-refresh"></i> Reset Password</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-updatecustomer">
+                    <label>First name </label>
+                    <label class="lbl-signup-errors" id="lbl-update-fname-error"></label>
+                    <input type="text" name="customer-fname" class="form-control update-input-fields" id="update-firstname" placeholder="Enter your first name">
+
+                    <label>Last name </label>
+                    <label class="lbl-signup-errors" id="lbl-update-lname-error"></label>
+                    <input type="text" name="customer-lname" class="form-control update-input-fields" id="update-lastname" placeholder="Enter your last name">
+
+                    <label>Email </label>
+                    <label class="lbl-signup-errors" id="lbl-update-email-error"></label>
+                    <input type="email" name="customer-email" class="form-control update-input-fields" id="update-email" placeholder="Enter your email">
+
+                    <label>Contact no </label>
+                    <label class="lbl-signup-errors" id="lbl-update-contactno-error"></label>
+                    <input type="text" name="customer-contactno" class="form-control update-input-fields" id="update-contactno" placeholder="Enter your contact no. Eg: ">
+
+                    <label>User name </label>
+                    <label class="lbl-signup-errors" id="lbl-update-username-error">username can not be changed</label>
+                    <input type="text" name="customer-username" class="form-control update-input-fields" id="update-username" placeholder="Enter a user name" disabled>
+
+                    <div class="modal-footer">
+                        <a class="btn btn-primary btn-signupfrm" id="btn-updateCustomer-cancel" data-dismiss="modal">Cancel</a>
+                        <a class="btn btn-success btn-signupfrm" id="btn-updateCustomer-ok">Update customer</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Update modal -->
+
+<!-- Start Reset Password modal -->
+<div class="modal fade" id="modal-reset-password">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <img class="header-icons" src="../../images/icons/Forgotten-Password.png"/>
+                <h3 class="modal-title header-panel">&nbsp;Reset Password</h3>
+            </div>
+            <div class="modal-body">
+                Reset the password of user: <label id="lbl-resetpass-username"></label>
+                <label class="lbl-signup-errors" id="lbl-reset-password-error"></label>
+                <form id="form-updatecustomer">
+                    <label>New password </label>
+                    <label class="lbl-signup-errors" id="lbl-update-password-error"></label>
+                    <input type="password" name="customer-fname" class="form-control update-input-fields" id="update-password" placeholder="Enter a new password">
+
+                    <label>Re-type new password </label>
+                    <label class="lbl-signup-errors" id="lbl-update-repassword-error"></label>
+                    <input type="password" name="customer-lname" class="form-control update-input-fields" id="update-repassword" placeholder="Re-type the new password">
+
+                    <div class="modal-footer">
+                        <a class="btn btn-primary btn-signupfrm" id="btn-resetPass-cancel" data-dismiss="modal">Cancel</a>
+                        <a class="btn btn-success btn-signupfrm" id="btn-resetPass-ok">Reset password</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Reset Password modal -->
+
+<!-- Start-Reset Password success message popup -->
+<div id="modal-resetPasswordSuccess" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <img class="header-icons" src="../../images/icons/success-icon.png"/>
+                <h3 class="modal-title header-panel">&nbsp;Password Reset Success</h3>
+            </div>
+            <div class="modal-body">
+                <p>New password has assigned to the customer successfully.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End-Reset Password success message popup -->

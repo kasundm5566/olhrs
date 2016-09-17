@@ -15,8 +15,10 @@ $sql = "SELECT username,first_name,last_name,email,telephone,status,registered_d
 $dataArray = [];
 
 $result = $connection->query($sql);
-while ($row = $result->fetch_assoc()) {
-    $dataArray[] = $row;
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $dataArray[] = $row;
+    }
+    echo json_encode($dataArray);
 }
-echo json_encode($dataArray);
 

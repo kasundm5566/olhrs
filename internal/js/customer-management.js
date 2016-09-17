@@ -127,7 +127,46 @@ function initCustomerTable() {
 
     window.operateEvents = {
         'click .edit': function (e, value, row, index) {
+            var js = JSON.stringify(row);
+            var obj = JSON.parse(js);
 
+            $('#modal-customer-update').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+
+            $("#update-firstname").val("");
+            $("#update-firstname").val(obj["first_name"]);
+            $("#update-lastname").val("");
+            $("#update-lastname").val(obj["last_name"]);
+            $("#update-email").val("");
+            $("#update-email").val(obj["email"]);
+            $("#update-contactno").val("");
+            $("#update-contactno").val(obj["telephone"]);
+            $("#update-username").val("");
+            $("#update-username").val(obj["username"]);
+
+            $('#btn-reset-password').off('click');
+            $("#btn-reset-password").click(function () {
+                $("#modal-reset-password").modal('show');
+                $("#lbl-resetpass-username").text(obj["username"]);
+
+                $('#btn-resetPass-ok').off('click');
+                $('#btn-resetPass-ok').click(function () {
+                    var isResetPassValid = validatePassword($("#update-password"), $("#lbl-update-password-error"));
+                    var isResetRepassValid = validateRetypedPass($("#update-repassword"), $("#lbl-update-repassword-error"), $("#update-password"));
+                    if (isResetPassValid == false || isResetRepassValid == false) {
+                        $("#lbl-reset-password-error").text("Validation errors found.");
+                    } else {
+                        $("#lbl-reset-password-error").text("");
+                        resetCustomerPassword($("#lbl-resetpass-username").text(),$("#update-password").val());
+                    }
+                });
+            });
+
+            $("#btn-updateCustomer-cancel").click(function () {
+                resetFields($(".lbl-signup-errors"), $(".update-input-fields"));
+            });
         },
         'click .delete': function (e, value, row, index) {
             var js = JSON.stringify(row);
@@ -178,6 +217,10 @@ function refreshCustomerTablePage(pageNo) {
     $("#txtSearchCustomer").val("");
     $("#pagination2").hide();
     $("#pagination").show();
+
+    $('#comboPages').show();
+    $('#comboRecCount').show();
+    $('.pagiTexts').show();
     $.ajax({
         url: "../../dao/customer_management/get_customers.php",
         type: "GET",
@@ -269,7 +312,7 @@ function search() {
             type: "GET",
             url: "../../dao/customer_management/get_customers.php",
             dataType: "json",
-            data: {"page": "1", "recordsCount": recPerPage},
+            data: {"page": 1, "recordsCount": recPerPage},
             success: function (result) {
                 $('#table-customers').bootstrapTable('load', result);
                 paginationBar.simplePaginator('changePage', 1);
@@ -298,7 +341,7 @@ function search() {
             data: {"searchName": searchName},
             success: function (result) {
                 var pageCount = Math.ceil(result / recPerPage);
-                paginationBar.simplePaginator('setTotalPages', pageCount);
+                $('#pagination2').simplePaginator('setTotalPages', pageCount);
             }
         });
 
@@ -346,7 +389,7 @@ function jumpToPage() {
         success: function (result) {
             $('#table-customers').bootstrapTable('load', result);
             $('#comboPages').val(selectedPage);
-            $('#pagination').simplePaginator('change', selectedPage);
+            paginationBar.simplePaginator('changePage', parseInt(selectedPage));
         }
     });
 }
@@ -413,6 +456,7 @@ function addCustomer() {
                         $("#form-addcustomer").trigger('reset');
                         $("#modal-addCustomerSuccess").modal('show');
                         refreshCustomerTablePage(currentPage);
+                        resetFields($(".lbl-signup-errors"), $(".signup-input-fields"));
                     } else {
                         $("#modal-addCustomer-ConfirmPopup").modal('hide');
                         $("#modal-addCustomerFail").modal('show');
@@ -425,4 +469,24 @@ function addCustomer() {
             });
         });
     }
+}
+
+function resetCustomerPassword(username, password) {
+    $.ajax({
+        url: "../../dao/customer_management/reset_password.php",
+        data: {"username": username, "password": password},
+        success: function (result) {
+            if ($.trim(result) == 1) {
+                $("#modal-reset-password").modal('hide');
+                $("#modal-customer-update").modal('hide');
+                $("#modal-resetPasswordSuccess").modal('show');
+            } else {
+                $("#lbl-reset-password-error").text("INTERNAL ERROR OCCURRED...");
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $("#modal-commonError").modal('show');
+            $("#common-error-msg").text("Error resetting password. Message: " + errorThrown);
+        }
+    });
 }

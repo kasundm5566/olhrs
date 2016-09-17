@@ -25,7 +25,8 @@ $(document).ready(function () {
 
     // Bootstrap tooltip
     $('[data-toggle="tooltip"]').tooltip();
-
+    
+    ReceptionistHomeThumbs();
 });
 
 // Reservation tile update configuration
@@ -58,10 +59,49 @@ function customerTileUpdate() {
         data: {operation: "customerTileUpdate"},
         success: function (count) {
             // Place the user count result in the tile
-           $("#lblcustomerTilteCap01").text(count);
+            $("#lblcustomerTilteCap01").text(count);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert("Error" + errorThrown);
         }
     });
+}
+
+// Zoom in and out thumbnail icons of Receptionist's homepage
+function ReceptionistHomeThumbs() {
+    $('#reserv').hoverZoom({
+        speed: 450,
+        overlayOpacity: 0.4,
+        zoom: 5
+    });
+    
+    $('#event').hoverZoom({
+        speed: 450,
+        overlayOpacity: 0.4,
+        zoom: 5
+    });
+    
+    $('#pay').hoverZoom({
+        speed: 450,
+        overlayOpacity: 0.4,
+        zoom: 5
+    });
+    
+    $('#report').hoverZoom({
+        speed: 450,
+        overlayOpacity: 0.4,
+        zoom: 5
+    });
+
+    /* USAGE
+     
+     $('#pink').hoverZoom({
+     overlay: true, // false to turn off (default true)
+     overlayColor: '#2e9dbd', // overlay background color
+     overlayOpacity: 0.7, // overlay opacity
+     zoom: 25, // amount to zoom (px)
+     speed: 300 // speed of the hover
+     });
+     
+     */
 }

@@ -9,9 +9,11 @@ $sql = "SELECT first_name FROM customer;";
 
 $result = $connection->query($sql);
 
-while ($row = $result->fetch_assoc()) {
-    $dataArray[] = $row['first_name'];
-}
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $dataArray[] = $row['first_name'];
+    }
 
-echo json_encode($dataArray);
+    echo json_encode($dataArray);
+}
 

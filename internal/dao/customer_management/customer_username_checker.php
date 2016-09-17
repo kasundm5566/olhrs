@@ -10,6 +10,8 @@ $username = $_REQUEST['username'];
 $sql = "SELECT COUNT(customer_id) AS count FROM customer WHERE username='$username';";
 $result = $connection->query($sql);
 
-while ($row = $result->fetch_assoc()) {
-    echo $row['count'];
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        echo $row['count'];
+    }
 }
