@@ -159,9 +159,24 @@ function initCustomerTable() {
                         $("#lbl-reset-password-error").text("Validation errors found.");
                     } else {
                         $("#lbl-reset-password-error").text("");
-                        resetCustomerPassword($("#lbl-resetpass-username").text(),$("#update-password").val());
+                        resetCustomerPassword($("#lbl-resetpass-username").text(), $("#update-password").val());
                     }
                 });
+            });
+
+            $('#btn-updateCustomer-ok').off('click');
+            $("#btn-updateCustomer-ok").click(function () {
+                var isUpdateFNameValid = validateFirstName($("#update-firstname"), $("#lbl-update-fname-error"));
+                var isUpdateLNameValid = validateLastName($("#update-lastname"), $("#lbl-update-lname-error"));
+                var isUpdateEmailValid = validateEmail($("#update-email"), $("#lbl-update-email-error"));
+                var isUpdateContactNoValid = validateContactNo($("#update-contactno"), $("#lbl-update-contactno-error"));
+
+                if (isUpdateFNameValid == false || isUpdateLNameValid == false || isUpdateEmailValid == false || isUpdateContactNoValid == false) {
+                    $("#modal-validation-error-popup").appendTo('body').modal("show");
+                    return false;
+                } else {
+                    updateCustomer();
+                }
             });
 
             $("#btn-updateCustomer-cancel").click(function () {
@@ -186,27 +201,7 @@ function initCustomerTable() {
 
             $('#deleteCustomerOk').off('click');
             $("#deleteCustomerOk").click(function () {
-                $.ajax({
-                    url: "../../dao/customer_management/delete_customer.php",
-                    type: "GET",
-                    data: "json",
-                    data: {"username": obj["username"]},
-                    success: function (result) {
-                        if ($.trim(result) == 1) {
-                            $("#modal-deleteCustomerPopup").modal('hide');
-                            $("#modal-deleteCustomerSuccess").modal('show');
-                            refreshCustomerTablePage(currentPage);
-                        } else {
-                            $("#modal-deleteCustomerPopup").modal('hide');
-                            $("#modal-deleteUserFail").modal('show');
-                        }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $("#modal-deleteCustomerPopup").modal('hide');
-                        $("#modal-commonError").modal('show');
-                        $("#common-error-msg").text("Error message: " + errorThrown);
-                    }
-                });
+                deleteCustomer(obj);
             });
         }
     };
@@ -487,6 +482,58 @@ function resetCustomerPassword(username, password) {
         error: function (jqXHR, textStatus, errorThrown) {
             $("#modal-commonError").modal('show');
             $("#common-error-msg").text("Error resetting password. Message: " + errorThrown);
+        }
+    });
+}
+
+function deleteCustomer(obj) {
+    $.ajax({
+        url: "../../dao/customer_management/delete_customer.php",
+        type: "GET",
+        data: "json",
+        data: {"username": obj["username"]},
+        success: function (result) {
+            if ($.trim(result) == 1) {
+                $("#modal-deleteCustomerPopup").modal('hide');
+                $("#modal-deleteCustomerSuccess").modal('show');
+                refreshCustomerTablePage(currentPage);
+            } else {
+                $("#modal-deleteCustomerPopup").modal('hide');
+                $("#modal-deleteUserFail").modal('show');
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $("#modal-deleteCustomerPopup").modal('hide');
+            $("#modal-commonError").modal('show');
+            $("#common-error-msg").text("Error message: " + errorThrown);
+        }
+    });
+}
+
+function updateCustomer() {
+    $username = $("#update-username").val();
+    $fname = $("#update-firstname").val();
+    $lname = $("#update-lastname").val();
+    $email = $("#update-email").val();
+    $contactNo = $("#update-contactno").val();
+    $.ajax({
+        url: "../../dao/customer_management/update_customer.php",
+        data: {"update-username": $username, "update-fname": $fname,
+            "update-lname": $lname, "update-email": $email, "update-contactno": $contactNo
+        },
+        success: function (result) {
+            if ($.trim(result) == 1) {
+                $("#modal-customer-update").modal('hide');
+                $("#modal-updateSuccess").modal('show');
+                refreshCustomerTablePage(currentPage);
+            } else {
+                alert(result);
+                $("#modal-updateCustomerFail").modal('show');
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $("#modal-commonError").modal('show');
+            $("#common-error-msg").text("Error message: " + errorThrown);
         }
     });
 }

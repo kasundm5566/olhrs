@@ -21,19 +21,19 @@
                                 <div class="panel-body">
                                     <label>First name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-fname-error"></label>
-                                    <input type="text" name="customer-fname" class="form-control signup-input-fields" id="signup-firstname" placeholder="Enter your first name">
+                                    <input type="text" name="customer-fname" class="form-control signup-input-fields" id="signup-firstname" placeholder="Enter the first name">
 
                                     <label>Last name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-lname-error"></label>
-                                    <input type="text" name="customer-lname" class="form-control signup-input-fields" id="signup-lastname" placeholder="Enter your last name">
+                                    <input type="text" name="customer-lname" class="form-control signup-input-fields" id="signup-lastname" placeholder="Enter the last name">
 
                                     <label>Email </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-email-error"></label>
-                                    <input type="email" name="customer-email" class="form-control signup-input-fields" id="signup-email" placeholder="Enter your email">
+                                    <input type="email" name="customer-email" class="form-control signup-input-fields" id="signup-email" placeholder="Enter the email">
 
                                     <label>Contact no </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-contactno-error"></label>
-                                    <input type="text" name="customer-contactno" class="form-control signup-input-fields" id="signup-contactno" placeholder="Enter your contact no. Eg: ">
+                                    <input type="text" name="customer-contactno" class="form-control signup-input-fields" id="signup-contactno" placeholder="Enter the contact no. Eg: 0771234567">
                                 </div>
                             </div>
                         </div>
@@ -258,29 +258,28 @@
                 <form id="form-updatecustomer">
                     <label>First name </label>
                     <label class="lbl-signup-errors" id="lbl-update-fname-error"></label>
-                    <input type="text" name="customer-fname" class="form-control update-input-fields" id="update-firstname" placeholder="Enter your first name">
+                    <input type="text" name="update-customer-fname" class="form-control update-input-fields" id="update-firstname" placeholder="Enter the first name">
 
                     <label>Last name </label>
                     <label class="lbl-signup-errors" id="lbl-update-lname-error"></label>
-                    <input type="text" name="customer-lname" class="form-control update-input-fields" id="update-lastname" placeholder="Enter your last name">
+                    <input type="text" name="update-customer-lname" class="form-control update-input-fields" id="update-lastname" placeholder="Enter the last name">
 
                     <label>Email </label>
                     <label class="lbl-signup-errors" id="lbl-update-email-error"></label>
-                    <input type="email" name="customer-email" class="form-control update-input-fields" id="update-email" placeholder="Enter your email">
+                    <input type="email" name="update-customer-email" class="form-control update-input-fields" id="update-email" placeholder="Enter the email">
 
                     <label>Contact no </label>
                     <label class="lbl-signup-errors" id="lbl-update-contactno-error"></label>
-                    <input type="text" name="customer-contactno" class="form-control update-input-fields" id="update-contactno" placeholder="Enter your contact no. Eg: ">
+                    <input type="text" name="update-customer-contactno" class="form-control update-input-fields" id="update-contactno" placeholder="Enter the contact no. Eg: 0771234567">
 
                     <label>User name </label>
                     <label class="lbl-signup-errors" id="lbl-update-username-error">username can not be changed</label>
-                    <input type="text" name="customer-username" class="form-control update-input-fields" id="update-username" placeholder="Enter a user name" disabled>
-
-                    <div class="modal-footer">
-                        <a class="btn btn-primary btn-signupfrm" id="btn-updateCustomer-cancel" data-dismiss="modal">Cancel</a>
-                        <a class="btn btn-success btn-signupfrm" id="btn-updateCustomer-ok">Update customer</a>
-                    </div>
+                    <input type="text" name="update-customer-username" class="form-control update-input-fields" id="update-username" disabled>
                 </form>
+                <div class="modal-footer">
+                    <a class="btn btn-primary btn-signupfrm" id="btn-updateCustomer-cancel" data-dismiss="modal">Cancel</a>
+                    <a class="btn btn-success btn-signupfrm" id="btn-updateCustomer-ok">Update customer</a>
+                </div>
             </div>
         </div>
     </div>
@@ -339,3 +338,49 @@
     </div>
 </div>
 <!-- End-Reset Password success message popup -->
+
+<!-- Start-Update success message popup -->
+<div id="modal-updateSuccess" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <img class="header-icons" src="../../images/icons/success-icon.png"/>
+                <h3 class="modal-title header-panel">&nbsp;Update Success</h3>
+            </div>
+            <div class="modal-body">
+                <p>Customer date updated successfully.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End-Update success message popup -->
+
+<!-- Start-Update customer failed message popup -->
+<div id="modal-updateCustomerFail" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <img class="header-icons" src="../../images/icons/customer-add-error.png"/>
+                <h3 class="modal-title header-panel">&nbsp;Error Occurred</h3>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <strong>Some error occurred during updating the new customer.</strong>
+                    <br>Please try again later. If the issue persists, please contact the system
+                    administrator.
+                    <br>Sorry for the inconvenience.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End-Update customer failed message popup -->
