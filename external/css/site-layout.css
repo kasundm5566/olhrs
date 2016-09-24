@@ -6,10 +6,6 @@
     padding: 20px;
 }
 
-body{
-    background-color: #333333;
-}
-
 /* set navigation bar initial padding and transitions when padding changes. */
 .navbar {
     padding: 15px 0;

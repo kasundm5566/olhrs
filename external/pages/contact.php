@@ -63,7 +63,7 @@
         <div style="margin-bottom: 30px;"></div>
         <div style="text-indent: 3px;">
             <?php
-            // To display invalid user name or password
+            // To display message sending status
             if (isset($_REQUEST['status'])) {
                 $decoded_status = base64_decode($_REQUEST['status']);
                 if ($decoded_status == "error") {

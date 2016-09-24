@@ -1,4 +1,9 @@
-<?php ?>
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+    $_SESSION['username']="";
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,9 +15,12 @@
         <link rel="stylesheet" href="../css/site-layout.css"/>
         <link rel="stylesheet" href="../css/styles.css"/>
         <link rel="stylesheet" href="../css/anchorHoverEffect.css"/>
+        <link rel="stylesheet" href="../css/bootstrap-datepicker3.css"/>
         <script src="../js/jquery-1.12.2.min.js"></script>
         <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>  
         <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script src="../js/bootstrap-datepicker.min.js"></script>
+        <script src="../js/datepicker.js"></script>
         <script src="../js/scroll-nav.js"></script>
         <script src="../js/loader.js"></script>
         <script src="../js/modernizr.min.js"></script>
@@ -26,29 +34,7 @@
         <div class="loader-anim"></div>
         <?php include './common/header.php'; ?>
 
-        <div id="welcome-section" class="container-fluid" style="overflow: hidden;">
-            <h1 style="margin-top: 60px;">Welcome</h1>
-            <?php include './welcome-carousel.php'; ?>
-        </div>
-
-        <div id="overview-section" class="container-fluid">
-            <h1>Overview</h1>
-            <?php include './overview.php'; ?>
-        </div>
-
-        <div id="gallery-section" class="container-fluid dynamic-section">
-            <h1>Gallery</h1>
-            <p>sfsdfsdfsd dfs fs sdfsd fssdfssdfsd<br>dfsdf dfs d.</p>
-        </div>
-
-        <div id="reservation-section" class="container-fluid dynamic-section">
-            <h1>Reservations</h1>
-        </div>
-
-        <div id="contact-section" class="container-fluid dynamic-section">
-            <h1>Contact us</h1>
-            <?php include './contact.php'; ?>
-        </div>
+        <?php include './common/scrollspy-common.php'; ?>
 
         <div id="login-section" class="container-fluid dynamic-section">            
             <h1>Login/Sign up</h1>

@@ -1,5 +1,6 @@
 body {
     position: relative;
+    background-color: #333333;
 }
 
 /* Scrollspy section styles */
@@ -13,21 +14,22 @@ body {
 
 #overview-section {
     padding-top:25px;
-    height:500px;
+    height:600px;
     background-color: whitesmoke;
 }
 
 #gallery-section {
     padding-top:25px;
-    height:500px;
+    height:600px;
     color: #fff; 
     background-color: #ff9800;
 }
 
 #reservation-section {
     padding-top:25px;
-    height:500px;color: #fff; 
-    background-color: #00bcd4;
+    height:600px;
+    color: #fff; 
+    background-color: transparent;
 }
 
 #contact-section {
