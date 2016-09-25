@@ -50,22 +50,7 @@ CREATE TABLE `customer` (
   `status` enum('Verified','Not-verified') NOT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `feature`
---
-
-DROP TABLE IF EXISTS `feature`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `feature` (
-  `feature_id` int(10) NOT NULL AUTO_INCREMENT,
-  `feature_name` varchar(30) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`feature_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,18 +116,23 @@ CREATE TABLE `hall` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `item`
+-- Table structure for table `hall_reservation`
 --
 
-DROP TABLE IF EXISTS `item`;
+DROP TABLE IF EXISTS `hall_reservation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `item` (
-  `item_id` int(10) NOT NULL AUTO_INCREMENT,
-  `item_type` varchar(20) NOT NULL,
-  `item_type_id` int(10) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`item_id`)
+CREATE TABLE `hall_reservation` (
+  `reservation_id` int(10) NOT NULL,
+  `hall_id` int(10) NOT NULL,
+  `time` enum('Morning','Evening','Full day') NOT NULL,
+  `menu_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`reservation_id`,`hall_id`),
+  KEY `fk_hall$hall_reservation_idx` (`hall_id`),
+  KEY `fk_menu$hall_reservation_idx` (`menu_id`),
+  CONSTRAINT `fk_hall$hall_reservation` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`hall_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_menu$hall_reservation` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_reservation$hall_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -162,7 +152,7 @@ CREATE TABLE `log` (
   PRIMARY KEY (`log_id`),
   KEY `fk_username_idx` (`username`),
   CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=445 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=451 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,32 +233,15 @@ CREATE TABLE `reservation` (
   `reservation_id` int(10) NOT NULL AUTO_INCREMENT,
   `reservation_date` date DEFAULT NULL,
   `status` enum('Pending','Completed','Cancelled') NOT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  `total` decimal(8,2) DEFAULT NULL,
   `customer_id` int(10) NOT NULL,
   `feedback_id` int(10) DEFAULT NULL,
-  `check_in` date DEFAULT NULL,
-  `check_out` date DEFAULT NULL,
   PRIMARY KEY (`reservation_id`),
   KEY `fk_customer$reservation_idx` (`customer_id`),
   KEY `fk_feedback$reservation_idx` (`feedback_id`),
   CONSTRAINT `fk_customer$reservation` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_feedback$reservation` FOREIGN KEY (`feedback_id`) REFERENCES `feedback` (`feedback_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `reservation_item`
---
-
-DROP TABLE IF EXISTS `reservation_item`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `reservation_item` (
-  `reservation_id` int(10) NOT NULL,
-  `item_id` int(10) NOT NULL,
-  KEY `fk_reservation$reservation_item_idx` (`reservation_id`),
-  KEY `fk_item$reservation_item_idx` (`item_id`),
-  CONSTRAINT `fk_item$reservation_item` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_reservation$reservation_item` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -281,7 +254,7 @@ DROP TABLE IF EXISTS `room`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `room` (
   `room_id` int(10) NOT NULL AUTO_INCREMENT,
-  `room_no` int(10) NOT NULL,
+  `room_count` int(3) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
   `room_type_id` int(10) NOT NULL,
   PRIMARY KEY (`room_id`),
@@ -291,19 +264,22 @@ CREATE TABLE `room` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `room_feature`
+-- Table structure for table `room_reservation`
 --
 
-DROP TABLE IF EXISTS `room_feature`;
+DROP TABLE IF EXISTS `room_reservation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `room_feature` (
+CREATE TABLE `room_reservation` (
+  `reservation_id` int(10) NOT NULL,
   `room_id` int(10) NOT NULL,
-  `feature_id` int(10) NOT NULL,
-  KEY `fk_room$room_feature_idx` (`room_id`),
-  KEY `fk_feature$room_feature_idx` (`feature_id`),
-  CONSTRAINT `fk_feature$room_feature` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_room$room_feature` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `check_in` time NOT NULL,
+  `check_out` time NOT NULL,
+  PRIMARY KEY (`reservation_id`,`room_id`),
+  KEY `fk_room$room_reservation_idx` (`room_id`),
+  KEY `fk_reservation$room_reservation_idx` (`reservation_id`),
+  CONSTRAINT `fk_reservation$room_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_room$room_reservation` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -354,4 +330,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-18 19:33:14
+-- Dump completed on 2016-09-25 23:05:54
