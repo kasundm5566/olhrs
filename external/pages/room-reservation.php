@@ -32,15 +32,15 @@ if ($_SESSION['username'] == "") {
                 <div class="row">
 
                     <div class="col-md-3" id="div-leftPane">
-                        <?php include './common/sidebar-hall-reservation.php'; ?>
+                        <?php include './common/sidebar-room-reservation.php'; ?>
                     </div>
 
-                    <div class="col-md-8" id="div-rightPane">
-                        <h3>Reserve hall on:
+                    <div class="col-md-8" id="div-rightPane">                        
+                        <h3>Reserve a <?php $type = base64_decode($_REQUEST['type']); ?> room on:
                             <?php
-                            $date = base64_decode($_REQUEST['date']);
-                            $time = base64_decode($_REQUEST['time']);
-                            echo $date . " " . $time;
+                            $indate = base64_decode($_REQUEST['indate']);
+                            $outdate = base64_decode($_REQUEST['outdate']);
+                            echo $indate . " to " . $outdate;
                             ?>
                         </h3>
                         <ul class="progress-indicator">
@@ -51,42 +51,49 @@ if ($_SESSION['username'] == "") {
                         </ul>
 
                         <div>
-                            <form role="form" method="POST" action="hall-payment.php">
+                            <form role="form" method="POST" action="room-payment.php">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group" id="hall-reserv-fname">
+                                        <div class="form-group" id="room-reserv-fname">
                                             <label class="control-label">FIrst name</label>
                                             <input class="form-control" name="fName"
                                                    type="text" readonly>
                                         </div>
-                                        <div class="form-group" id="hall-reserv-lname">
+                                        <div class="form-group" id="room-reserv-lname">
                                             <label class="control-label">Last name</label>
                                             <input class="form-control" name="lName"
                                                    type="text" readonly>
                                         </div>
-                                        <div class="form-group" id="hall-reserv-email">
+                                        <div class="form-group" id="room-reserv-email">
                                             <label class="control-label">Email</label>
                                             <input class="form-control" type="email" name="email" readonly>
                                         </div>
-                                        <div class="form-group" id="hall-reserv-contactno">
+                                        <div class="form-group" id="room-reserv-contactno">
                                             <label class="control-label">Contact no</label>
                                             <input class="form-control" type="text" name="contactNo">
                                         </div>                                
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group" id="hall-reserv-date">
-                                            <label class="control-label">Date</label>
-                                            <input class="form-control" type="text" name="date" value="<?php echo $date; ?>" readonly>
+                                        <div class="form-group" id="room-reserv-indate">
+                                            <label class="control-label">Check in date</label>
+                                            <input class="form-control" type="text" name="indate" value="<?php echo $indate; ?>" readonly>
                                         </div>
-                                        <div class="form-group" id="hall-reserv-date">
-                                            <label class="control-label">Date</label>
-                                            <input class="form-control" type="text" name="date" value="<?php echo $date; ?>" readonly>
+                                        <div class="form-group" id="room-reserv-outdate">
+                                            <label class="control-label">Check out date</label>
+                                            <input class="form-control" type="text" name="outdate" value="<?php echo $outdate; ?>" readonly>
                                         </div>
-                                        <div class="form-group" id="hall-reserv-time">
-                                            <label class="control-label">Session</label>
-                                            <input class="form-control" type="text" name="time" value="<?php echo $time; ?>" readonly>
-                                        </div>                                        
-                                        <div class="form-group" id="hall-reserv-total">
+                                        <div>
+                                            <div class="form-group" id="room-reserv-type" style="display:inline-block; padding-right: 20px;">
+                                                <label class="control-label">Room type</label>
+                                                <input class="form-control" type="text" name="roomtype" value="<?php echo $type; ?>" readonly>
+                                            </div>
+                                            <div class="form-group" id="room-reserv-count" style="display:inline-block;">
+                                                <label class="control-label">No of rooms: </label>
+                                                <input class="spin" type="number" min="1"
+                                                       max="3" value="1" name="roomcount">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="room-reserv-total">
                                             <label class="control-label">Total</label>
                                             <input class="form-control" type="text" name="total" readonly>
                                         </div>
@@ -104,5 +111,10 @@ if ($_SESSION['username'] == "") {
         <div id="site-footer">
             <?php include './common/footer.php'; ?>
         </div>
+        <script>
+            $("[type='number']").keypress(function (evt) {
+                evt.preventDefault();
+            });
+        </script>
     </body>
 </html>

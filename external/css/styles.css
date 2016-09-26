@@ -67,3 +67,12 @@ textarea{
     border-bottom-width: 1px;
     border-bottom-color: #00b300;
 }
+
+#div-leftPane{
+    background-color: linen;
+    height: 500px;
+}
+#div-rightPane{
+    background-color: whitesmoke;
+    height: 500px;
+}

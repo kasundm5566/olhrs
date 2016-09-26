@@ -18,6 +18,20 @@ USE `olhrs`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `category` (
+  `category_id` int(10) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `category`
 --
 
@@ -25,6 +39,28 @@ LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer` (
+  `customer_id` int(10) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(60) DEFAULT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` text NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `telephone` int(10) unsigned zerofill NOT NULL,
+  `registered_date` date NOT NULL,
+  `status` enum('Verified','Not-verified') NOT NULL,
+  PRIMARY KEY (`customer_id`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `customer`
@@ -37,6 +73,25 @@ INSERT INTO `customer` VALUES (3,'dfg','asd','ss','22434 sdfvseawss','sdf@sdf.gh
 UNLOCK TABLES;
 
 --
+-- Table structure for table `feedback`
+--
+
+DROP TABLE IF EXISTS `feedback`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `feedback` (
+  `feedback_id` int(10) NOT NULL AUTO_INCREMENT,
+  `rating` int(2) NOT NULL,
+  `comment` varchar(500) DEFAULT NULL,
+  `date` date NOT NULL,
+  `customer_id` int(10) NOT NULL,
+  PRIMARY KEY (`feedback_id`),
+  KEY `fk_customer$feedback_idx` (`customer_id`),
+  CONSTRAINT `fk_customer$feedback` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `feedback`
 --
 
@@ -46,6 +101,23 @@ LOCK TABLES `feedback` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `food`
+--
+
+DROP TABLE IF EXISTS `food`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `food` (
+  `food_id` int(10) NOT NULL AUTO_INCREMENT,
+  `food_name` varchar(50) DEFAULT NULL,
+  `category_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`food_id`),
+  KEY `fk_category$food_idx` (`category_id`),
+  CONSTRAINT `fk_category$food` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `food`
 --
 
@@ -53,6 +125,20 @@ LOCK TABLES `food` WRITE;
 /*!40000 ALTER TABLE `food` DISABLE KEYS */;
 /*!40000 ALTER TABLE `food` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `groups`
+--
+
+DROP TABLE IF EXISTS `groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `groups` (
+  `group_id` int(10) NOT NULL AUTO_INCREMENT,
+  `group_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `groups`
@@ -65,6 +151,20 @@ INSERT INTO `groups` VALUES (1,'Admin'),(2,'Manager'),(3,'Receptionist'),(4,'Blo
 UNLOCK TABLES;
 
 --
+-- Table structure for table `hall`
+--
+
+DROP TABLE IF EXISTS `hall`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hall` (
+  `hall_id` int(10) NOT NULL AUTO_INCREMENT,
+  `hall_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`hall_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `hall`
 --
 
@@ -74,6 +174,27 @@ LOCK TABLES `hall` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `hall_reservation`
+--
+
+DROP TABLE IF EXISTS `hall_reservation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hall_reservation` (
+  `reservation_id` int(10) NOT NULL,
+  `hall_id` int(10) NOT NULL,
+  `time` enum('Morning','Evening','Full day') NOT NULL,
+  `menu_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`reservation_id`,`hall_id`),
+  KEY `fk_hall$hall_reservation_idx` (`hall_id`),
+  KEY `fk_menu$hall_reservation_idx` (`menu_id`),
+  CONSTRAINT `fk_hall$hall_reservation` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`hall_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_menu$hall_reservation` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_reservation$hall_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `hall_reservation`
 --
 
@@ -81,6 +202,25 @@ LOCK TABLES `hall_reservation` WRITE;
 /*!40000 ALTER TABLE `hall_reservation` DISABLE KEYS */;
 /*!40000 ALTER TABLE `hall_reservation` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `log`
+--
+
+DROP TABLE IF EXISTS `log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log` (
+  `log_id` int(200) NOT NULL AUTO_INCREMENT,
+  `log_date` date NOT NULL,
+  `log_time` time NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `session_id` text NOT NULL,
+  PRIMARY KEY (`log_id`),
+  KEY `fk_username_idx` (`username`),
+  CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=451 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `log`
@@ -93,6 +233,21 @@ INSERT INTO `log` VALUES (1,'2016-07-30','08:37:49','kdm','1469860669_3'),(2,'20
 UNLOCK TABLES;
 
 --
+-- Table structure for table `menu`
+--
+
+DROP TABLE IF EXISTS `menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu` (
+  `menu_id` int(10) NOT NULL AUTO_INCREMENT,
+  `menu_name` varchar(30) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`menu_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `menu`
 --
 
@@ -100,6 +255,23 @@ LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `menu_food`
+--
+
+DROP TABLE IF EXISTS `menu_food`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_food` (
+  `menu_id` int(10) NOT NULL,
+  `food_id` int(10) NOT NULL,
+  KEY `fk_menu$menu_food_idx` (`menu_id`),
+  KEY `fk_food$menu_food_idx` (`food_id`),
+  CONSTRAINT `fk_food$menu_food` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_menu$menu_food` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`menu_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `menu_food`
@@ -111,6 +283,27 @@ LOCK TABLES `menu_food` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `payment` (
+  `payment_id` int(10) NOT NULL AUTO_INCREMENT,
+  `amount` decimal(10,2) NOT NULL,
+  `date` date NOT NULL,
+  `reservation_id` int(10) NOT NULL,
+  `payment_method_id` int(10) NOT NULL,
+  PRIMARY KEY (`payment_id`),
+  KEY `fk_reservation$payment_idx` (`reservation_id`),
+  KEY `fk_payment_method$payment_idx` (`payment_method_id`),
+  CONSTRAINT `fk_payment_method$payment` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_method` (`payment_method_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_reservation$payment` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `payment`
 --
 
@@ -118,6 +311,20 @@ LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `payment_method`
+--
+
+DROP TABLE IF EXISTS `payment_method`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `payment_method` (
+  `payment_method_id` int(10) NOT NULL AUTO_INCREMENT,
+  `payment_method_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`payment_method_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `payment_method`
@@ -130,6 +337,29 @@ INSERT INTO `payment_method` VALUES (1,'Cash'),(2,'Card'),(3,'Online');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `reservation`
+--
+
+DROP TABLE IF EXISTS `reservation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reservation` (
+  `reservation_id` int(10) NOT NULL AUTO_INCREMENT,
+  `reservation_date` date DEFAULT NULL,
+  `status` enum('Pending','Completed','Cancelled') NOT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  `total` decimal(8,2) DEFAULT NULL,
+  `customer_id` int(10) NOT NULL,
+  `feedback_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`reservation_id`),
+  KEY `fk_customer$reservation_idx` (`customer_id`),
+  KEY `fk_feedback$reservation_idx` (`feedback_id`),
+  CONSTRAINT `fk_customer$reservation` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_feedback$reservation` FOREIGN KEY (`feedback_id`) REFERENCES `feedback` (`feedback_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `reservation`
 --
 
@@ -137,6 +367,25 @@ LOCK TABLES `reservation` WRITE;
 /*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
 /*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `room`
+--
+
+DROP TABLE IF EXISTS `room`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room` (
+  `room_id` int(10) NOT NULL AUTO_INCREMENT,
+  `room_count` int(3) NOT NULL,
+  `description` varchar(500) DEFAULT NULL,
+  `price` decimal(8,2) NOT NULL,
+  `room_type_id` int(10) NOT NULL,
+  PRIMARY KEY (`room_id`),
+  KEY `fk_rorm$room_type_idx` (`room_type_id`),
+  CONSTRAINT `fk_room$room_type` FOREIGN KEY (`room_type_id`) REFERENCES `room_type` (`room_type_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `room`
@@ -149,6 +398,27 @@ INSERT INTO `room` VALUES (1,3,NULL,3000.00,1),(2,3,NULL,5500.00,2),(3,4,NULL,10
 UNLOCK TABLES;
 
 --
+-- Table structure for table `room_reservation`
+--
+
+DROP TABLE IF EXISTS `room_reservation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room_reservation` (
+  `reservation_id` int(10) NOT NULL,
+  `room_type_id` int(10) NOT NULL,
+  `check_in` time NOT NULL,
+  `check_out` time NOT NULL,
+  `count` int(2) NOT NULL,
+  PRIMARY KEY (`reservation_id`,`room_type_id`),
+  KEY `fk_reservation$room_reservation_idx` (`reservation_id`),
+  KEY `fk_room_type$room_reservation_idx` (`room_type_id`),
+  CONSTRAINT `fk_reservation$room_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_room_type$room_reservation` FOREIGN KEY (`room_type_id`) REFERENCES `room_type` (`room_type_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `room_reservation`
 --
 
@@ -156,6 +426,20 @@ LOCK TABLES `room_reservation` WRITE;
 /*!40000 ALTER TABLE `room_reservation` DISABLE KEYS */;
 /*!40000 ALTER TABLE `room_reservation` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `room_type`
+--
+
+DROP TABLE IF EXISTS `room_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room_type` (
+  `room_type_id` int(10) NOT NULL AUTO_INCREMENT,
+  `room_type_name` varchar(30) NOT NULL,
+  PRIMARY KEY (`room_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `room_type`
@@ -166,6 +450,30 @@ LOCK TABLES `room_type` WRITE;
 INSERT INTO `room_type` VALUES (1,'Single'),(2,'Double'),(3,'Family'),(4,'Cottage');
 /*!40000 ALTER TABLE `room_type` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` text NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(60) DEFAULT NULL,
+  `email` varchar(45) NOT NULL,
+  `telephone` int(10) unsigned zerofill NOT NULL,
+  `registered_date` date NOT NULL,
+  `group_id` int(10) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `name_UNIQUE` (`username`),
+  KEY `fk_user_1_idx` (`group_id`),
+  CONSTRAINT `fk_groups$user` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
@@ -186,4 +494,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-26  8:36:21
+-- Dump completed on 2016-09-26  8:35:46

@@ -49,5 +49,5 @@
 
 $(document).ready(function () {
     $("#anchor-forgotpass").anchorHoverEffect({type: 'brackets'});
-
+    $("#anchor-backtohome").anchorHoverEffect({type: 'brackets'});
 });
