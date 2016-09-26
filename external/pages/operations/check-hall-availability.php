@@ -24,7 +24,7 @@ if (true) {
         $encodedTime = base64_encode($time);
         header("Location:../hall-reservation.php?date=$encoded_date&time=$encodedTime");
     } else {
-        $status = "Please login";
+        $status = "Halls are available. Please login to reserve.";
         $status1 = base64_encode($status); //Encoding Mechanism
         header("Location:../index.php?status=$status1#reservation-section"); //Redirection n passing data
         //Through URL

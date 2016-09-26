@@ -16,8 +16,10 @@ if ($_SESSION['username'] == "") {
         <link rel="stylesheet" href="../css/site-layout.css"/>
         <link rel="stylesheet" href="../css/styles.css"/>
         <link rel="stylesheet" href="../css/progress-wizard.min.css"/>
+        <link rel="stylesheet" href="../css/animate.css"/>
         <script src="../js/jquery-1.12.2.min.js"></script>
         <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>  
+        <script src="../js/jquery.cycleText.js"></script>
         <script src="../js/loader.js"></script>
         <script src="../js/modernizr.min.js"></script>
         <script src="../js/jquery.easing.1.3.min.js"></script>    

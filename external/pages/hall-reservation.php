@@ -17,8 +17,10 @@ if ($_SESSION['username'] == "") {
         <link rel="stylesheet" href="../css/site-layout.css"/>
         <link rel="stylesheet" href="../css/styles.css"/>
         <link rel="stylesheet" href="../css/progress-wizard.min.css"/>
+        <link rel="stylesheet" href="../css/animate.css"/>
         <script src="../js/jquery-1.12.2.min.js"></script>
         <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>  
+        <script src="../js/jquery.cycleText.js"></script>
         <script src="../js/loader.js"></script>
         <script src="../js/modernizr.min.js"></script>
         <script src="../js/jquery.easing.1.3.min.js"></script>    
@@ -78,10 +80,14 @@ if ($_SESSION['username'] == "") {
                                             <label class="control-label">Date</label>
                                             <input class="form-control" type="text" name="date" value="<?php echo $date; ?>" readonly>
                                         </div>
-                                        <div class="form-group" id="hall-reserv-date">
-                                            <label class="control-label">Date</label>
-                                            <input class="form-control" type="text" name="date" value="<?php echo $date; ?>" readonly>
-                                        </div>
+                                        <div class="form-group">
+                                            <label>Hall</label>
+                                            <select class="form-control" name="hall">
+                                                <option value="Kings Hall">Kings Hall</option>
+                                                <option value="Queens Hall A">Queens Hall A</option>
+                                                <option value="Queens Hall B">Queens Hall B</option>
+                                            </select>
+                                        </div>   
                                         <div class="form-group" id="hall-reserv-time">
                                             <label class="control-label">Session</label>
                                             <input class="form-control" type="text" name="time" value="<?php echo $time; ?>" readonly>

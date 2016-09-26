@@ -15,9 +15,11 @@ if ($_SESSION['username'] == "") {
         <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min_1.css"/>
         <link rel="stylesheet" href="../css/site-layout.css"/>
         <link rel="stylesheet" href="../css/styles.css"/>
+        <link rel="stylesheet" href="../css/animate.css"/>
         <link rel="stylesheet" href="../css/anchorHoverEffect.css"/>
         <link rel="stylesheet" href="../css/progress-wizard.min.css"/>
         <script src="../js/jquery-1.12.2.min.js"></script>
+        <script src="../js/jquery.cycleText.js"></script>
         <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>  
         <script src="../js/loader.js"></script>
         <script src="../js/modernizr.min.js"></script>
@@ -44,18 +46,20 @@ if ($_SESSION['username'] == "") {
                             <li class="completed"><span class="bubble"></span> Payment</li>
                             <li class="completed"><span class="bubble"></span> Success</li>
                         </ul>                        
-                        <div style="margin-top: 50px;">
-                            <h3>Reservation success</h3>
-                            <h1>Thank you!</h1>
-                        </div>
-                        <div style="margin-top: 30px;">                
-                            <h4>Your reservation confirmed successfully...</h4>
-                            <h5>You may print the summary of reservation for future reference.<br>
-                                Click the button below to print the receipt.</h5>
-                        </div>
-                        <div>
-                            <a id="anchor-backtohome" href="customer-home.php">Back to homepage</a>
-                            <input type="button" class="btn btn-success btn-sm" value="Print receipt">
+                        <div style="text-align: center;">
+                            <div style="margin-top: 50px;">
+                                <h3>Reservation success</h3>
+                                <h1>Thank you!</h1>
+                            </div>
+                            <div style="margin-top: 30px;">                
+                                <h4>Your reservation confirmed successfully...</h4>
+                                <h5>You may print the summary of reservation for future reference.<br>
+                                    Click the button below to print the receipt.</h5>
+                            </div>
+                            <div>
+                                <a id="anchor-backtohome" href="customer-home.php">Back to homepage</a>
+                                <input type="button" class="btn btn-success btn-sm" value="Print receipt">
+                            </div>
                         </div>
                     </div>                    
                 </div>

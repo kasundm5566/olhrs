@@ -69,10 +69,10 @@ textarea{
 }
 
 #div-leftPane{
-    background-color: linen;
+    background-color: whitesmoke;
     height: 500px;
+    margin-left: 10px;
 }
 #div-rightPane{
-    background-color: whitesmoke;
     height: 500px;
 }
