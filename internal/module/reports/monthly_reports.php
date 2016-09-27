@@ -10,7 +10,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 
 <html>
     <head>
-        <title>Booking Management</title>
+        <title>Monthly Reports</title>
         <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
         <link rel="stylesheet" type="text/css" 
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
@@ -33,28 +33,19 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
             <div class="section">          
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <img class="icons" src="../../images/icons/reservation.png">
-                        <h3 class="header-panel">&nbsp;Reservations</h3>
+                        <img class="icons" src="../../images/icons/reports_panel.png">
+                        <h3 class="header-panel">&nbsp;Monthly Reports</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="container" style="width: 800px;">
-                            <div class="col-md-8">
-                                <div>
-                                    <button class="btn btn-success" style="width:100%;">Add new booking</button>
-                                </div>
-                                <div style="margin-top: 5px;">
-                                    <button class="btn btn-success" style="width:100%;">View all bookings</button>
-                                </div>
-                                <div style="margin-top: 5px;">
-                                    <button class="btn btn-success" style="width:100%;">Update booking</button>
-                                </div>
-                                <div style="margin-top: 5px;">
-                                    <button class="btn btn-success" style="width:100%;">Cancel booking</button>
-                                </div>
+                        <div class="container" style="width: 800px; height: 400px;">
+                            <div class="container">
+                                <?php include './reports_navbar.php'; ?>
                             </div>
-                            <div class="col-md-4">
-                                sdf
-                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div style="text-align: right;">
+                            <a href="reports.php" class="btn btn-primary btn-xs">Reports home</a>
                         </div>
                     </div>
                 </div>

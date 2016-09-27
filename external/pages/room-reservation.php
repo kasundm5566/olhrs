@@ -89,6 +89,14 @@ if ($_SESSION['username'] == "") {
                                                 <label class="control-label">Room type</label>
                                                 <input class="form-control" type="text" name="roomtype" value="<?php echo $type; ?>" readonly>
                                             </div>
+<!--                                            <div class="form-group" style="display: inline-block; width: 60px;">
+                                                <select class="form-control" name="meal-plan">
+                                                    <option value="Full board">Full board</option>
+                                                    <option value="Half board">Half board</option>
+                                                    <option value="Bed and Breakfast">Bed and Breakfast</option>
+                                                    <option value="Room only">Room only</option>
+                                                </select>
+                                            </div>-->
                                             <div class="form-group" id="room-reserv-count" style="display:inline-block;">
                                                 <label class="control-label">No of rooms: </label>
                                                 <input class="spin" type="number" min="1"

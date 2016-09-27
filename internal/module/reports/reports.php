@@ -10,7 +10,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 
 <html>
     <head>
-        <title>Booking Management</title>
+        <title>Reports</title>
         <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
         <link rel="stylesheet" type="text/css" 
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
@@ -33,27 +33,19 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
             <div class="section">          
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <img class="icons" src="../../images/icons/reservation.png">
-                        <h3 class="header-panel">&nbsp;Reservations</h3>
+                        <img class="icons" src="../../images/icons/reports_panel.png">
+                        <h3 class="header-panel">&nbsp;Reports</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="container" style="width: 800px;">
-                            <div class="col-md-8">
-                                <div>
-                                    <button class="btn btn-success" style="width:100%;">Add new booking</button>
-                                </div>
-                                <div style="margin-top: 5px;">
-                                    <button class="btn btn-success" style="width:100%;">View all bookings</button>
-                                </div>
-                                <div style="margin-top: 5px;">
-                                    <button class="btn btn-success" style="width:100%;">Update booking</button>
-                                </div>
-                                <div style="margin-top: 5px;">
-                                    <button class="btn btn-success" style="width:100%;">Cancel booking</button>
-                                </div>
+                        <div class="container" style="width: 600px;">
+                            <div>
+                                <a href="daily_reports.php" class="btn btn-success" style="width:100%;">Generate Daily Reports</a>
                             </div>
-                            <div class="col-md-4">
-                                sdf
+                            <div style="margin-top: 15px;">
+                                <a href="monthly_reports.php" class="btn btn-success" style="width:100%;">Generate Monthly Reports</a>
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <a href="yearly_reports.php" class="btn btn-success" style="width:100%;">Generate Yearly Reports</a>
                             </div>
                         </div>
                     </div>

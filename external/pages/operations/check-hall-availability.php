@@ -30,7 +30,7 @@ if (true) {
         //Through URL
     }
 } else {
-    $status = "Sorry, Halls are not available";
+    $status = "Sorry, Halls are not available.";
     $status1 = base64_encode($status); //Encoding Mechanism
     header("Location:../index.php?status=$status1#reservation-section"); //Redirection n passing data
     //Through URL

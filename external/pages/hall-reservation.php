@@ -92,9 +92,15 @@ if ($_SESSION['username'] == "") {
                                             <label class="control-label">Session</label>
                                             <input class="form-control" type="text" name="time" value="<?php echo $time; ?>" readonly>
                                         </div>                                        
-                                        <div class="form-group" id="hall-reserv-total">
-                                            <label class="control-label">Total</label>
-                                            <input class="form-control" type="text" name="total" readonly>
+                                        <div>
+                                            <div class="form-group" id="hall-reserv-total" style="display: inline-block;">
+                                                <label class="control-label">Total</label>
+                                                <input class="form-control" type="text" name="total" readonly>
+                                            </div>
+                                            <div class="form-group" id="hall-reserv-advance" style="display: inline-block;">
+                                                <label class="control-label">Advance</label>
+                                                <input class="form-control" type="text" name="advance-payment" readonly>
+                                            </div>
                                         </div>
                                         <div style="text-align: center;">
                                             <button type="submit" class="btn btn-success" style="width: 100%;">Proceed Payment</button>

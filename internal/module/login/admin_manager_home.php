@@ -78,7 +78,7 @@
             </a>
         </div>
         <div class="col-sm-4 col-xs-8">
-            <a href="" data-toggle="tooltip" data-placement="bottom" title="Generate reports from here.">    
+            <a href="../reports/reports.php" data-toggle="tooltip" data-placement="bottom" title="Generate reports from here.">    
                 <!-- Reports tile -->
                 <div id="tile9" class="tile">
                     <div class="carousel slide" data-ride="carousel">

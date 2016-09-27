@@ -19,7 +19,7 @@ $username = $_SESSION['username'];
 //
 //$records_count = $result->num_rows; //To count the rows
 
-if (false) {
+if (true) {
     if ($username != "") {
         $encoded_indate = base64_encode($indate); //Encoding Mechanism
         $encoded_outdate = base64_encode($outdate);
@@ -32,7 +32,7 @@ if (false) {
         //Through URL
     }
 } else {
-    $status = "Sorry, rooms are not available";
+    $status = "Sorry, rooms are not available.";
     $status1 = base64_encode($status); //Encoding Mechanism
     header("Location:../index.php?room-status=$status1#reservation-section"); //Redirection n passing data
     //Through URL

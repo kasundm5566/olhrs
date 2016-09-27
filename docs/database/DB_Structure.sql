@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `olhrs` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `olhrs`;
--- MySQL dump 10.13  Distrib 5.7.9, for linux-glibc2.5 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: olhrs
 -- ------------------------------------------------------
--- Server version	5.7.11
+-- Server version	5.5.5-10.1.13-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -113,6 +113,7 @@ DROP TABLE IF EXISTS `hall`;
 CREATE TABLE `hall` (
   `hall_id` int(10) NOT NULL AUTO_INCREMENT,
   `hall_name` varchar(20) NOT NULL,
+  `price` decimal(8,2) NOT NULL,
   PRIMARY KEY (`hall_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -129,6 +130,8 @@ CREATE TABLE `hall_reservation` (
   `hall_id` int(10) NOT NULL,
   `time` enum('Morning','Evening','Full day') NOT NULL,
   `menu_id` int(10) DEFAULT NULL,
+  `reservation_date` date NOT NULL,
+  `pax` int(4) NOT NULL,
   PRIMARY KEY (`reservation_id`,`hall_id`),
   KEY `fk_hall$hall_reservation_idx` (`hall_id`),
   KEY `fk_menu$hall_reservation_idx` (`menu_id`),
@@ -154,7 +157,21 @@ CREATE TABLE `log` (
   PRIMARY KEY (`log_id`),
   KEY `fk_username_idx` (`username`),
   CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=451 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=452 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `meal_plan`
+--
+
+DROP TABLE IF EXISTS `meal_plan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `meal_plan` (
+  `meal_plan_id` int(10) NOT NULL AUTO_INCREMENT,
+  `meal_plan_name` varchar(30) NOT NULL,
+  PRIMARY KEY (`meal_plan_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +238,7 @@ CREATE TABLE `payment_method` (
   `payment_method_id` int(10) NOT NULL AUTO_INCREMENT,
   `payment_method_name` varchar(20) NOT NULL,
   PRIMARY KEY (`payment_method_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,10 +250,10 @@ DROP TABLE IF EXISTS `reservation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reservation` (
   `reservation_id` int(10) NOT NULL AUTO_INCREMENT,
-  `reservation_date` date DEFAULT NULL,
+  `placed_date` date NOT NULL,
   `status` enum('Pending','Completed','Cancelled') NOT NULL,
-  `type` varchar(20) DEFAULT NULL,
-  `total` decimal(8,2) DEFAULT NULL,
+  `type` varchar(20) NOT NULL,
+  `total` decimal(8,2) NOT NULL,
   `customer_id` int(10) NOT NULL,
   `feedback_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`reservation_id`),
@@ -258,7 +275,6 @@ CREATE TABLE `room` (
   `room_id` int(10) NOT NULL AUTO_INCREMENT,
   `room_count` int(3) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
-  `price` decimal(8,2) NOT NULL,
   `room_type_id` int(10) NOT NULL,
   PRIMARY KEY (`room_id`),
   KEY `fk_rorm$room_type_idx` (`room_type_id`),
@@ -302,6 +318,24 @@ CREATE TABLE `room_type` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `room_type_meal_plan`
+--
+
+DROP TABLE IF EXISTS `room_type_meal_plan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room_type_meal_plan` (
+  `room_type_id` int(10) NOT NULL,
+  `meal_plan_id` int(10) NOT NULL,
+  `price` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`room_type_id`,`meal_plan_id`),
+  KEY `fk_mtype$rtype_mplan_idx` (`meal_plan_id`),
+  CONSTRAINT `fk_mtype$rtype_mplan` FOREIGN KEY (`meal_plan_id`) REFERENCES `meal_plan` (`meal_plan_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_rtype$rtype_mplan` FOREIGN KEY (`room_type_id`) REFERENCES `room_type` (`room_type_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `user`
 --
 
@@ -334,4 +368,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-26  8:31:59
+-- Dump completed on 2016-09-27 22:36:17
