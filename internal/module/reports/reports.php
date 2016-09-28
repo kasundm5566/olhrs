@@ -17,6 +17,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
         <script type="text/javascript" src="../../js/jquery-1.12.2.min.js">
         </script><script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
         </script>
+        <script type="text/javascript" src="../../js/common.js">
+        </script>
     </head>
 
     <body>
@@ -39,13 +41,13 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                     <div class="panel-body">
                         <div class="container" style="width: 600px;">
                             <div>
-                                <a href="daily_reports.php" class="btn btn-success" style="width:100%;">Generate Daily Reports</a>
+                                <a href="../daily_reports/daily_reports.php" class="btn btn-success" style="width:100%;">Generate Daily Reports</a>
                             </div>
                             <div style="margin-top: 15px;">
-                                <a href="monthly_reports.php" class="btn btn-success" style="width:100%;">Generate Monthly Reports</a>
+                                <a href="../monthly_reports/monthly_reports.php" class="btn btn-success" style="width:100%;">Generate Monthly Reports</a>
                             </div>
                             <div style="margin-top: 15px;">
-                                <a href="yearly_reports.php" class="btn btn-success" style="width:100%;">Generate Yearly Reports</a>
+                                <a href="../yearly_reports/yearly_reports.php" class="btn btn-success" style="width:100%;">Generate Yearly Reports</a>
                             </div>
                         </div>
                     </div>
@@ -55,6 +57,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
-        </div>        
+        </div>   
+        <?php include '../../common/common_modals.php'; ?>
     </body>
 </html>

@@ -18,7 +18,7 @@ class login {
     }
 
     function log($date, $time, $username, $sessionId) { //To Insert login Details
-        $con = new mysqli("127.0.0.1", "root", "", "olhrs"); //Conncection string
+        $con = new mysqli("127.0.0.1", "root", "test123", "olhrs"); //Conncection string
         $sql = "INSERT INTO log (log_date,log_time,username,session_id) VALUES('$date','$time','$username','$sessionId');";
         $con->query($sql);
     }
