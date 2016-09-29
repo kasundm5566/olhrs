@@ -1,4 +1,4 @@
-z<?php
+<?php
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -16,6 +16,12 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
         <script type="text/javascript" src="../../js/jquery-1.12.2.min.js">
         </script><script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
+        </script>
+        <script type="text/javascript" src="../../js/common.js">
+        </script>
+        <script type="text/javascript" src="../../js/reports/monthly-reports.js">
+        </script>
+        <script type="text/javascript" src="../../js/reports/fusioncharts/js/fusioncharts.js">
         </script>
     </head>
 
@@ -37,11 +43,487 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                         <h3 class="header-panel">&nbsp;Monthly Reports</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="container" style="width: 800px; height: 400px;">
-                            <div class="container">
+                        <div class="container" style="width: 900px; height: 400px;">
+                            <div style="float: left;">
                                 <?php include './reports_navbar.php'; ?>
                             </div>
-                        </div>
+                            <div class="tab-content">
+                                <div id="all-hall" class="tab-pane fade in active">                                    
+                                    <form id="allhall-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 20px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="seli" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>  
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="all-hall-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+
+                                    <div id="all-hall-reportYearly"></div>
+                                </div>   
+
+                                <div id="kings-hall" class="tab-pane fade">
+                                    <form id="kingshall-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 20px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div> 
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="kings-hall-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="kings-hall-reportYearly"></div>
+                                </div> 
+
+                                <div id="queena-hall" class="tab-pane fade">
+                                    <form id="quennahall-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 20px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>  
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="queena-hall-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="queena-hall-reportYearly"></div>
+                                </div> 
+
+                                <div id="queenb-hall" class="tab-pane fade">
+                                    <form id="queenbhall-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 20px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>  
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="queenb-hall-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="queenb-hall-reportYearly"></div>
+                                </div>  
+
+                                <div id="room-all" class="tab-pane fade"> 
+                                    <form id="roomall-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 20px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div> 
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="room-all-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="room-all-reportYearly"></div>
+                                </div> 
+
+                                <div id="single-room" class="tab-pane fade">
+                                    <form id="single-room-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 20px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>  
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="single-room-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="single-room-reportYearly"></div>
+                                </div>  
+
+                                <div id="double-room" class="tab-pane fade">
+                                    <form id="double-room-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 20px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>  
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="double-room-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="double-room-reportYearly"></div>
+                                </div>  
+
+                                <div id="family-room" class="tab-pane fade">
+                                    <form id="family-room-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 20px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>  
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="family-room-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="family-room-reportYearly"></div>
+                                </div>  
+
+                                <div id="cottage" class="tab-pane fade">
+                                    <form id="cottage-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 30px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>  
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="cottage-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="cottage-reportYearly"></div>
+                                </div>  
+
+                                <div id="payment" class="tab-pane fade">
+                                    <form id="feedback-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 30px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>  
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="payment-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="payment-reportYearly"></div>
+                                </div> 
+
+                                <div id="feedback" class="tab-pane fade">
+                                    <form id="feedback-form">
+                                        <div class="row" style="float: right;">
+                                            <div class="col-md-1" style="display: inline-block; padding-left: 30px;">
+                                                <label>Year:</label>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y");
+                                                    for ($i = 0; $i <= 3; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>  
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="selimnth" name="month">
+                                                    <option value="">January</option>
+                                                    <option value="">February</option>
+                                                    <option value="">March</option>
+                                                    <option value="">April</option>
+                                                    <option value="">May</option>
+                                                    <option value="">June</option>
+                                                    <option value="">July</option>
+                                                    <option value="">August</option>
+                                                    <option value="">September</option>
+                                                    <option value="">October</option>
+                                                    <option value="">November</option>
+                                                    <option value="">December</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2" style="display: inline-block;">
+                                                <input type="button" class="btn btn-success btn-sm" id="feedback-submitYearly" value="Generate">
+                                            </div>
+                                        </div>                                       
+                                    </form>
+                                    <div id="feedback-reportYearly"></div>
+                                </div>                                                               
+
+                            </div>
+                        </div>                       
                     </div>
                     <div class="panel-footer">
                         <div style="text-align: right;">
@@ -54,6 +536,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
-        </div>        
+        </div>  
+        <?php include '../../common/common_modals.php'; ?>
     </body>
 </html>

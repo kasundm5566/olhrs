@@ -7,7 +7,6 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
     exit;
 }
 ?>
-
 <table class="table-bordered" style="width: 100%;">
     <tr>
         <th>Customer first name</th>
@@ -51,6 +50,9 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
     ?>
 </table>
 
-<div style="padding-top: 10px;">
-    <a href="all-room-report-print.php?year=<?php echo $year; ?>&room=All rooms" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
+<div style="padding-top: 10px; display: inline-block;">
+    <a href="all-room-report-print.php?year=<?php echo $year; ?>&room=All Rooms" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
+</div>
+<div style="padding-top: 10px; display: inline-block;">
+    <a href="all-room-chart.php?year=<?php echo $year; ?>" target="_blank" class="btn btn-success btn-xs">View chart</a>
 </div>

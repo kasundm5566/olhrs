@@ -13,6 +13,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
         <th>Customer first name</th>
         <th>Customer last name</th>
         <th>Reservation date</th>
+        <th>Hall name</th>
         <th>Session</th>
         <th>Pax</th>
         <th>Total</th>
@@ -20,6 +21,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
     </tr>
     <?php
     include '../../common/dbconnection.php';
+
     $objDBConnection = new dbconnection();
     $connection = $objDBConnection->connection();
 
@@ -37,6 +39,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                 <td><?php echo $row['first_name'] ?></td>
                 <td><?php echo $row['last_name'] ?></td>
                 <td><?php echo $row['reservation_date'] ?></td>
+                <td><?php echo $row['hall_name'] ?></td>
                 <td><?php echo $row['time'] ?></td>
                 <td><?php echo $row['pax'] ?></td>
                 <td><?php echo $row['total'] ?></td>
@@ -44,12 +47,15 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
             </tr>
             <?php
         }
-    }else{
+    } else {
         
     }
     ?>
 </table>
 
-<div style="padding-top: 10px;">
-    <a href="all-hall-report-print.php?year=<?php echo $year; ?>&hall=All halls" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
+<div style="padding-top: 10px; display: inline-block;">
+    <a href="all-hall-report-print.php?year=<?php echo $year; ?>&hall=All Halls" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
+</div>
+<div style="padding-top: 10px; display: inline-block;">
+    <a href="all-hall-chart.php?year=<?php echo $year; ?>" target="_blank" class="btn btn-success btn-xs">View chart</a>
 </div>

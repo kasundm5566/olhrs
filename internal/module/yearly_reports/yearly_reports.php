@@ -21,6 +21,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
         </script>
         <script type="text/javascript" src="../../js/reports/yearly-reports.js">
         </script>
+        <script type="text/javascript" src="../../js/reports/fusioncharts/js/fusioncharts.js">
+        </script>
     </head>
 
     <body>
@@ -70,6 +72,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             </div>
                                         </div>                                       
                                     </form>
+                                    
                                     <div id="all-hall-reportYearly"></div>
                                 </div>   
 
@@ -287,10 +290,10 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                         </div>                                       
                                     </form>
                                     <div id="cottage-reportYearly"></div>
-                                </div> 
-
+                                </div>  
+                                
                                 <div id="payment" class="tab-pane fade">
-                                    <form id="payment-form">
+                                    <form id="feedback-form">
                                         <div class="row" style="float: right;">
                                             <div class="col-md-1" style="display: inline-block; padding-left: 30px;">
                                                 <label>Year:</label>
@@ -341,7 +344,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                         </div>                                       
                                     </form>
                                     <div id="feedback-reportYearly"></div>
-                                </div> 
+                                </div>                                                               
+
                             </div>
                         </div>                       
                     </div>

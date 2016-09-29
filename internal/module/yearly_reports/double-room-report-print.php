@@ -9,7 +9,6 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 }
 ?>
 
-
 <?php
 
 include '../../common/dbconnection.php';
@@ -17,31 +16,30 @@ $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
 
 $year = $_REQUEST['year'];
-$hall = $_REQUEST['hall'];
+$room = $_REQUEST['room'];
 
 $html.="<style>"
         . "th,td{border:1px solid #D9D5BE;}"
         ."table{border:1px solid #D9D5BE; margin:10px; width: 100%;}"
         . "</style>";
 
-$html.="<h2 align='center'>$hall Yearly Report-$year</h2>";
+$html.="<h2 align='center'>$room Yearly Report-$year</h2>";
 $html.="<h4 align='center'>Aqua Pearl Lake Resort-Moratuwa</h4>";
 //$html.="<img src='/var/www/html/olhrs/internal/images/icons/logo.png'><br><br>";
-$html.="<table style='border:1px solid #D9D5BE; margin:10px; width: 100%;'>
+$html.="<table>
     <tr>
         <th>Customer first name</th>
         <th>Customer last name</th>
-        <th>Reservation date</th>
-        <th>Session</th>
-        <th>Pax</th>
+        <th>Check in</th>
+        <th>Check out</th>
         <th>Total</th>
         <th>Status</th>
     </tr>";
 
-    $sql = "SELECT * FROM reservation r,hall_reservation hr, customer c, hall h "
-            . "WHERE r.reservation_id=hr.reservation_id AND hr.hall_id=h.hall_id AND"
-            . " r.customer_id=c.customer_id AND year(reservation_date)='$year' AND "
-            . "hall_name='Queens Hall A';";
+    $sql = "SELECT * FROM reservation r,room_reservation rr, customer c, room_type rt "
+            . "WHERE r.reservation_id=rr.reservation_id AND rr.room_type_id=rt.room_type_id "
+            . "AND r.customer_id=c.customer_id AND year(check_in)='$year' AND "
+            . "room_type_name='Double';";
 
 $result = $connection->query($sql);
 if ($result) {
@@ -50,9 +48,8 @@ if ($result) {
         $html.="<tr>
                 <td>" . $row['first_name'] . "</td>
                 <td>" . $row['last_name'] . "</td>
-                <td>" . $row['reservation_date'] . "</td>
-                <td>" . $row['time'] . "</td>
-                <td>" . $row['pax'] . "</td>
+                <td>" . $row['check_in'] . "</td>
+                <td>" . $row['check_out'] . "</td>
                 <td>" . $row['total'] . "</td>
                 <td>" . $row['reservation_status'] . "</td>
             </tr>";
@@ -73,5 +70,5 @@ $dompdf = new DOMPDF();
 $dompdf->load_html($html);
 $dompdf->set_paper('A4', 'landscape');
 $dompdf->render();
-$dompdf->stream("Queens_Hall_A_Yearly_Report.pdf", array("Attachment" => false));
+$dompdf->stream("All_Rooms_Yearly_Report.pdf", array("Attachment" => false));
 ?>

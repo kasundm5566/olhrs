@@ -52,5 +52,5 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 </table>
 
 <div style="padding-top: 10px;">
-    <a href="queensa-hall-report-print.php?year=<?php echo $year; ?>&hall=Kings Hall" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
+    <a href="queensa-hall-report-print.php?year=<?php echo $year; ?>&hall=Queens Hall A" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
 </div>

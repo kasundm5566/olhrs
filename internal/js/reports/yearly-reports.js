@@ -165,6 +165,34 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#payment-hallwise-submitYearly").click(function () {
+        $.ajax({
+            url: "payment-hall-report.php",
+            type: "POST",
+            data: $("#feedback-form").serialize(),
+            success: function (data) {
+                $('#payment-hallwise-reportYearly').html(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    });
+
+    $("#payment-roomwise-submitYearly").click(function () {
+        $.ajax({
+            url: "payment-room-report.php",
+            type: "POST",
+            data: $("#feedback-form").serialize(),
+            success: function (data) {
+                $('#payment-roomwise-reportYearly').html(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    });
 });
 
 

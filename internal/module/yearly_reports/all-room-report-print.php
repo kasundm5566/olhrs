@@ -17,20 +17,25 @@ $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
 
 $year = $_REQUEST['year'];
+$room = $_REQUEST['room'];
 
+$html.="<style>"
+        . "th,td{border:1px solid #D9D5BE;}"
+        ."table{border:1px solid #D9D5BE; margin:10px; width: 100%;}"
+        . "</style>";
 
-$html.="<h2 align='center'>All Rooms Yearly Report-$year</h2>";
+$html.="<h2 align='center'>$room Yearly Report-$year</h2>";
 $html.="<h4 align='center'>Aqua Pearl Lake Resort-Moratuwa</h4>";
 //$html.="<img src='/var/www/html/olhrs/internal/images/icons/logo.png'><br><br>";
-$html.="<table style='border:1px solid #D9D5BE; margin:10px; width: 100%;'>
+$html.="<table>
     <tr>
-        <th style='border:1px solid #D9D5BE;'>Customer first name</th>
-        <th style='border:1px solid #D9D5BE;'>Customer last name</th>
-        <th style='border:1px solid #D9D5BE;'>Roo type</th>
-        <th style='border:1px solid #D9D5BE;'>Check in</th>
-        <th style='border:1px solid #D9D5BE;'>Check out</th>
-        <th style='border:1px solid #D9D5BE;'>Total</th>
-        <th style='border:1px solid #D9D5BE;'>Status</th>
+        <th>Customer first name</th>
+        <th>Customer last name</th>
+        <th>Room type</th>
+        <th>Check in</th>
+        <th>Check out</th>
+        <th>Total</th>
+        <th>Status</th>
     </tr>";
 
     $sql = "SELECT * FROM reservation r,room_reservation rr, customer c, room_type rt "
@@ -43,13 +48,13 @@ if ($result) {
     while ($row = $result->fetch_assoc()) {
 
         $html.="<tr>
-                <td style='border:1px solid #D9D5BE;'>" . $row['first_name'] . "</td>
-                <td style='border:1px solid #D9D5BE;'>" . $row['last_name'] . "</td>
-                <td style='border:1px solid #D9D5BE;'>" . $row['room_type_name'] . "</td>
-                <td style='border:1px solid #D9D5BE;'>" . $row['check_in'] . "</td>
-                <td style='border:1px solid #D9D5BE;'>" . $row['check_out'] . "</td>
-                <td style='border:1px solid #D9D5BE;'>" . $row['total'] . "</td>
-                <td style='border:1px solid #D9D5BE;'>" . $row['reservation_status'] . "</td>
+                <td>" . $row['first_name'] . "</td>
+                <td>" . $row['last_name'] . "</td>
+                <td>" . $row['room_type_name'] . "</td>
+                <td>" . $row['check_in'] . "</td>
+                <td>" . $row['check_out'] . "</td>
+                <td>" . $row['total'] . "</td>
+                <td>" . $row['reservation_status'] . "</td>
             </tr>";
     }
 } else {
@@ -66,6 +71,7 @@ include_once './dompdf/dompdf_config.inc.php';
 $dompdf = new DOMPDF();
 
 $dompdf->load_html($html);
+$dompdf->set_paper('A4', 'landscape');
 $dompdf->render();
 $dompdf->stream("All_Rooms_Yearly_Report.pdf", array("Attachment" => false));
 ?>
