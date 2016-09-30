@@ -58,12 +58,12 @@ if ($result) {
     
 }
 
-$html . "</table>";
+$html .= "</table>";
 ?>
 
 <?php
 
-include_once './dompdf/dompdf_config.inc.php';
+include_once '../../dompdf/dompdf_config.inc.php';
 
 $dompdf = new DOMPDF();
 

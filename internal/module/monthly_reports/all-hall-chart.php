@@ -13,6 +13,7 @@ include '../../common/dbconnection.php';
 $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
 $year = $_REQUEST['year'];
+$month = $_REQUEST['month'];
 ?>
 
 <html>
@@ -26,7 +27,7 @@ $year = $_REQUEST['year'];
         </script>
         <script type="text/javascript" src="../../js/common.js">
         </script>
-        <script src="../../js/reports/fusioncharts/js/fusioncharts.js"></script>
+        <script src="../../js/reports/fusioncharts/js/fusioncharts.js"></script>   
         <style>
             body{
                 background-color: #000;
@@ -47,11 +48,12 @@ $year = $_REQUEST['year'];
         <?php
         include("../../fusion-charts/fusioncharts.php");
 
-        $strQuery = "SELECT count(*) AS count, room_type_name as room_type FROM "
-                . "reservation r,room_reservation rr, customer c, room_type rt "
-                . "WHERE r.reservation_id=rr.reservation_id AND "
-                . "rr.room_type_id=rt.room_type_id AND r.customer_id=c.customer_id "
-                . "AND year(check_in)='$year' GROUP BY room_type_name;";
+        // Form the SQL query that returns the top 10 most populous countries
+        $strQuery = "SELECT count(*) count, hall_name AS hall FROM reservation r,"
+                . "hall_reservation hr, customer c, hall h WHERE "
+                . "r.reservation_id=hr.reservation_id AND hr.hall_id=h.hall_id "
+                . "AND r.customer_id=c.customer_id AND year(reservation_date)='$year' "
+                . "AND monthname(reservation_date)='$month' GROUP BY hall_name;";
 
         $result = $connection->query($strQuery) or exit("Error code ({$connection->errno}): {$connection->error}");
 
@@ -59,8 +61,8 @@ $year = $_REQUEST['year'];
         if ($result) {
             $arrData = array(
                 "chart" => array(
-                    "caption" => "Count of the reservations per room type",
-                    "subCaption" => "Aqua Pearl Lake Resort-$year",
+                    "caption" => "Count of the reservations per hall",
+                    "subCaption" => "Aqua Pearl Lake Resort-$month $year",
                     "paletteColors" => "#0075c2,#1aaf5d,#f2c500,#f45b00,#8e0000",
                     "bgColor" => "#ffffff",
                     "showBorder" => "1",
@@ -99,20 +101,21 @@ $year = $_REQUEST['year'];
             // Push the data into the array
             while ($row = mysqli_fetch_array($result)) {
                 array_push($arrData["data"], array(
-                    "label" => $row["room_type"],
+                    "label" => $row["hall"],
                     "value" => $row["count"]
                         )
                 );
             }
             $jsonEncodedData = json_encode($arrData);
 
-            $pieChart = new FusionCharts("pie3D", "all-rooms-yearly-chart", 800, 550, "chart-1", "json", $jsonEncodedData);
+            $pieChart = new FusionCharts("pie3D", "all-halls-yearly-chart", 800, 550, "chart-1", "json", $jsonEncodedData);
 
             // Render the chart
             $pieChart->render();
         }
         ?>
         <div id="chart-1" style="text-align: center"></div>
+        <div id="chart-2" style="text-align: center"></div>
 
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 

@@ -8,7 +8,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 }
 ?>
 <table class="table-bordered" style="width: 100%;">
-    <caption style="font-size: medium;">Yearly Reservations Report for All Rooms</caption>
+    <caption style="font-size: medium;">Monthly Reservations Report for All Rooms</caption>
     <tr>
         <th>Customer first name</th>
         <th>Customer last name</th>
@@ -24,11 +24,12 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
     $connection = $objDBConnection->connection();
 
     $year = $_REQUEST['year'];
+    $month = $_REQUEST['month'];    
 
     $sql = "SELECT * FROM reservation r,room_reservation rr, customer c, room_type rt "
-            . "WHERE r.reservation_id=rr.reservation_id AND "
-            . "rr.room_type_id=rt.room_type_id AND r.customer_id=c.customer_id AND "
-            . "year(check_in)='$year';";
+            . "WHERE r.reservation_id=rr.reservation_id AND rr.room_type_id=rt.room_type_id "
+            . "AND r.customer_id=c.customer_id AND year(check_in)='$year' AND "
+            . "monthname(check_in)='$month';";
 
     $result = $connection->query($sql);
     if ($result) {
@@ -52,8 +53,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 </table>
 
 <div style="padding-top: 10px; display: inline-block;">
-    <a href="all-room-report-print.php?year=<?php echo $year; ?>&room=All Rooms" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
+    <a href="all-room-report-print.php?year=<?php echo $year; ?>&month=<?php echo $month; ?>&room=All Rooms" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
 </div>
 <div style="padding-top: 10px; display: inline-block;">
-    <a href="all-room-chart.php?year=<?php echo $year; ?>" target="_blank" class="btn btn-success btn-xs">View chart</a>
+    <a href="all-room-chart.php?year=<?php echo $year; ?>&month=<?php echo $month; ?>" target="_blank" class="btn btn-success btn-xs">View chart</a>
 </div>

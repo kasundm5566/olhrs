@@ -9,6 +9,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 }
 ?>
 
+
 <?php
 
 include '../../common/dbconnection.php';
@@ -16,20 +17,22 @@ $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
 
 $year = $_REQUEST['year'];
+$month = $_REQUEST['month'];
 $room = $_REQUEST['room'];
 
 $html.="<style>"
         . "th,td{border:1px solid #D9D5BE;}"
-        ."table{border:1px solid #D9D5BE; margin:10px; width: 100%;}"
+        . "table{border:1px solid #D9D5BE; margin:10px; width: 100%;}"
         . "</style>";
 
-$html.="<h2 align='center'>$room Yearly Report-$year</h2>";
+$html.="<h2 align='center'>$room Yearly Report-$month $year</h2>";
 $html.="<h4 align='center'>Aqua Pearl Lake Resort-Moratuwa</h4>";
 //$html.="<img src='/var/www/html/olhrs/internal/images/icons/logo.png'><br><br>";
 $html.="<table>
     <tr>
         <th>Customer first name</th>
         <th>Customer last name</th>
+        <th>Room type</th>
         <th>Check in</th>
         <th>Check out</th>
         <th>Total</th>
@@ -39,7 +42,7 @@ $html.="<table>
     $sql = "SELECT * FROM reservation r,room_reservation rr, customer c, room_type rt "
             . "WHERE r.reservation_id=rr.reservation_id AND rr.room_type_id=rt.room_type_id "
             . "AND r.customer_id=c.customer_id AND year(check_in)='$year' AND "
-            . "room_type_name='Double';";
+            . "monthname(check_in)='$month';";
 
 $result = $connection->query($sql);
 if ($result) {
@@ -48,6 +51,7 @@ if ($result) {
         $html.="<tr>
                 <td>" . $row['first_name'] . "</td>
                 <td>" . $row['last_name'] . "</td>
+                <td>" . $row['room_type_name'] . "</td>
                 <td>" . $row['check_in'] . "</td>
                 <td>" . $row['check_out'] . "</td>
                 <td>" . $row['total'] . "</td>

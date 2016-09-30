@@ -18,11 +18,34 @@ $year = $_REQUEST['year'];
 <html>
     <head>
         <title>Hall reservations count</title>
-        <script src="../../js/reports/fusioncharts/js/fusioncharts.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
+        <link rel="stylesheet" type="text/css" 
+              href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
+        <script type="text/javascript" src="../../js/jquery-1.12.2.min.js">
+        </script><script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
+        </script>
+        <script type="text/javascript" src="../../js/common.js">
+        </script>
+        <script src="../../js/reports/fusioncharts/js/fusioncharts.js"></script>   
+        <style>
+            body{
+                background-color: #000;
+            }
+        </style>
     </head>
     <body>
+
+        <div id="header">
+            <?php include '../../common/header.php'; ?>      
+        </div>
+
+        <div id="navi">
+            <?php include '../../common/navi.php'; ?>
+            &nbsp;
+        </div>
+
         <?php
-        include("./fusion-charts/fusioncharts.php");
+        include("../../fusion-charts/fusioncharts.php");
 
         // Form the SQL query that returns the top 10 most populous countries
         $strQuery = "SELECT count(*) count, hall_name AS hall FROM reservation r,"
@@ -38,7 +61,7 @@ $year = $_REQUEST['year'];
             $arrData = array(
                 "chart" => array(
                     "caption" => "Count of the reservations per hall",
-                    "subCaption" => "Aqua Pearl Lake Resort-$year", 
+                    "subCaption" => "Aqua Pearl Lake Resort-$year",
                     "paletteColors" => "#0075c2,#1aaf5d,#f2c500,#f45b00,#8e0000",
                     "bgColor" => "#ffffff",
                     "showBorder" => "1",
@@ -84,12 +107,18 @@ $year = $_REQUEST['year'];
             }
             $jsonEncodedData = json_encode($arrData);
 
-            $pieChart = new FusionCharts("pie2D", "all-halls-yearly-chart", 800, 550, "chart-1", "json", $jsonEncodedData);
+            $pieChart = new FusionCharts("pie3D", "all-halls-yearly-chart", 800, 550, "chart-1", "json", $jsonEncodedData);
 
             // Render the chart
             $pieChart->render();
         }
         ?>
         <div id="chart-1" style="text-align: center"></div>
+        <div id="chart-2" style="text-align: center"></div>
+
+        <div id="footer">
+            <?php include '../../common/footer.php'; ?> 
+        </div>  
+        <?php include '../../common/common_modals.php'; ?>
     </body>
 </html>

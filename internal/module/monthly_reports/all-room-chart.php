@@ -13,6 +13,7 @@ include '../../common/dbconnection.php';
 $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
 $year = $_REQUEST['year'];
+$month = $_REQUEST['month'];
 ?>
 
 <html>
@@ -51,7 +52,8 @@ $year = $_REQUEST['year'];
                 . "reservation r,room_reservation rr, customer c, room_type rt "
                 . "WHERE r.reservation_id=rr.reservation_id AND "
                 . "rr.room_type_id=rt.room_type_id AND r.customer_id=c.customer_id "
-                . "AND year(check_in)='$year' GROUP BY room_type_name;";
+                . "AND year(check_in)='$year' AND monthname(check_in)='$month' "
+                . "GROUP BY room_type_name;";
 
         $result = $connection->query($strQuery) or exit("Error code ({$connection->errno}): {$connection->error}");
 
@@ -60,7 +62,7 @@ $year = $_REQUEST['year'];
             $arrData = array(
                 "chart" => array(
                     "caption" => "Count of the reservations per room type",
-                    "subCaption" => "Aqua Pearl Lake Resort-$year",
+                    "subCaption" => "Aqua Pearl Lake Resort-$month $year",
                     "paletteColors" => "#0075c2,#1aaf5d,#f2c500,#f45b00,#8e0000",
                     "bgColor" => "#ffffff",
                     "showBorder" => "1",

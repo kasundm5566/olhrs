@@ -69,27 +69,33 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             </div>  
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="all-hall-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="all-hall-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
 
-                                    <div id="all-hall-reportYearly"></div>
+                                    <div id="all-hall-reportMonthly"></div>
                                 </div>   
 
                                 <div id="kings-hall" class="tab-pane fade">
@@ -99,40 +105,55 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" name="year">
+                                                <select class="form-control" id="selimnth" name="month">
                                                     <?php
-                                                    $currentYear = date("Y");
-                                                    for ($i = 0; $i <= 3; $i++) {
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
                                                         ?>
-                                                        <option value="<?php echo $currentYear - $i; ?>">
-                                                            <?php echo $currentYear - $i; ?>
-                                                        </option>
-                                                    <?php }
+                                                        <?php
+                                                    }
                                                     ?>
                                                 </select>
                                             </div> 
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="kings-hall-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="kings-hall-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="kings-hall-reportYearly"></div>
+                                    <div id="kings-hall-reportMonthly"></div>
                                 </div> 
 
                                 <div id="queena-hall" class="tab-pane fade">
@@ -142,40 +163,49 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" name="year">
+                                                <select class="form-control" id="selimnth" name="month">
                                                     <?php
-                                                    $currentYear = date("Y");
-                                                    for ($i = 0; $i <= 3; $i++) {
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
                                                         ?>
-                                                        <option value="<?php echo $currentYear - $i; ?>">
-                                                            <?php echo $currentYear - $i; ?>
-                                                        </option>
-                                                    <?php }
+                                                        <?php
+                                                    }
                                                     ?>
                                                 </select>
                                             </div>  
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="queena-hall-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="queena-hall-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="queena-hall-reportYearly"></div>
+                                    <div id="queena-hall-reportMonthly"></div>
                                 </div> 
 
                                 <div id="queenb-hall" class="tab-pane fade">
@@ -185,40 +215,55 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" name="year">
+                                                <select class="form-control" id="selimnth" name="month">
                                                     <?php
-                                                    $currentYear = date("Y");
-                                                    for ($i = 0; $i <= 3; $i++) {
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
                                                         ?>
-                                                        <option value="<?php echo $currentYear - $i; ?>">
-                                                            <?php echo $currentYear - $i; ?>
-                                                        </option>
-                                                    <?php }
+                                                        <?php
+                                                    }
                                                     ?>
                                                 </select>
                                             </div>  
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="queenb-hall-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="queenb-hall-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="queenb-hall-reportYearly"></div>
+                                    <div id="queenb-hall-reportMonthly"></div>
                                 </div>  
 
                                 <div id="room-all" class="tab-pane fade"> 
@@ -242,26 +287,32 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             </div> 
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="room-all-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="room-all-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="room-all-reportYearly"></div>
+                                    <div id="room-all-reportMonthly"></div>
                                 </div> 
 
                                 <div id="single-room" class="tab-pane fade">
@@ -285,26 +336,32 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             </div>  
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="single-room-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="single-room-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="single-room-reportYearly"></div>
+                                    <div id="single-room-reportMonthly"></div>
                                 </div>  
 
                                 <div id="double-room" class="tab-pane fade">
@@ -328,26 +385,32 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             </div>  
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="double-room-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="double-room-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="double-room-reportYearly"></div>
+                                    <div id="double-room-reportMonthly"></div>
                                 </div>  
 
                                 <div id="family-room" class="tab-pane fade">
@@ -371,26 +434,32 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             </div>  
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="family-room-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="family-room-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="family-room-reportYearly"></div>
+                                    <div id="family-room-reportMonthly"></div>
                                 </div>  
 
                                 <div id="cottage" class="tab-pane fade">
@@ -414,26 +483,32 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             </div>  
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="cottage-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="cottage-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="cottage-reportYearly"></div>
+                                    <div id="cottage-reportMonthly"></div>
                                 </div>  
 
                                 <div id="payment" class="tab-pane fade">
@@ -457,26 +532,32 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             </div>  
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="payment-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="payment-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="payment-reportYearly"></div>
+                                    <div id="payment-reportMonthly"></div>
                                 </div> 
 
                                 <div id="feedback" class="tab-pane fade">
@@ -500,26 +581,32 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             </div>  
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
-                                                    <option value="">January</option>
-                                                    <option value="">February</option>
-                                                    <option value="">March</option>
-                                                    <option value="">April</option>
-                                                    <option value="">May</option>
-                                                    <option value="">June</option>
-                                                    <option value="">July</option>
-                                                    <option value="">August</option>
-                                                    <option value="">September</option>
-                                                    <option value="">October</option>
-                                                    <option value="">November</option>
-                                                    <option value="">December</option>
+                                                    <?php
+                                                    $currentMonth = date("F");
+                                                    $months = array("January", "February", "March", "April", "May", "June",
+                                                        "July", "August", "September", "October", "November", "December");
+                                                    for ($i = 0; $i < 12; $i++) {
+                                                        if ($months[$i] == $currentMonth) {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        } else {
+                                                            ?>
+                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
-                                                <input type="button" class="btn btn-success btn-sm" id="feedback-submitYearly" value="Generate">
+                                                <input type="button" class="btn btn-success btn-sm" id="feedback-submitMonthly" value="Generate">
                                             </div>
                                         </div>                                       
                                     </form>
-                                    <div id="feedback-reportYearly"></div>
+                                    <div id="feedback-reportMonthly"></div>
                                 </div>                                                               
 
                             </div>

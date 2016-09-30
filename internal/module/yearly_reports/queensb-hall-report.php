@@ -9,6 +9,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 ?>
 
 <table class="table-bordered" style="width: 100%;">
+    <caption style="font-size: medium;">Yearly Reservations Report for Queens Hall B</caption>
     <tr>
         <th>Customer first name</th>
         <th>Customer last name</th>
