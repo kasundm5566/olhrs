@@ -157,7 +157,7 @@ CREATE TABLE `log` (
   PRIMARY KEY (`log_id`),
   KEY `fk_username_idx` (`username`),
   CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=471 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=478 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,7 +216,7 @@ DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
   `payment_id` int(10) NOT NULL AUTO_INCREMENT,
   `amount` decimal(10,2) NOT NULL,
-  `date` date NOT NULL,
+  `payment_date` date NOT NULL,
   `reservation_id` int(10) NOT NULL,
   `payment_method_id` int(10) NOT NULL,
   PRIMARY KEY (`payment_id`),
@@ -224,7 +224,7 @@ CREATE TABLE `payment` (
   KEY `fk_payment_method$payment_idx` (`payment_method_id`),
   CONSTRAINT `fk_payment_method$payment` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_method` (`payment_method_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_reservation$payment` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +261,7 @@ CREATE TABLE `reservation` (
   KEY `fk_feedback$reservation_idx` (`feedback_id`),
   CONSTRAINT `fk_customer$reservation` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_feedback$reservation` FOREIGN KEY (`feedback_id`) REFERENCES `feedback` (`feedback_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -358,6 +358,23 @@ CREATE TABLE `user` (
   CONSTRAINT `fk_groups$user` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `verification_code`
+--
+
+DROP TABLE IF EXISTS `verification_code`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `verification_code` (
+  `code_id` int(10) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) NOT NULL,
+  `customer_id` int(10) NOT NULL,
+  PRIMARY KEY (`code_id`),
+  KEY `fk_customer$verification_code_idx` (`customer_id`),
+  CONSTRAINT `fk_customer$verification_code` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -368,4 +385,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-28 17:16:59
+-- Dump completed on 2016-09-30 17:16:25
