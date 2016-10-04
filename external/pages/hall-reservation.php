@@ -53,7 +53,7 @@ if ($_SESSION['username'] == "") {
                         </ul>
 
                         <div>
-                            <form role="form" method="POST" action="hall-payment.php">
+                            <form role="form" method="POST" action="hall-payment.php" target="_blank">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group" id="hall-reserv-fname">
@@ -76,31 +76,52 @@ if ($_SESSION['username'] == "") {
                                         </div>                                
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group" id="hall-reserv-date">
-                                            <label class="control-label">Date</label>
-                                            <input class="form-control" type="text" name="date" value="<?php echo $date; ?>" readonly>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group" id="hall-reserv-date">
+                                                    <label class="control-label">Date</label>
+                                                    <input class="form-control" type="text" name="date" value="<?php echo $date; ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group" id="hall-reserv-time">
+                                                    <label class="control-label">Session</label>
+                                                    <input class="form-control" type="text" name="time" value="<?php echo $time; ?>" readonly>
+                                                </div>   
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Hall</label>
-                                            <select class="form-control" name="hall">
-                                                <option value="Kings Hall">Kings Hall</option>
-                                                <option value="Queens Hall A">Queens Hall A</option>
-                                                <option value="Queens Hall B">Queens Hall B</option>
-                                            </select>
-                                        </div>   
-                                        <div class="form-group" id="hall-reserv-time">
-                                            <label class="control-label">Session</label>
-                                            <input class="form-control" type="text" name="time" value="<?php echo $time; ?>" readonly>
-                                        </div>                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Hall</label>
+                                                    <select class="form-control" name="hall">
+                                                        <option value="Kings Hall">Kings Hall</option>
+                                                        <option value="Queens Hall A">Queens Hall A</option>
+                                                        <option value="Queens Hall B">Queens Hall B</option>
+                                                    </select>
+                                                </div>   
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group" id="hall-reserv-pax" style="display: inline-block;">
+                                                    <label class="control-label">Pax</label>
+                                                    <input class="form-control" type="text" name="pax">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                         <div>
-                                            <div class="form-group" id="hall-reserv-total" style="display: inline-block;">
-                                                <label class="control-label">Total</label>
-                                                <input class="form-control" type="text" name="total" readonly>
-                                            </div>
-                                            <div class="form-group" id="hall-reserv-advance" style="display: inline-block;">
+                                            <div class="form-group" id="hall-reserv-advance">
                                                 <label class="control-label">Advance</label>
-                                                <input class="form-control" type="text" name="advance-payment" readonly>
+                                                <input class="form-control" type="text" name="advance-payment">
                                             </div>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                Please note the advance payment for reservation only. 
+                                                Total will mainly depend on the pax and the selected menu.
+                                                Please visit us for the further processes.<br>
+                                                <strong>Your reservation will be confirmed once you make the payment.</strong>
+                                            </label>
                                         </div>
                                         <div style="text-align: center;">
                                             <button type="submit" class="btn btn-success" style="width: 100%;">Proceed Payment</button>

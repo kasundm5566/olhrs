@@ -6,6 +6,14 @@ if ($_SESSION['username'] == "") {
     header("Location:index.php");
     exit;
 }
+
+function convertCurrency($amount, $from, $to) {
+    $url = "https://www.google.com/finance/converter?a=$amount&from=$from&to=$to";
+    $data = file_get_contents($url);
+    preg_match("/<span class=bld>(.*)<\/span>/", $data, $converted);
+    $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
+    return round($converted, 2);
+}
 ?>
 <html>
     <head>
@@ -58,17 +66,41 @@ if ($_SESSION['username'] == "") {
                             <div>
                                 <p>Contact no: <?php echo $_POST['contactNo']; ?></p>
                             </div>
+                            <div>
+                                <p>Pax: <?php echo $_POST['pax']; ?></p>
+                            </div>
+                            <div>
+                                <p>Advance payment: $<?php echo convertCurrency($_POST['advance-payment'], "LKR", "USD"); ?> USD</p>
+                            </div>
                         </div>
-                        <div style="margin-top: 30px;">
-                            <h4>Waiting for the payment completion...</h4>
-                        </div>
-                        <div style="text-align: center;">
-                            <img src="../images/Preloader_10.gif"/>
+                        <div>
+                            <strong>You will be redirect to the page to make the page now.</strong>
                         </div>
                     </div>                    
                 </div>
             </div>
         </div>
+
+        <form id="pay-form" action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
+            <input type='hidden' name='business' value='kasunutube-facilitator@ymail.com'>
+            <input type='hidden' name='cmd' value='_xclick'>
+            <input type='hidden' name='item_name' value='<?php echo 'Hall reservation-'.$_POST['hall']; ?>'>
+            <input type='hidden' name='amount' value='<?php echo convertCurrency($_POST['advance-payment'], "LKR", "USD"); ?>'>
+            <input type='hidden' name='no_shipping' value='1'>
+            <input type='hidden' name='currency_code' value='USD'>
+            <input type='hidden' name='cancel_return' value='http://localhost/olhrs/external/pages/hall-payment.ph'>
+            <input type='hidden' name='return' value='http://yoursite.com/success.php'>
+            <!--<input type="hidden" type="image" src="https://paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit">-->
+        </form>
+
+        <script>
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $("#pay-form").submit();
+                }, 3000);
+            });
+        </script>
+
         <div id="site-footer">
             <?php include './common/footer.php'; ?>
         </div>
