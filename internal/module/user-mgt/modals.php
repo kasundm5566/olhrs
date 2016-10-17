@@ -1,14 +1,14 @@
-<!-- Start Sign up modal -->
-<div class="modal fade" id="modal-customer-signup">
+<!-- Start add user modal -->
+<div class="modal fade" id="modal-user-add">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/signup-header-icon.png"/>
-                <h3 class="modal-title header-panel">&nbsp;Add New Customer</h3>
+                <h3 class="modal-title header-panel">&nbsp;Add New Staff Member</h3>
             </div>
             <div class="modal-body">
-                <form id="form-addcustomer">
+                <form id="form-adduser">
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -21,19 +21,19 @@
                                 <div class="panel-body">
                                     <label>First name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-fname-error"></label>
-                                    <input type="text" name="customer-fname" class="form-control signup-input-fields" id="signup-firstname" placeholder="Enter the first name">
+                                    <input type="text" name="user-fname" class="form-control signup-input-fields" id="signup-firstname" placeholder="Enter the first name">
 
                                     <label>Last name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-lname-error"></label>
-                                    <input type="text" name="customer-lname" class="form-control signup-input-fields" id="signup-lastname" placeholder="Enter the last name">
+                                    <input type="text" name="user-lname" class="form-control signup-input-fields" id="signup-lastname" placeholder="Enter the last name">
 
                                     <label>Email </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-email-error"></label>
-                                    <input type="email" name="customer-email" class="form-control signup-input-fields" id="signup-email" placeholder="Enter the email">
+                                    <input type="email" name="user-email" class="form-control signup-input-fields" id="signup-email" placeholder="Enter the email">
 
                                     <label>Contact no </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-contactno-error"></label>
-                                    <input type="text" name="customer-contactno" class="form-control signup-input-fields" id="signup-contactno" placeholder="Enter the contact no. Eg: 0771234567">
+                                    <input type="text" name="user-contactno" class="form-control signup-input-fields" id="signup-contactno" placeholder="Enter the contact no. Eg: 0771234567">
                                 </div>
                             </div>
                         </div>
@@ -49,15 +49,26 @@
                                 <div class="panel-body">
                                     <label>User name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-username-error"></label>
-                                    <input type="text" name="customer-username" class="form-control signup-input-fields" id="signup-username" placeholder="Enter a user name">
+                                    <input type="text" name="user-username" class="form-control signup-input-fields" id="signup-username" placeholder="Enter a user name">
 
                                     <label>Password </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-password-error"></label>
-                                    <input type="password" name="customer-password" class="form-control signup-input-fields" id="signup-password" placeholder="Enter a password">
+                                    <input type="password" name="user-password" class="form-control signup-input-fields" id="signup-password" placeholder="Enter a password">
 
                                     <label>Re-type password </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-repassword-error"></label>
-                                    <input type="password" name="customer-repassword" class="form-control signup-input-fields" id="signup-repassword" placeholder="Re enter your password">
+                                    <input type="password" name="user-repassword" class="form-control signup-input-fields" id="signup-repassword" placeholder="Re enter password">
+                                    
+                                    <label>Group </label>
+                                    <label class="lbl-signup-errors" id="lbl-signup-repassword-error"></label>
+                                    <div class="form-group">
+                                        <select class="form-control" id="sel1">
+                                          <option>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -65,13 +76,13 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-primary btn-signupfrm" id="btn-addcust-cancel" data-dismiss="modal">Cancel</a>
-                <a class="btn btn-success btn-signupfrm" id="btn-addcustomer-ok">Add customer</a>
+                <a class="btn btn-primary btn-signupfrm" id="btn-adduser-cancel" data-dismiss="modal">Cancel</a>
+                <a class="btn btn-success btn-signupfrm" id="btn-adduser-ok">Add user</a>
             </div></form>
         </div>
     </div>
 </div>
-<!-- End Sign up modal -->
+<!-- End add user modal -->
 
 <!-- Start-Validation error popup -->
 <div id="modal-validation-error-popup" class="modal fade">
@@ -95,8 +106,8 @@
 </div>
 <!-- End-Validation error popup -->
 
-<!-- Start-Popup for customer adding confirmation -->
-<div id="modal-addCustomer-ConfirmPopup" class="modal fade">
+<!-- Start-Popup for user adding confirmation -->
+<div id="modal-addUser-ConfirmPopup" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -107,7 +118,7 @@
             <div class="modal-body">
                 <p id="dat" style="text-align: left; display: block;">
                     Please make sure the entered details are correct. Click confirm
-                    to add the new customer or click cancel to go back.
+                    to add the new staff member or click cancel to go back.
                 </p>
 
                 <div style="text-align: left; display: block;"><label id="lblFname"></label></div>
@@ -118,15 +129,15 @@
             </div>
             <div class="modal-footer">                
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-success" id="addCustOk">Confirm</button>
+                <button class="btn btn-success" id="addUserOk">Confirm</button>
             </div>
         </div>
     </div>
 </div>
-<!-- End-Popup for customer adding confirmation -->
+<!-- End-Popup for user adding confirmation -->
 
-<!-- Start-Add customer success message popup -->
-<div id="modal-addCustomerSuccess" class="modal fade">
+<!-- Start-Add user success message popup -->
+<div id="modal-addUserSuccess" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -135,7 +146,7 @@
                 <h3 class="modal-title header-panel">&nbsp;Confirm Details</h3>
             </div>
             <div class="modal-body">
-                <p>New customer added to the database successfully.
+                <p>New staff member added to the database successfully.
                 </p>
             </div>
             <div class="modal-footer">
@@ -144,10 +155,10 @@
         </div>
     </div>
 </div>
-<!-- Start-Add customer success message popup -->
+<!-- Start-Add user success message popup -->
 
-<!-- Start-Add customer failed message popup -->
-<div id="modal-addCustomerFail" class="modal fade">
+<!-- Start-Add user failed message popup -->
+<div id="modal-addUserFail" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -157,7 +168,7 @@
             </div>
             <div class="modal-body">
                 <p>
-                    <strong>Some error occurred during adding the new customer.</strong>
+                    <strong>Some error occurred during adding the new staff member.</strong>
                     <br>Please try again later. If the issue persists, please contact the system
                     administrator.
                     <br>Sorry for the inconvenience.
@@ -169,10 +180,10 @@
         </div>
     </div>
 </div>
-<!-- End-Add customer failed message popup -->
+<!-- End-Add user failed message popup -->
 
-<!-- Start-Delete customer confirm popup -->
-<div id="modal-deleteCustomerPopup" class="modal fade">
+<!-- Start-Delete user confirm popup -->
+<div id="modal-deleteUserPopup" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -191,15 +202,15 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-danger" id="deleteCustomerOk">Delete</button>
+                <button class="btn btn-danger" id="deleteUserOk">Delete</button>
             </div>
         </div>
     </div>
 </div>
-<!-- End-Delete customer confirm popup -->
+<!-- End-Delete user confirm popup -->
 
-<!-- Start-Delete customer success message popup -->
-<div id="modal-deleteCustomerSuccess" class="modal fade">
+<!-- Start-Delete user success message popup -->
+<div id="modal-deleteUserSuccess" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -208,7 +219,7 @@
                 <h3 class="modal-title header-panel">&nbsp;Customer Removed</h3>
             </div>
             <div class="modal-body">
-                <p>Customer record remove from the database successfully.
+                <p>Staff member record remove from the database successfully.
                 </p>
             </div>
             <div class="modal-footer">
@@ -217,9 +228,9 @@
         </div>
     </div>
 </div>
-<!-- End-Delete customer success message popup -->
+<!-- End-Delete user success message popup -->
 
-<!-- Start-Delete customer failed message popup -->
+<!-- Start-Delete user failed message popup -->
 <div id="modal-deleteUserFail" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -230,7 +241,7 @@
             </div>
             <div class="modal-body">
                 <p>
-                    <strong>Some error occurred during removing the customer.</strong>
+                    <strong>Some error occurred during removing the staff member.</strong>
                     <br>Please try again later. If the issue persists, please contact the system
                     administrator.
                     <br>Sorry for the inconvenience.
@@ -242,43 +253,43 @@
         </div>
     </div>
 </div>
-<!-- End-Delete customer failed message popup -->
+<!-- End-Delete user failed message popup -->
 
 <!-- Start Update modal -->
-<div class="modal fade" id="modal-customer-update">
+<div class="modal fade" id="modal-user-update">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/customer-update.ico"/>
-                <h3 class="modal-title header-panel">&nbsp;Update Customer</h3>
+                <h3 class="modal-title header-panel">&nbsp;Update Staff Member</h3>
                 <button class="btn btn-warning btn-sm" id="btn-reset-password"><i class="glyphicon glyphicon-refresh"></i> Reset Password</button>
             </div>
             <div class="modal-body">
-                <form id="form-updatecustomer">
+                <form id="form-updateuser">
                     <label>First name </label>
                     <label class="lbl-signup-errors" id="lbl-update-fname-error"></label>
-                    <input type="text" name="update-customer-fname" class="form-control update-input-fields" id="update-firstname" placeholder="Enter the first name">
+                    <input type="text" name="update-user-fname" class="form-control update-input-fields" id="update-firstname" placeholder="Enter the first name">
 
                     <label>Last name </label>
                     <label class="lbl-signup-errors" id="lbl-update-lname-error"></label>
-                    <input type="text" name="update-customer-lname" class="form-control update-input-fields" id="update-lastname" placeholder="Enter the last name">
+                    <input type="text" name="update-user-lname" class="form-control update-input-fields" id="update-lastname" placeholder="Enter the last name">
 
                     <label>Email </label>
                     <label class="lbl-signup-errors" id="lbl-update-email-error"></label>
-                    <input type="email" name="update-customer-email" class="form-control update-input-fields" id="update-email" placeholder="Enter the email">
+                    <input type="email" name="update-user-email" class="form-control update-input-fields" id="update-email" placeholder="Enter the email">
 
                     <label>Contact no </label>
                     <label class="lbl-signup-errors" id="lbl-update-contactno-error"></label>
-                    <input type="text" name="update-customer-contactno" class="form-control update-input-fields" id="update-contactno" placeholder="Enter the contact no. Eg: 0771234567">
+                    <input type="text" name="update-user-contactno" class="form-control update-input-fields" id="update-contactno" placeholder="Enter the contact no. Eg: 0771234567">
 
                     <label>User name </label>
                     <label class="lbl-signup-errors" id="lbl-update-username-error">username can not be changed</label>
-                    <input type="text" name="update-customer-username" class="form-control update-input-fields" id="update-username" disabled>
+                    <input type="text" name="update-user-username" class="form-control update-input-fields" id="update-username" disabled>
                 </form>
                 <div class="modal-footer">
-                    <a class="btn btn-primary btn-signupfrm" id="btn-updateCustomer-cancel" data-dismiss="modal">Cancel</a>
-                    <a class="btn btn-success btn-signupfrm" id="btn-updateCustomer-ok">Update customer</a>
+                    <a class="btn btn-primary btn-signupfrm" id="btn-updateUser-cancel" data-dismiss="modal">Cancel</a>
+                    <a class="btn btn-success btn-signupfrm" id="btn-updateUser-ok">Update user</a>
                 </div>
             </div>
         </div>
@@ -301,11 +312,11 @@
                 <form id="form-updatecustomer">
                     <label>New password </label>
                     <label class="lbl-signup-errors" id="lbl-update-password-error"></label>
-                    <input type="password" name="customer-fname" class="form-control update-input-fields" id="update-password" placeholder="Enter a new password">
+                    <input type="password" name="user-fname" class="form-control update-input-fields" id="update-password" placeholder="Enter a new password">
 
                     <label>Re-type new password </label>
                     <label class="lbl-signup-errors" id="lbl-update-repassword-error"></label>
-                    <input type="password" name="customer-lname" class="form-control update-input-fields" id="update-repassword" placeholder="Re-type the new password">
+                    <input type="password" name="user-lname" class="form-control update-input-fields" id="update-repassword" placeholder="Re-type the new password">
 
                     <div class="modal-footer">
                         <a class="btn btn-primary btn-signupfrm" id="btn-resetPass-cancel" data-dismiss="modal">Cancel</a>
@@ -328,7 +339,7 @@
                 <h3 class="modal-title header-panel">&nbsp;Password Reset Success</h3>
             </div>
             <div class="modal-body">
-                <p>New password has assigned to the customer successfully.
+                <p>New password has assigned to the staff member successfully.
                 </p>
             </div>
             <div class="modal-footer">
@@ -349,7 +360,7 @@
                 <h3 class="modal-title header-panel">&nbsp;Update Success</h3>
             </div>
             <div class="modal-body">
-                <p>Customer data updated successfully.
+                <p>User data updated successfully.
                 </p>
             </div>
             <div class="modal-footer">
@@ -360,8 +371,8 @@
 </div>
 <!-- End-Update success message popup -->
 
-<!-- Start-Update customer failed message popup -->
-<div id="modal-updateCustomerFail" class="modal fade">
+<!-- Start-Update user failed message popup -->
+<div id="modal-updateUserFail" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -371,7 +382,7 @@
             </div>
             <div class="modal-body">
                 <p>
-                    <strong>Some error occurred during updating the customer.</strong>
+                    <strong>Some error occurred during updating the user.</strong>
                     <br>Please try again later. If the issue persists, please contact the system
                     administrator.
                     <br>Sorry for the inconvenience.
@@ -383,4 +394,4 @@
         </div>
     </div>
 </div>
-<!-- End-Update customer failed message popup -->
+<!-- End-Update user failed message popup -->

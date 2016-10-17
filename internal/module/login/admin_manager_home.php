@@ -123,7 +123,7 @@
         </div>
 
         <div class="col-sm-2 col-xs-4">
-            <a href="" data-toggle="tooltip" data-placement="bottom" title="Manage staff related things.">    
+            <a href="../user-mgt/users.php" data-toggle="tooltip" data-placement="bottom" title="Manage staff related things.">    
                 <!-- User tile -->
                 <div id="tile1" class="tile">
                     <div class="carousel slide" data-ride="carousel">

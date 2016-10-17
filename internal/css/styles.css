@@ -160,7 +160,7 @@ div#footer{
     display: inline-block;
 }
 
-#txtSearchCustomer{
+#txtSearchCustomer, #txtSearchUser{
     height: 33px;
     width: 250px;
 }
