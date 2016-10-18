@@ -49,7 +49,7 @@
                                 <div class="panel-body">
                                     <label>User name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-username-error"></label>
-                                    <input type="text" name="user-username" class="form-control signup-input-fields" id="signup-username" placeholder="Enter a user name">
+                                    <input type="text" name="user-username" class="form-control signup-input-fields" id="user-username" placeholder="Enter a user name">
 
                                     <label>Password </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-password-error"></label>
@@ -58,15 +58,11 @@
                                     <label>Re-type password </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-repassword-error"></label>
                                     <input type="password" name="user-repassword" class="form-control signup-input-fields" id="signup-repassword" placeholder="Re enter password">
-                                    
+
                                     <label>Group </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-repassword-error"></label>
                                     <div class="form-group">
-                                        <select class="form-control" id="sel1">
-                                          <option>1</option>
-                                          <option>2</option>
-                                          <option>3</option>
-                                          <option>4</option>
+                                        <select class="form-control" id="user-group" name="user-group">
                                         </select>
                                     </div>
                                 </div>
@@ -112,7 +108,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <img class="header-icons" src="../../images/icons/customer-add-confirm.png"/>
+                <img class="header-icons" src="../../images/icons/user-add-confirm.png"/>
                 <h3 class="modal-title header-panel">&nbsp;Confirm Details</h3>
             </div>
             <div class="modal-body">
@@ -126,6 +122,7 @@
                 <div style="text-align: left; display: block;"><label id="lblEmail"></label></div>
                 <div style="text-align: left; display: block;"><label id="lblTel"></label></div>
                 <div style="text-align: left; display: block;"><label id="lblUsrname"></label></div>
+                <div style="text-align: left; display: block;"><label id="lblGroup"></label></div>
             </div>
             <div class="modal-footer">                
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
@@ -188,8 +185,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <img class="header-icons" src="../../images/icons/customer-remove-confirm.png"/>
-                <h3 class="modal-title header-panel">&nbsp;Remove Customer</h3>
+                <img class="header-icons" src="../../images/icons/user-remove-confirm.png"/>
+                <h3 class="modal-title header-panel">&nbsp;Remove Staff Member</h3>
             </div>
             <div class="modal-body">
                 <p>Do you want to remove the selected user from database?
@@ -199,6 +196,7 @@
                 <div><label id="lbUsrname" style="text-align: left; display: block;"></label></div>
                 <div><label id="lbEmail" style="text-align: left; display: block;"></label></div>
                 <div><label id="lbTel" style="text-align: left; display: block;"></label></div>
+                <div><label id="lbGroup" style="text-align: left; display: block;"></label></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
@@ -215,7 +213,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <img class="header-icons" src="../../images/icons/customer-remove.png"/>
+                <img class="header-icons" src="../../images/icons/user-remove.png"/>
                 <h3 class="modal-title header-panel">&nbsp;Customer Removed</h3>
             </div>
             <div class="modal-body">
@@ -269,23 +267,31 @@
                 <form id="form-updateuser">
                     <label>First name </label>
                     <label class="lbl-signup-errors" id="lbl-update-fname-error"></label>
-                    <input type="text" name="update-user-fname" class="form-control update-input-fields" id="update-firstname" placeholder="Enter the first name">
+                    <input type="text" name="update-fname" class="form-control update-input-fields" id="update-firstname" placeholder="Enter the first name">
 
                     <label>Last name </label>
                     <label class="lbl-signup-errors" id="lbl-update-lname-error"></label>
-                    <input type="text" name="update-user-lname" class="form-control update-input-fields" id="update-lastname" placeholder="Enter the last name">
+                    <input type="text" name="update-lname" class="form-control update-input-fields" id="update-lastname" placeholder="Enter the last name">
 
                     <label>Email </label>
                     <label class="lbl-signup-errors" id="lbl-update-email-error"></label>
-                    <input type="email" name="update-user-email" class="form-control update-input-fields" id="update-email" placeholder="Enter the email">
+                    <input type="email" name="update-email" class="form-control update-input-fields" id="update-email" placeholder="Enter the email">
 
                     <label>Contact no </label>
                     <label class="lbl-signup-errors" id="lbl-update-contactno-error"></label>
-                    <input type="text" name="update-user-contactno" class="form-control update-input-fields" id="update-contactno" placeholder="Enter the contact no. Eg: 0771234567">
+                    <input type="text" name="update-contactno" class="form-control update-input-fields" id="update-contactno" placeholder="Enter the contact no. Eg: 0771234567">
 
                     <label>User name </label>
                     <label class="lbl-signup-errors" id="lbl-update-username-error">username can not be changed</label>
-                    <input type="text" name="update-user-username" class="form-control update-input-fields" id="update-username" disabled>
+                    <input type="text" name="update-username" class="form-control update-input-fields" id="update-username" disabled>
+                    
+                    <label>Group </label>
+                    <div class="form-group">
+                        <select class="form-control" id="update-user-group" name="update-group">
+                            
+                        </select>
+                    </div>
+
                 </form>
                 <div class="modal-footer">
                     <a class="btn btn-primary btn-signupfrm" id="btn-updateUser-cancel" data-dismiss="modal">Cancel</a>

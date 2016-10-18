@@ -1,7 +1,7 @@
 <div class="container dynamicTile" id="tile-block">
     <div class="row">
         <div class="col-sm-4 col-xs-8">
-            <a href="../booking/booking.php" data-toggle="tooltip" data-placement="bottom" title="Manage reservations related things.">
+            <a href="../reservations/reservations-home.php" data-toggle="tooltip" data-placement="bottom" title="Manage reservations related things.">
                 <!-- Reservation tile -->
                 <div id="tile7" class="tile">
                     <div class="carousel slide" data-ride="carousel">
@@ -99,7 +99,7 @@
     </div>
     <div class="row ">                       
         <div class="col-sm-4 col-xs-8">
-            <a href="../customer-mgt/customer.php" data-toggle="tooltip" data-placement="bottom" title="Manage customer related things.">    
+            <a href="../customer_mgt/customer.php" data-toggle="tooltip" data-placement="bottom" title="Manage customer related things.">    
                 <!-- Customer tile -->
                 <div id="tile3" class="tile">
                     <div class="carousel slide" data-ride="carousel">
@@ -123,7 +123,7 @@
         </div>
 
         <div class="col-sm-2 col-xs-4">
-            <a href="../user-mgt/users.php" data-toggle="tooltip" data-placement="bottom" title="Manage staff related things.">    
+            <a href="../user_mgt/users.php" data-toggle="tooltip" data-placement="bottom" title="Manage staff related things.">    
                 <!-- User tile -->
                 <div id="tile1" class="tile">
                     <div class="carousel slide" data-ride="carousel">

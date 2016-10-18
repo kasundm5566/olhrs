@@ -5,11 +5,8 @@ include '../../common/dbconnection.php';
 $objDBConnection = new dbconnection();
 $connection = $objDBConnection->connection();
 
-$page = $_REQUEST['page'];
-$recPerPage = $_REQUEST['recordsCount'];
-$offset = ($page - 1) * $recPerPage;
+$sql = "SELECT group_name FROM groups;";
 
-$sql = "SELECT username,first_name,last_name,email,telephone,registered_date,group_name FROM user u, groups g WHERE u.group_id=g.group_id LIMIT $recPerPage OFFSET $offset;";
 $dataArray = [];
 
 $result = $connection->query($sql);
@@ -19,4 +16,4 @@ if ($result) {
     }
     echo json_encode($dataArray);
 }
-
+?>

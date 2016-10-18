@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Aqua Pearl Lake Resort</a>
+            <a class="navbar-brand" href="customer-home.php">Aqua Pearl Lake Resort</a>
         </div>
         <div>
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">

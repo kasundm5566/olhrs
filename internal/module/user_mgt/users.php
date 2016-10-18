@@ -46,7 +46,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
             <div class="section">          
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <img class="icons" src="../../images/icons/customer.png">
+                        <img class="icons" src="../../images/icons/staff.png">
                         <h3 class="header-panel">&nbsp;Staff Management</h3>
                     </div>
                     <div class="panel-body">

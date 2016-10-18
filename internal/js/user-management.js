@@ -5,8 +5,8 @@ $(document).ready(function () {
     initUsersTable();
     pagination();
 
-    $("#btnRefreshCustomers").click(function () {
-        refreshCustomerTablePage(currentPage);
+    $("#btnRefreshUser").click(function () {
+        refreshUsersTablePage(currentPage);
     });
 
     $('#txtSearchUser').keyup(function () {
@@ -36,9 +36,23 @@ $(document).ready(function () {
             keyboard: false
         });
 
+        $.ajax({
+            type: "GET",
+            url: "../../dao/user_management/get_groups.php",
+            dataType: "json",
+            success: function (result) {
+                var select = $("#user-group"), options = '';
+                select.empty();
+                for (var i = 0; i < result.length; i++) {
+                    options += "<option value='" + result[i].group_name + "'>" + result[i].group_name + "</option>";
+                }
+                select.append(options);
+            }
+        });
+
         $('#btn-adduser-ok').off('click');
         $("#btn-adduser-ok").click(function () {
-            addCustomer();
+            addUser();
         });
     });
 
@@ -146,6 +160,24 @@ function initUsersTable() {
             $("#update-username").val("");
             $("#update-username").val(obj["username"]);
 
+            $.ajax({
+                type: "POST",
+                url: "../../dao/user_management/get_groups.php",
+                dataType: "json",
+                success: function (result) {
+                    var select = $("#update-user-group"), options = '';
+                    select.empty();
+                    for (var i = 0; i < result.length; i++) {
+                        if (result[i].group_name == obj["group_name"]) {
+                            options += "<option value='" + result[i].group_name + "' selected>" + result[i].group_name + "</option>";
+                        } else {
+                            options += "<option value='" + result[i].group_name + "'>" + result[i].group_name + "</option>";
+                        }
+                    }
+                    select.append(options);
+                }
+            });
+
             $('#btn-reset-password').off('click');
             $("#btn-reset-password").click(function () {
                 $("#modal-reset-password").modal('show');
@@ -159,7 +191,7 @@ function initUsersTable() {
                         $("#lbl-reset-password-error").text("Validation errors found.");
                     } else {
                         $("#lbl-reset-password-error").text("");
-                        resetCustomerPassword($("#lbl-resetpass-username").text(), $("#update-password").val());
+                        resetUserPassword($("#lbl-resetpass-username").text(), $("#update-password").val());
                     }
                 });
             });
@@ -175,7 +207,7 @@ function initUsersTable() {
                     $("#modal-validation-error-popup").appendTo('body').modal("show");
                     return false;
                 } else {
-                    updateCustomer();
+                    updateUser();
                 }
             });
 
@@ -191,24 +223,30 @@ function initUsersTable() {
             $("#lbFname").text("");
             $("#lbFname").text("First name: " + obj["first_name"]);
             $("#lbLname").text("");
-            $("#lbLname").text("First name: " + obj["last_name"]);
+            if (obj["last_name"] == null || obj["last_name"] == "") {
+                $("#lbLname").text("Last name: -");
+            } else {
+                $("#lbLname").text("Last name: " + obj["last_name"]);
+            }
             $("#lbUsrname").text("");
-            $("#lbUsrname").text("First name: " + username);
+            $("#lbUsrname").text("username: " + username);
             $("#lbEmail").text("");
-            $("#lbEmail").text("First name: " + obj["email"]);
+            $("#lbEmail").text("Email: " + obj["email"]);
             $("#lbTel").text("");
-            $("#lbTel").text("First name: " + obj["telephone"]);
+            $("#lbTel").text("Contact no: " + obj["telephone"]);
+            $("#lbGroup").text("");
+            $("#lbGroup").text("Group: " + obj["group_name"]);
 
             $('#deleteUserOk').off('click');
             $("#deleteUserOk").click(function () {
-                deleteCustomer(obj);
+                deleteUser(obj);
             });
         }
     };
 }
 
 // Function to refresh the table data
-function refreshCustomerTablePage(pageNo) {
+function refreshUsersTablePage(pageNo) {
     $("#txtSearchUser").val("");
     $("#pagination2").hide();
     $("#pagination").show();
@@ -414,12 +452,12 @@ function loadDataByPageSize() {
 }
 
 // Add a new user record to the database
-function addCustomer() {
+function addUser() {
     var isFirstNameValid = validateFirstName($("#signup-firstname"), $("#lbl-signup-fname-error"));
     var isLastNameValid = validateLastName($("#signup-lastname"), $("#lbl-signup-lname-error"));
     var isEmailValid = validateEmail($("#signup-email"), $("#lbl-signup-email-error"));
     var isContactNoValid = validateContactNo($("#signup-contactno"), $("#lbl-signup-contactno-error"));
-    var isUsernameValid = validateCustomerUserName($("#signup-username"), $("#lbl-signup-username-error"));
+    var isUsernameValid = validateCustomerUserName($("#user-username"), $("#lbl-signup-username-error"));
     var isPasswordValid = validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
     var isRetypedPasswordValid = validateRetypedPass($("#signup-repassword"), $("#lbl-signup-repassword-error"), $("#signup-password"));
 
@@ -437,7 +475,9 @@ function addCustomer() {
         $("#lblTel").text("");
         $("#lblTel").text("Contact no: " + $("#signup-contactno").val());
         $("#lblUsrname").text("");
-        $("#lblUsrname").text("username: " + $("#signup-username").val());
+        $("#lblUsrname").text("Username: " + $("#user-username").val());
+        $("#lblGroup").text("");
+        $("#lblGroup").text("Group: " + $("#user-group").val());
 
         $('#addUserOk').off('click');
         $("#addUserOk").click(function () {
@@ -447,10 +487,10 @@ function addCustomer() {
                 success: function (result) {
                     if ($.trim(result) == 1) {
                         $("#modal-addUser-ConfirmPopup").modal('hide');
-                        $("#modal-user-signup").modal('hide');
+                        $("#modal-user-add").modal('hide');
                         $("#form-adduser").trigger('reset');
                         $("#modal-addUserSuccess").modal('show');
-                        refreshCustomerTablePage(currentPage);
+                        refreshUsersTablePage(currentPage);
                         resetFields($(".lbl-signup-errors"), $(".signup-input-fields"));
                     } else {
                         $("#modal-addUser-ConfirmPopup").modal('hide');
@@ -466,7 +506,7 @@ function addCustomer() {
     }
 }
 
-function resetCustomerPassword(username, password) {
+function resetUserPassword(username, password) {
     $.ajax({
         url: "../../dao/user_management/reset_password.php",
         data: {"username": username, "password": password},
@@ -486,7 +526,7 @@ function resetCustomerPassword(username, password) {
     });
 }
 
-function deleteCustomer(obj) {
+function deleteUser(obj) {
     $.ajax({
         url: "../../dao/user_management/delete_user.php",
         type: "GET",
@@ -496,7 +536,7 @@ function deleteCustomer(obj) {
             if ($.trim(result) == 1) {
                 $("#modal-deleteUserPopup").modal('hide');
                 $("#modal-deleteUserSuccess").modal('show');
-                refreshCustomerTablePage(currentPage);
+                refreshUsersTablePage(currentPage);
             } else {
                 $("#modal-deleteUserPopup").modal('hide');
                 $("#modal-deleteUserFail").modal('show');
@@ -510,22 +550,24 @@ function deleteCustomer(obj) {
     });
 }
 
-function updateCustomer() {
+function updateUser() {
     $username = $("#update-username").val();
     $fname = $("#update-firstname").val();
     $lname = $("#update-lastname").val();
     $email = $("#update-email").val();
     $contactNo = $("#update-contactno").val();
+    $groupName = $("#update-user-group").val();
     $.ajax({
         url: "../../dao/user_management/update_user.php",
         data: {"update-username": $username, "update-fname": $fname,
-            "update-lname": $lname, "update-email": $email, "update-contactno": $contactNo
+            "update-lname": $lname, "update-email": $email, "update-contactno": $contactNo,
+            "update-group": $groupName
         },
         success: function (result) {
             if ($.trim(result) == 1) {
                 $("#modal-user-update").modal('hide');
                 $("#modal-updateSuccess").modal('show');
-                refreshCustomerTablePage(currentPage);
+                refreshUsersTablePage(currentPage);
             } else {
                 alert(result);
                 $("#modal-updateUserFail").modal('show');

@@ -35,6 +35,13 @@ $(document).ready(function () {
     $("#signup-username").keyup(function () {
         validateCustomerUserName($("#signup-username"), $("#lbl-signup-username-error"));
     });
+    
+    $("#user-username").focusout(function () {
+        validateStaffUserName($("#user-username"), $("#lbl-signup-username-error"));
+    });
+    $("#user-username").keyup(function () {
+        validateStaffUserName($("#user-username"), $("#lbl-signup-username-error"));
+    });
 
     $("#signup-password").focusout(function () {
         validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
@@ -187,7 +194,7 @@ function validateRetypedPass(field, error_field, entered_password) {
     }
 }
 
-// Validate the username password
+// Validate the username password-customer
 function validateCustomerUserName(field, error_field) {
     $(error_field).css("color", "red");
     var userName = $(field).val();
@@ -211,6 +218,52 @@ function validateCustomerUserName(field, error_field) {
         $.ajax({
             type: 'GET',
             url: "../../dao/customer_management/customer_username_checker.php",
+            data: {"username": userName},
+            success: function (result) {
+                if ($.trim(result) != 0) {
+                    $(error_field).show();
+                    $(field).css("background-color", background_color);
+                    $(error_field).text("That user name is already used.");
+                    return false;
+                } else {
+                    $(error_field).css("color", "#009900");
+                    $(error_field).show();
+                    $(field).css("background-color", "white");
+                    $(error_field).text("User name is valid.");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $("#modal-commonError").modal('show');
+                $("#common-error-msg").text("Error validating the username. Message: " + errorThrown);
+            }
+        });
+    }
+}
+
+// Validate the username-staff
+function validateStaffUserName(field, error_field) {
+    $(error_field).css("color", "red");
+    var userName = $(field).val();
+    var unameRegex = /^[a-zA-Z0-9_]+$/;
+    if (userName.length == 0) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Username should not empty.");
+        return false;
+    } else if (userName.length <= 4) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Username should contain minimum of 5 characters.");
+        return false;
+    } else if (!unameRegex.test(userName)) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Username should contain any special characters.");
+        return false;
+    } else {
+        $.ajax({
+            type: 'GET',
+            url: "../../dao/user_management/staff_username_checker.php",
             data: {"username": userName},
             success: function (result) {
                 if ($.trim(result) != 0) {

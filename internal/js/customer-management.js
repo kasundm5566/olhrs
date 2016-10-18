@@ -191,13 +191,18 @@ function initCustomerTable() {
             $("#lbFname").text("");
             $("#lbFname").text("First name: " + obj["first_name"]);
             $("#lbLname").text("");
-            $("#lbLname").text("First name: " + obj["last_name"]);
+            if(obj["last_name"]==null){
+                $("#lbLname").text("Last name: -");
+            }else{
+                $("#lbLname").text("Last name: " + obj["last_name"]);
+            }
+            
             $("#lbUsrname").text("");
-            $("#lbUsrname").text("First name: " + username);
+            $("#lbUsrname").text("Username: " + username);
             $("#lbEmail").text("");
-            $("#lbEmail").text("First name: " + obj["email"]);
+            $("#lbEmail").text("Email name: " + obj["email"]);
             $("#lbTel").text("");
-            $("#lbTel").text("First name: " + obj["telephone"]);
+            $("#lbTel").text("Contact no: " + obj["telephone"]);
 
             $('#deleteCustomerOk').off('click');
             $("#deleteCustomerOk").click(function () {

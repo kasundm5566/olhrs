@@ -1,6 +1,9 @@
 var background_color = "#fde99c";
 
 $(document).ready(function () {
+
+    $("#btn-signup-ok").attr('disabled', true);
+
     $("#signup-firstname").focusout(function () {
         validateFirstName($("#signup-firstname"), $("#lbl-signup-fname-error"));
     });
@@ -29,6 +32,13 @@ $(document).ready(function () {
         validateContactNo($("#signup-contactno"), $("#lbl-signup-contactno-error"));
     });
 
+    $("#signup-username").focusout(function () {
+        validateUserName($("#signup-username"), $("#lbl-signup-username-error"));
+    });
+    $("#signup-username").keyup(function () {
+        validateUserName($("#signup-username"), $("#lbl-signup-username-error"));
+    });
+
     $("#signup-password").focusout(function () {
         validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
     });
@@ -55,9 +65,10 @@ $(document).ready(function () {
             var isContactNoValid = validateContactNo($("#signup-contactno"), $("#lbl-signup-contactno-error"));
             var isPasswordValid = validatePassword($("#signup-password"), $("#lbl-signup-password-error"));
             var isRetypedPasswordValid = validateRetypedPass($("#signup-repassword"), $("#lbl-signup-repassword-error"), $("#signup-password"));
+            var isUsernameValid = validateUserName($("#signup-username"), $("#lbl-signup-username-error"));
 
-            if (isFirstNameValid == false || isLastNameValid == false || isEmailValid == false || isContactNoValid == false || isPasswordValid == false || isRetypedPasswordValid == false) {
-                $("#validation-error-popup").modal("show");
+            if (isFirstNameValid == false || isLastNameValid == false || isEmailValid == false || isContactNoValid == false || isUsernameValid == false || isPasswordValid == false || isRetypedPasswordValid == false) {
+                $("#modal-validation-error-popup").modal("show");
                 return false;
             } else {
                 alert("ok");
@@ -151,6 +162,56 @@ function validateContactNo(field, error_field) {
             $(field).css("background-color", "white");
             $(error_field).hide();
         }
+    }
+}
+
+// Validate the username password
+function validateUserName(field, error_field) {
+    $(error_field).css("color", "red");
+    var userName = $(field).val();
+    var unameRegex = /^[a-zA-Z0-9_]+$/;
+    if (userName.length == 0) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Username should not empty.");
+        $("#btn-signup-ok").attr('disabled', true);
+        return false;
+    } else if (userName.length <= 4) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Username should contain minimum of 5 characters.");
+        $("#btn-signup-ok").attr('disabled', true);
+        return false;
+    } else if (!unameRegex.test(userName)) {
+        $(error_field).show();
+        $(field).css("background-color", background_color);
+        $(error_field).text("Username should contain any special characters.");
+        $("#btn-signup-ok").attr('disabled', true);
+        return false;
+    } else {
+        $.ajax({
+            type: 'GET',
+            url: "./dao/customer/username_checker.php",
+            data: {"username": userName},
+            success: function (result) {
+                if ($.trim(result) != 0) {
+                    $(error_field).show();
+                    $(field).css("background-color", background_color);
+                    $(error_field).text("That user name is already used.");
+                    $("#btn-signup-ok").attr('disabled', true);
+                    return false;
+                } else {
+                    $(error_field).css("color", "#009900");
+                    $(error_field).show();
+                    $(field).css("background-color", "white");
+                    $(error_field).text("User name is valid.");
+                    $("#btn-signup-ok").attr('disabled', false);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
     }
 }
 
