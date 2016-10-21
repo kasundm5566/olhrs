@@ -20,19 +20,19 @@
                                 <div class="panel-body">
                                     <label>First name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-fname-error"></label>
-                                    <input type="text" class="form-control" id="signup-firstname" placeholder="Enter your first name">
+                                    <input type="text" class="form-control cust-signup-fields" id="signup-firstname" name="signup-firstname" placeholder="Enter your first name">
 
                                     <label>Last name </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-lname-error"></label>
-                                    <input type="text" class="form-control" id="signup-lastname" placeholder="Enter your last name">
+                                    <input type="text" class="form-control cust-signup-fields" id="signup-lastname" name="signup-lastname" placeholder="Enter your last name">
 
                                     <label>Email </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-email-error"></label>
-                                    <input type="email" class="form-control" id="signup-email" placeholder="Enter your email">
+                                    <input type="email" class="form-control cust-signup-fields" id="signup-email" name="signup-email" placeholder="Enter your email">
 
                                     <label>Contact no </label>
                                     <label class="lbl-signup-errors" id="lbl-signup-contactno-error"></label>
-                                    <input type="text" class="form-control" id="signup-contactno" placeholder="Enter your contact no. Eg: ">
+                                    <input type="text" class="form-control cust-signup-fields" id="signup-contactno" name="signup-contactno" placeholder="Enter your contact no. Eg: ">
                                 </div>
                             </div>
                         </div>
@@ -48,15 +48,15 @@
                                     <div class="panel-body">
                                         <label>User name </label>
                                         <label class="lbl-signup-errors" id="lbl-signup-username-error"></label>
-                                        <input type="text" class="form-control" id="signup-username" placeholder="Enter a user name">
+                                        <input type="text" class="form-control cust-signup-fields" id="signup-username" name="signup-username" placeholder="Enter a user name">
 
                                         <label>Password </label>
                                         <label class="lbl-signup-errors" id="lbl-signup-password-error"></label>
-                                        <input type="password" class="form-control" id="signup-password" placeholder="Enter a password">
+                                        <input type="password" class="form-control cust-signup-fields" id="signup-password" name="signup-password" placeholder="Enter a password">
 
                                         <label>Re-type password </label>
                                         <label class="lbl-signup-errors" id="lbl-signup-repassword-error"></label>
-                                        <input type="password" class="form-control" id="signup-repassword" placeholder="Re enter your password">
+                                        <input type="password" class="form-control cust-signup-fields" id="signup-repassword" placeholder="Re enter your password">
                                     </div>
                                 </div>
                             </div>
@@ -93,3 +93,60 @@
     </div>
 </div>
 <!-- Validation error popup -->
+
+<!-- Signup verify modal-start -->
+<div class="modal fade" id="modal-signup-verification">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Complete Registration</h4>
+            </div>
+            <div class="modal-body">
+                <lable style="float:left;">Dear&nbsp;</lable>
+                <p>
+                <p id="regd-username"></p>
+                We have sent a verification to your email. Please enter it below to activate
+                your account.
+                <strong>Please note: you will not be able to login to the system until you verify
+                    the code.</strong>
+                </p>
+                <div style="text-align:center">
+                    <form>
+                        <lable>Code:</lable>
+                        <input type="text">
+                        <div style="margin-left:40px; margin-top:5px;">
+                            <button class="btn btn-primary btn-sm">Resend code</button>
+                            <button class="btn btn-success btn-sm">Verify</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" data-dismiss="modal">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Signup verify modal-end -->
+
+<!-- Start-Signup customer failed message popup -->
+<div id="modal-customerSignupFail" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <img class="header-icons" src="../images/icons/error.png"/>
+                <h3 class="modal-title header-panel">&nbsp;Error Occurred</h3>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <strong>Some error occurred during the registration process.</strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End-Signup customer failed message popup -->

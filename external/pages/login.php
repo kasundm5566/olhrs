@@ -40,5 +40,4 @@
         </div>
     </div>                
 </div>
-
-<?php include './modals.php'; ?>
+<?php include './common/modals.php'; ?>

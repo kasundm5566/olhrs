@@ -58,6 +58,7 @@ $(document).ready(function () {
             backdrop: 'static',
             keyboard: false
         });
+        $('#btn-signup-ok').off('click');
         $("#btn-signup-ok").click(function () {
             var isFirstNameValid = validateFirstName($("#signup-firstname"), $("#lbl-signup-fname-error"));
             var isLastNameValid = validateLastName($("#signup-lastname"), $("#lbl-signup-lname-error"));
@@ -71,12 +72,31 @@ $(document).ready(function () {
                 $("#modal-validation-error-popup").modal("show");
                 return false;
             } else {
-                alert("ok");
+                $.ajax({
+                    type: 'POST',
+                    url: "./dao/customer/add_customer.php",
+                    data: $("#customer-signup-form").serialize(),
+                    success: function (result) {
+                        if ($.trim(result) != 0) {
+                            var username = $("#signup-username").val()
+                            $('#modal-signup').modal("hide")
+                            $('#modal-signup-verification').modal({
+                                backdrop: 'static',
+                                keyboard: false
+                            });
+                            resetFields(".lbl-signup-errors", ".cust-signup-fields");
+                            $("#regd-username").text(username);
+                        } else {
+                            $("#modal-customerSignupFail").modal("show");
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
             }
         });
     });
-
-
 });
 
 // Validate the first name

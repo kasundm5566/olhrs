@@ -28,6 +28,7 @@ if (!isset($_SESSION)) {
         <script src="../js/anchorHoverEffect.js"></script>
         <script src="../js/validations/signup-validate.js"></script>
         <script src="../js/validations/contactus-validate.js"></script>        
+        <script src="../js/common.js"></script>        
         <script src="../js/effects.js"></script>        
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">

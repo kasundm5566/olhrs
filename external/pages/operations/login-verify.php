@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) { //To check session not start
     session_start(); //Start a session
 }
@@ -17,11 +16,18 @@ $result = $connection->query($sql); //To execute query
 $records_count = $result->num_rows; //To count the rows
 
 if ($records_count == 1) {
-    $row = $result->fetch_assoc(); // To create an array
-    $_SESSION['userinfo'] = $row;
-    $username = $row['username'];
-    $_SESSION['username'] = $username;
-    header("Location:../customer-home.php");
+    $stat_sql = "SELECT status FROM customer WHERE username='$username'";
+    $stat_result = $connection->query($stat_sql);
+    $stat_row = $stat_result->fetch_assoc();
+    if ($stat_row['status'] == "Not-verified") {
+        
+    } else {
+        $row = $result->fetch_assoc(); // To create an array
+        $_SESSION['userinfo'] = $row;
+        $username = $row['username'];
+        $_SESSION['username'] = $username;
+        header("Location:../customer-home.php");
+    }
 } else {
     $msg = "Invalid User Name or Password";
     $msg1 = base64_encode($msg); //Encoding Mechanism

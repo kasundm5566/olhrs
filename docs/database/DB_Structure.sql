@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `olhrs` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `olhrs`;
 -- MySQL dump 10.13  Distrib 5.7.9, for linux-glibc2.5 (x86_64)
 --
 -- Host: localhost    Database: olhrs
@@ -50,7 +48,7 @@ CREATE TABLE `customer` (
   `status` enum('Verified','Not-verified') NOT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +155,7 @@ CREATE TABLE `log` (
   PRIMARY KEY (`log_id`),
   KEY `fk_username_idx` (`username`),
   CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=478 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=482 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -356,7 +354,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `name_UNIQUE` (`username`),
   KEY `fk_user_1_idx` (`group_id`),
   CONSTRAINT `fk_groups$user` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -369,11 +367,11 @@ DROP TABLE IF EXISTS `verification_code`;
 CREATE TABLE `verification_code` (
   `code_id` int(10) NOT NULL AUTO_INCREMENT,
   `code` varchar(255) NOT NULL,
-  `customer_id` int(10) NOT NULL,
+  `username` varchar(20) NOT NULL,
   PRIMARY KEY (`code_id`),
-  KEY `fk_customer$verification_code_idx` (`customer_id`),
-  CONSTRAINT `fk_customer$verification_code` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_verification_code$customer_idx` (`username`),
+  CONSTRAINT `fk_verification_code$customer` FOREIGN KEY (`username`) REFERENCES `customer` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -385,4 +383,4 @@ CREATE TABLE `verification_code` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-30 17:16:25
+-- Dump completed on 2016-10-21 17:15:03
