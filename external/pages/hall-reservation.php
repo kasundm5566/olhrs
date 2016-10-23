@@ -25,6 +25,7 @@ if ($_SESSION['username'] == "") {
         <script src="../js/modernizr.min.js"></script>
         <script src="../js/jquery.easing.1.3.min.js"></script>    
         <script src="../js/effects.js"></script>        
+        <script src="../js/validations/hall-reservation.js"></script>        
     </head>
     <body>
         <div class="loader-anim"></div>
@@ -53,26 +54,26 @@ if ($_SESSION['username'] == "") {
                         </ul>
 
                         <div>
-                            <form role="form" method="POST" action="hall-payment.php" target="_blank">
+                            <form role="form" method="POST" action="hall-payment.php" target="_blank" onsubmit="return validateAll();">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group" id="hall-reserv-fname">
                                             <label class="control-label">FIrst name</label>
                                             <input class="form-control" name="fName"
-                                                   type="text" readonly>
+                                                   type="text" readonly value="<?php echo $_SESSION['userinfo']['first_name'] ?>">
                                         </div>
                                         <div class="form-group" id="hall-reserv-lname">
                                             <label class="control-label">Last name</label>
                                             <input class="form-control" name="lName"
-                                                   type="text" readonly>
+                                                   type="text" readonly value="<?php echo $_SESSION['userinfo']['last_name'] ?>">
                                         </div>
                                         <div class="form-group" id="hall-reserv-email">
                                             <label class="control-label">Email</label>
-                                            <input class="form-control" type="email" name="email" readonly>
+                                            <input class="form-control" type="email" name="email" readonly value="<?php echo $_SESSION['userinfo']['email'] ?>">
                                         </div>
                                         <div class="form-group" id="hall-reserv-contactno">
                                             <label class="control-label">Contact no</label>
-                                            <input class="form-control" type="text" name="contactNo">
+                                            <input class="form-control" type="text" name="contactNo" id="hall-reserv-tel" value="<?php echo $_SESSION['userinfo']['telephone'] ?>">
                                         </div>                                
                                     </div>
                                     <div class="col-md-6">
@@ -95,24 +96,29 @@ if ($_SESSION['username'] == "") {
                                                 <div class="form-group">
                                                     <label>Hall</label>
                                                     <select class="form-control" name="hall">
-                                                        <option value="Kings Hall">Kings Hall</option>
-                                                        <option value="Queens Hall A">Queens Hall A</option>
-                                                        <option value="Queens Hall B">Queens Hall B</option>
+                                                        <?php
+                                                        $hallData = [];
+                                                        $halls = base64_decode($_REQUEST['halls']);
+                                                        $hallData = explode(",", $halls);
+                                                        for ($i = 0; $i < count($hallData) - 1; $i++) {
+                                                            echo "<option value='$hallData[$i]'>$hallData[$i]</option>";
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>   
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group" id="hall-reserv-pax" style="display: inline-block;">
                                                     <label class="control-label">Pax</label>
-                                                    <input class="form-control" type="text" name="pax">
+                                                    <input class="form-control" type="text" name="pax" id="hall-pax">
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div>
                                             <div class="form-group" id="hall-reserv-advance">
                                                 <label class="control-label">Advance</label>
-                                                <input class="form-control" type="text" name="advance-payment">
+                                                <input class="form-control" type="text" name="advance-payment" id="hall-advpay">
                                             </div>
                                         </div>
                                         <div>

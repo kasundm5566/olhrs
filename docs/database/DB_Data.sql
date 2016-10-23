@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for linux-glibc2.5 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: olhrs
 -- ------------------------------------------------------
--- Server version	5.7.11
+-- Server version	5.5.5-10.1.16-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,6 +21,7 @@
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Salads & Starter'),(2,'Rice'),(3,'Noodles/Spaghetti'),(4,'Chicken'),(5,'Fish'),(6,'Vegetable'),(7,'Accompaniments'),(8,'Desserts'),(9,'Soup'),(10,'Specialities'),(11,'Sea food');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -30,7 +31,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (3,'dft','asd','ss','22434 sdfvseawss','sdf@sdf.gh',0777777777,'2016-09-01','Verified'),(4,'gdfg','hhjk','hh','fg sdg','dfgdfg',0000000345,'2016-09-01','Verified'),(53,'dfg',NULL,'jj','a9ef1bf4dac17d008c8a7563179ae30574f4dd86','dfgdf',0000034534,'2016-09-01','Verified'),(54,'dfdf',NULL,'uu','dfgdfgd','dfgdfgdf',0000034534,'2016-09-02','Verified'),(55,'dfg','gkhjk','hjk','dfgdfgd','dfgdf',0345345345,'2016-09-02','Verified'),(56,'dfgdf','ghjk','vb ','dfgdfgd','dfgdfgd@tre.kj',0112222222,'2016-09-03','Verified'),(58,'jkl',NULL,'ddd','a9ef1bf4dac17d008c8a7563179ae30574f4dd86','dfgdfg',0000000345,'2016-09-05','Verified'),(59,'hj','hjkh','ddddddd','fgd','fdg',0000000567,'2016-09-05','Verified'),(60,'hj,m',NULL,'ert345','dfg','dfgdfgd',0000000678,'2016-09-06','Verified'),(61,'rty','d','ert346','dfgerte3','dfgdre',0000067867,'2016-09-06','Verified'),(62,'rty564','dfg','jty855','dfgdfgd','erter',0000007897,'2016-09-07','Verified'),(63,'rth b',NULL,'tyu56','tyu5674567','dfgdf',0000078978,'2016-09-08','Verified'),(64,'rty','cvbc','tyu57','5675n6r','dfgd',0000007876,'2016-09-09','Verified'),(65,'rtyr','cvb','tyu67','567nrhu','dfgdfg',0000067867,'2016-09-10','Verified'),(67,'tyu','tyuty','gfgh124','a9ef1bf4dac17d008c8a7563179ae30574f4dd86','ttt@dfg.lk',0111111111,'2016-09-17','Verified'),(68,'hhg','fgdfg','test123','a9ef1bf4dac17d008c8a7563179ae30574f4dd86','fdgdf@srfgd.jjj',0111111111,'2016-09-24','Verified'),(71,'ssssqqq','','ddd124','1539e43d36ce3825fc99002553b9685b60ebd031','hgjgh@gg.jj',0555555554,'2016-10-21','Not-verified'),(72,'assw','sew','det222','1539e43d36ce3825fc99002553b9685b60ebd031','der@fr.ll',0111111111,'2016-10-21','Not-verified'),(73,'qqq','','qq123','1539e43d36ce3825fc99002553b9685b60ebd031','qq@ee.ll',0111111111,'2016-10-21','Not-verified'),(74,'aaa','','fghfgh','1539e43d36ce3825fc99002553b9685b60ebd031','aaa@ff.ll',0444444441,'2016-10-21','Not-verified'),(78,'aaaa','','vv333','1539e43d36ce3825fc99002553b9685b60ebd031','kasunutube@ymail.com',0111111111,'2016-10-21','Not-verified'),(79,'a','a','hjkhjkh','1539e43d36ce3825fc99002553b9685b60ebd031','aa@ff.kk',0111111111,'2016-10-21','Not-verified'),(80,'ee','eeee','dddddd','1539e43d36ce3825fc99002553b9685b60ebd031','eee@ff.ll',0444444444,'2016-10-21','Not-verified');
+INSERT INTO `customer` VALUES (3,'dft','asd','ss','22434 sdfvseawss','sdf@sdf.gh',0777777777,'2016-09-01','Verified'),(4,'gdfg','hhjk','hh','fg sdg','dfgdfg',0000000345,'2016-09-01','Verified'),(53,'dfg',NULL,'jj','a9ef1bf4dac17d008c8a7563179ae30574f4dd86','dfgdf',0000034534,'2016-09-01','Verified'),(54,'dfdf',NULL,'uu','dfgdfgd','dfgdfgdf',0000034534,'2016-09-02','Verified'),(55,'dfg','gkhjk','hjk','dfgdfgd','dfgdf',0345345345,'2016-09-02','Verified'),(56,'dfgdf','ghjk','vb ','dfgdfgd','dfgdfgd@tre.kj',0112222222,'2016-09-03','Verified'),(58,'jkl',NULL,'ddd','a9ef1bf4dac17d008c8a7563179ae30574f4dd86','dfgdfg',0000000345,'2016-09-05','Verified'),(59,'hj','hjkh','ddddddd','fgd','fdg',0000000567,'2016-09-05','Verified'),(60,'hj,m',NULL,'ert345','dfg','dfgdfgd',0000000678,'2016-09-06','Verified'),(61,'rty','d','ert346','dfgerte3','dfgdre',0000067867,'2016-09-06','Verified'),(62,'rty564','dfg','jty855','dfgdfgd','erter',0000007897,'2016-09-07','Verified'),(63,'rth b',NULL,'tyu56','tyu5674567','dfgdf',0000078978,'2016-09-08','Verified'),(64,'rty','cvbc','tyu57','5675n6r','dfgd',0000007876,'2016-09-09','Verified'),(65,'rtyr','cvb','tyu67','567nrhu','dfgdfg',0000067867,'2016-09-10','Verified'),(67,'tyu','tyuty','gfgh124','a9ef1bf4dac17d008c8a7563179ae30574f4dd86','ttt@dfg.lk',0111111111,'2016-09-17','Verified'),(68,'hhg','fgdfg','test123','a9ef1bf4dac17d008c8a7563179ae30574f4dd86','fdgdf@srfgd.jjj',0111111111,'2016-09-24','Verified'),(71,'ssssqqq','','ddd124','1539e43d36ce3825fc99002553b9685b60ebd031','hgjgh@gg.jj',0555555554,'2016-10-21','Not-verified'),(72,'assw','sew','det222','1539e43d36ce3825fc99002553b9685b60ebd031','der@fr.ll',0111111111,'2016-10-21','Not-verified'),(73,'qqq','','qq123','1539e43d36ce3825fc99002553b9685b60ebd031','qq@ee.ll',0111111111,'2016-10-21','Not-verified'),(74,'aaa','','fghfgh','1539e43d36ce3825fc99002553b9685b60ebd031','aaa@ff.ll',0444444441,'2016-10-21','Not-verified'),(78,'aaaa','','vv333','1539e43d36ce3825fc99002553b9685b60ebd031','kasunutube@ymail.com',0111111111,'2016-10-21','Verified'),(79,'a','a','hjkhjkh','1539e43d36ce3825fc99002553b9685b60ebd031','aa@ff.kk',0111111111,'2016-10-21','Not-verified'),(80,'ee','eeee','dddddd','1539e43d36ce3825fc99002553b9685b60ebd031','eee@ff.ll',0444444444,'2016-10-21','Not-verified');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,6 +50,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `food` WRITE;
 /*!40000 ALTER TABLE `food` DISABLE KEYS */;
+INSERT INTO `food` VALUES (1,'Green salad',1),(2,'Potato salad with corn & spring onion',1),(3,'Potato salad with diced tomato & onion',1),(4,'Mixed vegetable salad',1),(5,'Russian salad',1),(6,'Egg mayonnaise',1),(7,'Carrot & curd salad',1),(8,'Chicken salad',1),(9,'Cole slaw',1),(10,'Caesar salad',1),(11,'Cold meat pasta salad',1),(12,'Salad nicoise',1),(13,'Steamed rice',2),(14,'Red rice',2),(15,'Vegetable fried rice',2),(16,'Chicken fried rice',2),(17,'Egg fried rice',2),(18,'Indonisian fried rice',2),(19,'Malacca fried rice',2),(20,'Thai heavenly rice',2),(21,'Chinese fried rice',2),(22,'Sea food nasi goreng',2),(23,'Mixed fried rice',2),(24,'Chicken biriyani',2),(25,'Vegetable biriyani',2),(26,'Special fried noodles',3),(27,'Vegetable & egg noodles',3),(28,'Noodles with spicy meat sauce',3),(29,'Thai fried noodles',3),(30,'Spaghetti with vegetable in spicy sauce',3),(31,'Sea food noodles',3),(32,'Spaghetti with meat sauce',3),(33,'Roasted chicken with spicy sauce',4),(34,'Chicken khorma',4),(35,'Chicken masala',4),(36,'Stir fried chicken spicy',4),(37,'Chicken in tamarind and green chilli sauce',4),(38,'Chicken curry-Sri Lankan style',4),(39,'Devilled chicken',4),(40,'Chinese chilli chicken',4),(41,'Chicken mustard curry',4),(42,'Ginger & sesame chicken',4),(43,'Sweet & sour chicken',4),(44,'Fried chicken in black pepper sauce',4),(45,'Sweet & sour fish',5),(46,'Devilled fish',5),(47,'Fish stew Fish',5),(48,'mustard curry ',5),(49,'Fish masala',5),(50,'Cilli fish with aubergine wedges',5),(51,'Whole baked fish',5),(52,'Fried fish with sour plum garlic sauce',5),(53,'Cashew & green pea curry  ',6),(54,'Devilled mushroom',6),(55,'Spinach with dhal curry',6),(56,'Potato mustard curry',6),(57,'Green beans casserole',6),(58,'Assorted mixed vegetable curry',6),(59,'Vegetable chop suey',6),(60,'Potato tempered',6),(61,'Spinach garlic & mushroom curry',6),(62,'Vegetable khorma',6),(63,'Brinjal moju',6),(64,'Battered nushroom',6),(65,'Cauliflower delight',6),(66,'Green beans celight',6),(67,'Creamed mushroom & spinach',6),(68,'Papadam',7),(69,'Mango chutney',7),(70,'Cuttlets',7),(71,'Watalappan',8),(72,'Fresh fruits on mirror',8),(73,'Jelly & custard',8),(74,'Cream caramel',8),(75,'Cojoun bread pudding',8),(76,'Coffee/chocolate/orange mousse',8),(77,'Chocolate biscuit pudding',8),(78,'Curd & treacle',8),(79,'Date & cashew pudding',8),(80,'Sponge mousse',8),(81,'Nice biscuit pudding',8),(82,'Fruit trifle',8),(83,'Clear vegetable soup',9),(84,'Cream of chicken soup',9),(85,'Brown onion soup',9),(86,'Roast beef black beans sauce',10),(87,'Beef devilled',10),(88,'Beef gullash',10),(89,'Mutton khorma',10),(90,'Mutton chilli fried',10),(91,'Mutton curry thai style',10),(92,'Devilled sea food',11),(93,'Sweet & sour prawns',11),(94,'Prawn curry',11),(95,'Prawn devilled',11),(96,'Cuttle fish with hot garlic sauce',11),(97,'Devilled cuttle fish',11),(98,'Ice cream',8);
 /*!40000 ALTER TABLE `food` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +80,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `hall_reservation` WRITE;
 /*!40000 ALTER TABLE `hall_reservation` DISABLE KEYS */;
-INSERT INTO `hall_reservation` VALUES (1,1,'Morning',NULL,'2016-10-15',150),(2,2,'Evening',NULL,'2016-10-20',100),(5,2,'Evening',NULL,'2016-09-30',120),(7,3,'Morning',NULL,'2016-10-03',200),(9,1,'Morning',NULL,'2016-11-01',100),(10,2,'Evening',NULL,'2016-10-15',210),(11,3,'Morning',NULL,'2016-10-13',150),(12,1,'Morning',NULL,'2016-09-15',110),(13,3,'Full day',NULL,'2016-11-04',100),(14,2,'Morning',NULL,'2016-11-12',105),(16,1,'Evening',NULL,'2016-11-23',112),(17,2,'Morning',NULL,'2016-10-24',140);
+INSERT INTO `hall_reservation` VALUES (1,1,'Morning',NULL,'2016-11-15',150),(2,2,'Evening',NULL,'2016-10-20',100),(5,2,'Evening',NULL,'2016-09-30',120),(7,3,'Morning',NULL,'2016-10-03',200),(9,1,'Morning',NULL,'2016-11-01',100),(10,2,'Morning',NULL,'2016-11-15',210),(11,3,'Morning',NULL,'2016-10-13',150),(12,1,'Morning',NULL,'2016-09-15',110),(13,3,'Full day',NULL,'2016-11-04',100),(14,2,'Morning',NULL,'2016-11-12',105),(16,1,'Evening',NULL,'2016-11-23',112),(17,2,'Morning',NULL,'2016-10-24',140);
 /*!40000 ALTER TABLE `hall_reservation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +168,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `room_reservation` WRITE;
 /*!40000 ALTER TABLE `room_reservation` DISABLE KEYS */;
-INSERT INTO `room_reservation` VALUES (3,1,'2016-09-30','2016-10-01',1),(4,2,'2016-09-20','2016-09-21',1),(6,4,'2016-09-30','2016-10-03',1),(8,4,'2016-10-11','2016-10-12',1),(18,1,'2016-09-01','2016-09-03',2),(19,3,'2016-09-30','2016-10-01',3),(20,1,'2016-09-15','2016-09-16',1),(21,4,'2016-09-12','2016-09-13',2);
+INSERT INTO `room_reservation` VALUES (3,1,'2016-09-30','2016-10-01',1),(4,2,'2016-09-20','2016-09-21',1),(6,4,'2016-09-30','2016-10-03',1),(8,4,'2016-10-30','2016-10-31',1),(18,1,'2016-09-01','2016-09-03',2),(19,3,'2016-09-30','2016-10-01',3),(20,1,'2016-09-15','2016-09-16',1),(21,4,'2016-09-12','2016-09-13',2);
 /*!40000 ALTER TABLE `room_reservation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +208,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `verification_code` WRITE;
 /*!40000 ALTER TABLE `verification_code` DISABLE KEYS */;
-INSERT INTO `verification_code` VALUES (5,'8AU7ax3n7umVrpK1ijUDJxqe1odEy9SG','ddd124'),(6,'SuVowhGNwedFXT0lXhuiGLPyF1Brt46m','det222'),(7,'JNOUlRismEoN48OmsI0cgqqiPDXnNP4w','qq123'),(8,'z2K6jrTPF7vD0vYXNtgue62U7DmBIsXi','fghfgh'),(11,'TmG8evJ7UOlqfYvK6gJaMHUsvOJ3vfoo','vv333'),(12,'HyfiPM5Ogsnbaw1h1oolkf3NDfPCWqvD','hjkhjkh'),(13,'Wzk5LEX04msSjwEnf56IigLLNGoNilIe','dddddd');
+INSERT INTO `verification_code` VALUES (5,'8AU7ax3n7umVrpK1ijUDJxqe1odEy9SG','ddd124'),(6,'SuVowhGNwedFXT0lXhuiGLPyF1Brt46m','det222'),(7,'JNOUlRismEoN48OmsI0cgqqiPDXnNP4w','qq123'),(8,'z2K6jrTPF7vD0vYXNtgue62U7DmBIsXi','fghfgh'),(11,'TmG8evJ7UOlqfYvK6gJaMHUsvOJ3vfoo','vv333'),(12,'HyfiPM5Ogsnbaw1h1oolkf3NDfPCWqvD','hjkhjkh'),(13,'Wzk5LEX04msSjwEnf56IigLLNGoNilIe','dddddd'),(14,'avcddddd','vv333'),(18,'HaayKmQyFqPocHBby26wtLQt8IKEhgj9','vv333'),(19,'fvzpZNZkm80AG0IrNnIz4I5ekZr7VFSs','vv333');
 /*!40000 ALTER TABLE `verification_code` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -219,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-21 17:15:31
+-- Dump completed on 2016-10-23 22:29:16

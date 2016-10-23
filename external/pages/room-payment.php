@@ -6,6 +6,14 @@ if ($_SESSION['username'] == "") {
     header("Location:index.php");
     exit;
 }
+
+function convertCurrency($amount, $from, $to) {
+    $url = "https://www.google.com/finance/converter?a=$amount&from=$from&to=$to";
+    $data = file_get_contents($url);
+    preg_match("/<span class=bld>(.*)<\/span>/", $data, $converted);
+    $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
+    return round($converted, 2);
+}
 ?>
 <html>
     <head>
@@ -56,17 +64,20 @@ if ($_SESSION['username'] == "") {
                                 <p>Room type: <?php echo $_POST['roomtype']; ?></p>
                             </div>
                             <div>
+                                <p>Meal plan: <?php echo $_POST['meal-plan']; ?></p>
+                            </div>
+                            <div>
                                 <p>Room count: <?php echo $_POST['roomcount']; ?></p>
                             </div>
                             <div>
                                 <p>Contact no: <?php echo $_POST['contactNo']; ?></p>
                             </div>
+                            <div>
+                                <p>Total: $<?php echo convertCurrency($_POST['total'], "LKR", "USD"); ?> USD</p>
+                            </div>
                         </div>
-                        <div style="margin-top: 30px;">
-                            <h4>Waiting for the payment completion...</h4>
-                        </div>
-                        <div style="text-align: center;">
-                            <img src="../images/Preloader_10.gif"/>
+                        <div>
+                            <strong>You will be redirect to the page to make the page now.</strong>
                         </div>
                     </div>                    
                 </div>

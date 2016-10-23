@@ -69,9 +69,7 @@ if ($res1) {
             echo $mail->ErrorInfo;
         } else {
             echo '1';
-        }
-
-        
+        } 
     } else {
         echo $connection->error;
     }

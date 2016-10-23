@@ -88,7 +88,7 @@ function convertCurrency($amount, $from, $to) {
             <input type='hidden' name='amount' value='<?php echo convertCurrency($_POST['advance-payment'], "LKR", "USD"); ?>'>
             <input type='hidden' name='no_shipping' value='1'>
             <input type='hidden' name='currency_code' value='USD'>
-            <input type='hidden' name='cancel_return' value='http://localhost/olhrs/external/pages/hall-payment.ph'>
+            <input type='hidden' name='cancel_return' value=''>
             <input type='hidden' name='return' value='http://yoursite.com/success.php'>
             <!--<input type="hidden" type="image" src="https://paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit">-->
         </form>

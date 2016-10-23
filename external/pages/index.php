@@ -27,7 +27,7 @@ if (!isset($_SESSION)) {
         <script src="../js/jquery.easing.1.3.min.js"></script>
         <script src="../js/anchorHoverEffect.js"></script>
         <script src="../js/validations/signup-validate.js"></script>
-        <script src="../js/validations/contactus-validate.js"></script>        
+        <script src="../js/validations/contactus-validate.js"></script>             
         <script src="../js/common.js"></script>        
         <script src="../js/effects.js"></script>        
     </head>

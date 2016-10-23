@@ -1,6 +1,7 @@
 <?php
-if (!isset($_SESSION)) { //To check session not start
-    session_start(); //Start a session
+
+if (!isset($_SESSION)) {
+    session_start();
 }
 
 include '../common/dbconnection.php';
@@ -20,12 +21,12 @@ if ($records_count == 1) {
     $stat_result = $connection->query($stat_sql);
     $stat_row = $stat_result->fetch_assoc();
     if ($stat_row['status'] == "Not-verified") {
-        
+        $encodedUsername = base64_encode($username); //Encoding Mechanism
+        header("Location:../verify-account.php?username=$encodedUsername");
     } else {
         $row = $result->fetch_assoc(); // To create an array
         $_SESSION['userinfo'] = $row;
-        $username = $row['username'];
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $row['username'];
         header("Location:../customer-home.php");
     }
 } else {

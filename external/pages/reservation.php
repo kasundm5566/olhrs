@@ -5,7 +5,7 @@
         <img src="../images/icons/hall.png" width="150px" height="150px"/>
         <h3>Hall Reservation</h3>
 
-        <form method="POST" action="operations/check-hall-availability.php">
+        <form role="form" method="POST" action="operations/check-hall-availability.php" onsubmit="return validateHallReservationDate();">
             <div style="display: inline-block; padding-right: 24px;">
                 Date
             </div>
@@ -47,7 +47,7 @@
     <div class="col-md-4">
         <img src="../images/icons/room.png" width="150px" height="150px"/>
         <h3>Room Reservation</h3>
-        <form method="POST" action="operations/check-room-availability.php">
+        <form role="form" method="POST" action="operations/check-room-availability.php" onsubmit="return validateRoomReservationDates();">
             <div style="display: inline-block; padding-right: 15px;">
                 Check in
             </div>
@@ -98,3 +98,5 @@
         </div>
     </div>
 </div>
+<script src="../js/validations/hall-reservation.js"></script>
+<script src="../js/validations/room-reservation.js"></script>
