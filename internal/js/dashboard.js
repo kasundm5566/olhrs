@@ -22,6 +22,7 @@ $(document).ready(function () {
     reservationTileUpdate();
     staffTileUpdate();
     customerTileUpdate();
+    eventTileUpdate();
 
     // Bootstrap tooltip
     $('[data-toggle="tooltip"]').tooltip();
@@ -60,6 +61,22 @@ function customerTileUpdate() {
         success: function (count) {
             // Place the user count result in the tile
             $("#lblcustomerTilteCap01").text(count);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("Error" + errorThrown);
+        }
+    });
+}
+
+// Customer tile update configuration
+function eventTileUpdate() {
+    // Send an ajax request to get the current user count
+    $.ajax({
+        url: "../../dao/updatetiles.php",
+        data: {operation: "eventTileUpdate"},
+        success: function (eventData) {
+            // Place the user count result in the tile
+            $("#lbleventTilteCap01").text(eventData);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert("Error" + errorThrown);

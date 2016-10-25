@@ -1,7 +1,10 @@
 <?php
 if (!isset($_SESSION)) {
     session_start();
-    $_SESSION['username']="";
+    $_SESSION['username'] = "";
+} else {
+    unset($_SESSION['username']); //Remove session
+    unset($_SESSION['userinfo']); //Remove session
 }
 ?>
 <!DOCTYPE html>

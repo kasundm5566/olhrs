@@ -22,6 +22,7 @@
                             echo $username;
                             ?>
                             )
+                            <button class="btn-link" id="link-logout-nav">Logout</button>
                         </a>
                     </li>
                 </ul>
@@ -29,3 +30,10 @@
         </div>
     </div>
 </nav>
+<script>
+    $(document).ready(function () {
+        $("#link-logout-nav").click(function () {
+            window.location.href = '../index.php';
+        });
+    });
+</script>  

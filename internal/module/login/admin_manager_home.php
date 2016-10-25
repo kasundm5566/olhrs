@@ -41,7 +41,7 @@
                                     Upcoming event
                                 </div>
                                 <div class="icontext">
-                                    2015 June 20-Get-together
+                                    <label id="lbleventTilteCap01" style="font-size: large;"></label>
                                 </div>
                             </div>
                         </div>

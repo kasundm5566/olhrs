@@ -25,6 +25,7 @@ if ($_SESSION['username'] == "") {
         <script src="../js/modernizr.min.js"></script>
         <script src="../js/jquery.easing.1.3.min.js"></script>    
         <script src="../js/effects.js"></script>        
+        <script src="../js/room-reservation-calculations.js"></script>        
     </head>
     <body>
         <div class="loader-anim"></div>
@@ -87,10 +88,10 @@ if ($_SESSION['username'] == "") {
                                         <div>
                                             <div class="form-group" id="room-reserv-type" style="display:inline-block; padding-right: 20px;">
                                                 <label class="control-label">Room type</label>
-                                                <input class="form-control" type="text" size="10" name="roomtype" value="<?php echo $type; ?>" readonly>
+                                                <input class="form-control" type="text" size="6" id="room-reserv-rmtype" name="roomtype" value="<?php echo $type; ?>" readonly>
                                             </div>
                                             <div class="form-group" style="display: inline-block; width: 150px;">
-                                                <select class="form-control" name="meal-plan">
+                                                <select class="form-control" name="meal-plan" id="room-meal-plan">
                                                     <option value="Full board">Full board</option>
                                                     <option value="Half board">Half board</option>
                                                     <option value="Bed and Breakfast">Bed and Breakfast</option>
@@ -99,13 +100,12 @@ if ($_SESSION['username'] == "") {
                                             </div>
                                             <div class="form-group" id="room-reserv-count" style="display:inline-block;">
                                                 <label class="control-label">No of rooms: </label>
-                                                <input class="spin" type="number" min="1"
-                                                       max="<?php echo base64_decode($_REQUEST['roomcount']); ?>" value="1" name="roomcount">
+                                                <input type="number" min="1" max="<?php echo base64_decode($_REQUEST['roomcount']); ?>" value="1" name="roomcount" id="room-reserv-count">
                                             </div>
                                         </div>
                                         <div class="form-group" id="room-reserv-total">
                                             <label class="control-label">Total</label>
-                                            <input class="form-control" type="text" name="total" readonly value="20000">
+                                            <input class="form-control" type="text" name="total" id="room-total" readonly>
                                         </div>
                                         <div style="text-align: center;">
                                             <button type="submit" class="btn btn-success" style="width: 100%;">Proceed Payment</button>

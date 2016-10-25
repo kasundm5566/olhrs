@@ -16,7 +16,7 @@ $username = $_SESSION['username'];
 
 $sql = "SELECT ((SELECT room_count FROM room WHERE room_type_id IN "
         . "(SELECT room_type_id FROM room_type WHERE room_type_name='$type'))"
-        . "-(SELECT sum(count) FROM room_reservation WHERE room_type_id IN "
+        . "-(SELECT COALESCE(sum(count), 0) FROM room_reservation WHERE room_type_id IN "
         . "(SELECT room_type_id FROM room_type WHERE room_type_name='$type') "
         . "AND check_in BETWEEN '$indate' AND '$outdate' OR room_type_id IN "
         . "(SELECT room_type_id FROM room_type WHERE room_type_name='$type') "

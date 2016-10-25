@@ -24,6 +24,16 @@ switch ($operation) {
             echo $row['count'];
         }
         break;
+    case "eventTileUpdate":
+        $sql = "SELECT reservation_date, hall_name, pax FROM reservation rv, "
+                . "hall_reservation hr, hall h WHERE rv.reservation_id=hr.reservation_id "
+                . "AND hr.hall_id=h.hall_id AND reservation_date>NOW() "
+                . "ORDER BY reservation_date ASC LIMIT 1;";
+        $result = $connection->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            echo $row['reservation_date'] . " " . $row['hall_name'] . " Pax " . $row['pax'];
+        }
+        break;
     default :
         echo 'wrong operation...';
 }

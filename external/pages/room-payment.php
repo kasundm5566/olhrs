@@ -14,6 +14,8 @@ function convertCurrency($amount, $from, $to) {
     $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
     return round($converted, 2);
 }
+
+$perRoomPrice=$_POST['total']/$_POST['roomcount']
 ?>
 <html>
     <head>
@@ -83,6 +85,28 @@ function convertCurrency($amount, $from, $to) {
                 </div>
             </div>
         </div>
+
+        <form id="pay-form" action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
+            <input type='hidden' name='business' value='kasunutube-facilitator@ymail.com'>
+            <input type='hidden' name='cmd' value='_xclick'>
+            <input type='hidden' name='item_name' value='<?php echo 'Room reservation-' . $_POST['roomtype']."-".$_POST['meal-plan']; ?>'>
+            <input type='hidden' name='amount' value='<?php echo convertCurrency($perRoomPrice, "LKR", "USD"); ?>'>
+            <input type='hidden' name='quantity' value='<?php echo $_POST['roomcount'] ?>'>
+            <input type='hidden' name='no_shipping' value='1'>
+            <input type='hidden' name='currency_code' value='USD'>
+            <input type='hidden' name='cancel_return' value=''>
+            <input type='hidden' name='return' value='http://yoursite.com/success.php'>
+            <!--<input type="hidden" type="image" src="https://paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit">-->
+        </form>
+
+        <script>
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $("#pay-form").submit();
+                }, 3000);
+            });
+        </script>       
+
         <div id="site-footer">
             <?php include './common/footer.php'; ?>
         </div>
