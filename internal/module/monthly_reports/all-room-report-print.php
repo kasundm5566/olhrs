@@ -20,7 +20,7 @@ $year = $_REQUEST['year'];
 $month = $_REQUEST['month'];
 $room = $_REQUEST['room'];
 
-$html.="<style>"
+$html="<style>"
         . "th,td{border:1px solid #D9D5BE;}"
         . "table{border:1px solid #D9D5BE; margin:10px; width: 100%;}"
         . "</style>";
