@@ -10,6 +10,7 @@
                 Date
             </div>
             <div class="input-group" style="display: inline-block; vertical-align: middle; width: 220px;">
+                <label class="lbl-errors" id="hall-reserv-date-error"></label>
                 <input type="text" class="form-control" id="hall-date" name="hall-date"
                        placeholder="Select a date" readonly/>
             </div>
@@ -46,12 +47,13 @@
     <div class="col-md-1"></div>
     <div class="col-md-4">
         <img src="../images/icons/room.png" width="150px" height="150px"/>
-        <h3>Room Reservation</h3>
+        <h3>Room Reservation</h3>      
         <form role="form" method="POST" action="operations/check-room-availability.php" onsubmit="return validateRoomReservationDates();">
             <div style="display: inline-block; padding-right: 15px;">
                 Check in
             </div>
             <div class="input-group" style="display: inline-block; vertical-align: middle; width: 220px;">
+                <label class="lbl-errors" id="room-reserv-intime-error"></label>
                 <input type="text" class="form-control" id="room-in-date" name="room-in-date"
                        placeholder="Select check in date" readonly/>
             </div>
@@ -61,6 +63,7 @@
                     Check out
                 </div>
                 <div class="input-group" style="display: inline-block; vertical-align: middle; width: 220px;">
+                    <label class="lbl-errors" id="room-reserv-outtime-error"></label>
                     <input type="text" class="form-control" id="room-out-date" name="room-out-date"
                            placeholder="Select check out date" readonly/>
                 </div>

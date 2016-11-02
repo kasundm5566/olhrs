@@ -31,7 +31,13 @@ function convertCurrency($amount, $from, $to) {
         <script src="../js/loader.js"></script>
         <script src="../js/modernizr.min.js"></script>
         <script src="../js/jquery.easing.1.3.min.js"></script>    
-        <script src="../js/effects.js"></script>  
+        <script src="../js/effects.js"></script>
+        <style>
+            #site-footer{
+                position: fixed;
+                bottom: 0;
+            }
+        </style>
     </head>
 
     <body>
@@ -84,12 +90,12 @@ function convertCurrency($amount, $from, $to) {
         <form id="pay-form" action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
             <input type='hidden' name='business' value='kasunutube-facilitator@ymail.com'>
             <input type='hidden' name='cmd' value='_xclick'>
-            <input type='hidden' name='item_name' value='<?php echo 'Hall reservation-'.$_POST['hall']; ?>'>
+            <input type='hidden' name='item_name' value='<?php echo 'Hall reservation-' . $_POST['hall']; ?>'>
             <input type='hidden' name='amount' value='<?php echo convertCurrency($_POST['advance-payment'], "LKR", "USD"); ?>'>
             <input type='hidden' name='no_shipping' value='1'>
             <input type='hidden' name='currency_code' value='USD'>
             <input type='hidden' name='cancel_return' value=''>
-            <input type='hidden' name='return' value='http://yoursite.com/success.php'>
+            <input type='hidden' name='return' value='http://127.0.0.1/olhrs/external/pages/hall-reservation-success.php'>
             <!--<input type="hidden" type="image" src="https://paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit">-->
         </form>
 

@@ -12,11 +12,7 @@
                             </div>
                             <div class="item">
                                 <img src="http://www.prepbootstrap.com/Content/images/template/metrotiles/2.jpg" class="img-responsive" />
-                                <h1 class="tilecaption">New reservations: <label id="lblNewReservations"></label></h1>
-                            </div>
-                            <div class="item">
-                                <img src="http://www.prepbootstrap.com/Content/images/template/metrotiles/3.png" class="img-responsive" />
-                                <h1 class="tilecaption">Upcoming reservations: <label id="lblUpcomingReservations"></label></h1>
+                                <h1 class="tilecaption">Manage reservations<label id="lblNewReservations"></label></h1>
                             </div>
                         </div>
                     </div>

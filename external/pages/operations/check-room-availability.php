@@ -49,7 +49,7 @@ if ($available_room_count > 0) {
         header("Location:../customer-home.php?room-status=$status1#reservation-section"); //Redirection n passing data
         //Through URL   
     } else {
-        $status = "Sorry, Halls are not available.";
+        $status = "Sorry, Rooms are not available.";
         $status1 = base64_encode($status); //Encoding Mechanism
         header("Location:../index.php?room-status=$status1#reservation-section"); //Redirection n passing data
         //Through URL   

@@ -22,7 +22,8 @@
                             echo $username;
                             ?>
                             )
-                            <button class="btn-link" id="link-logout-nav">Logout</button>
+                            <button class="btn-link" id="link-profile-nav">Profile</button>
+                            <button class="btn-link" id="link-logout-nav">Logout</button>                           
                         </a>
                     </li>
                 </ul>
@@ -34,6 +35,9 @@
     $(document).ready(function () {
         $("#link-logout-nav").click(function () {
             window.location.href = '../index.php';
+        });
+        $("#link-profile-nav").click(function () {
+            window.location.href = './profile.php';
         });
     });
 </script>  

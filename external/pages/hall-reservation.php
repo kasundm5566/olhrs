@@ -25,7 +25,13 @@ if ($_SESSION['username'] == "") {
         <script src="../js/modernizr.min.js"></script>
         <script src="../js/jquery.easing.1.3.min.js"></script>    
         <script src="../js/effects.js"></script>        
-        <script src="../js/validations/hall-reservation.js"></script>        
+        <script src="../js/validations/hall-reservation.js"></script>   
+        <style>
+            #site-footer{
+                position: fixed;
+                bottom: 0;
+            }
+        </style>
     </head>
     <body>
         <div class="loader-anim"></div>
@@ -73,6 +79,7 @@ if ($_SESSION['username'] == "") {
                                         </div>
                                         <div class="form-group" id="hall-reserv-contactno">
                                             <label class="control-label">Contact no</label>
+                                            <label class="lbl-errors" id="hall-reserv-tel-error"></label>
                                             <input class="form-control" type="text" name="contactNo" id="hall-reserv-tel" value="<?php echo $_SESSION['userinfo']['telephone'] ?>">
                                         </div>                                
                                     </div>
@@ -110,6 +117,7 @@ if ($_SESSION['username'] == "") {
                                             <div class="col-md-6">
                                                 <div class="form-group" id="hall-reserv-pax" style="display: inline-block;">
                                                     <label class="control-label">Pax</label>
+                                                    <label class="lbl-errors" id="hall-reserv-pax-error"></label>
                                                     <input class="form-control" type="text" name="pax" id="hall-pax">
                                                 </div>
                                             </div>
@@ -118,6 +126,7 @@ if ($_SESSION['username'] == "") {
                                         <div>
                                             <div class="form-group" id="hall-reserv-advance">
                                                 <label class="control-label">Advance</label>
+                                                <label class="lbl-errors" id="hall-reserv-advance-error"></label>
                                                 <input class="form-control" type="text" name="advance-payment" id="hall-advpay">
                                             </div>
                                         </div>

@@ -15,7 +15,7 @@ function convertCurrency($amount, $from, $to) {
     return round($converted, 2);
 }
 
-$perRoomPrice=$_POST['total']/$_POST['roomcount']
+$perRoomPrice = $_POST['total'] / $_POST['roomcount']
 ?>
 <html>
     <head>
@@ -34,6 +34,12 @@ $perRoomPrice=$_POST['total']/$_POST['roomcount']
         <script src="../js/modernizr.min.js"></script>
         <script src="../js/jquery.easing.1.3.min.js"></script>    
         <script src="../js/effects.js"></script>  
+        <style>
+            #site-footer{
+                position: fixed;
+                bottom: 0;
+            }
+        </style>
     </head>
 
     <body>
@@ -89,7 +95,7 @@ $perRoomPrice=$_POST['total']/$_POST['roomcount']
         <form id="pay-form" action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
             <input type='hidden' name='business' value='kasunutube-facilitator@ymail.com'>
             <input type='hidden' name='cmd' value='_xclick'>
-            <input type='hidden' name='item_name' value='<?php echo 'Room reservation-' . $_POST['roomtype']."-".$_POST['meal-plan']; ?>'>
+            <input type='hidden' name='item_name' value='<?php echo 'Room reservation-' . $_POST['roomtype'] . "-" . $_POST['meal-plan']; ?>'>
             <input type='hidden' name='amount' value='<?php echo convertCurrency($perRoomPrice, "LKR", "USD"); ?>'>
             <input type='hidden' name='quantity' value='<?php echo $_POST['roomcount'] ?>'>
             <input type='hidden' name='no_shipping' value='1'>

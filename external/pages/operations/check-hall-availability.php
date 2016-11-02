@@ -16,7 +16,7 @@ $username = $_SESSION['username'];
 $sql = "SELECT hall_name FROM hall WHERE hall_name NOT IN "
         . "(SELECT hall_name FROM reservation rv, hall_reservation hr, hall h "
         . "WHERE rv.reservation_id=hr.reservation_id AND hr.hall_id=h.hall_id AND "
-        . "hr.reservation_date='$date' AND hr.time='$time');";
+        . "hr.reservation_date='$date' AND (hr.time='$time' OR hr.time='Full day'));";
 $result = $connection->query($sql); //To execute query
 
 $halls = [];

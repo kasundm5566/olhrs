@@ -26,6 +26,12 @@ if ($_SESSION['username'] == "") {
         <script src="../js/jquery.easing.1.3.min.js"></script>  
         <script src="../js/anchorHoverEffect.js"></script>
         <script src="../js/effects.js"></script>  
+        <style>
+            #site-footer{
+                position: fixed;
+                bottom: 0;
+            }
+        </style>
     </head>
 
     <body>

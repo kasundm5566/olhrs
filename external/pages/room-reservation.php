@@ -25,7 +25,13 @@ if ($_SESSION['username'] == "") {
         <script src="../js/modernizr.min.js"></script>
         <script src="../js/jquery.easing.1.3.min.js"></script>    
         <script src="../js/effects.js"></script>        
-        <script src="../js/room-reservation-calculations.js"></script>        
+        <script src="../js/room-reservation-calculations.js"></script> 
+        <style>
+            #site-footer{
+                position: fixed;
+                bottom: 0;
+            }
+        </style>
     </head>
     <body>
         <div class="loader-anim"></div>
