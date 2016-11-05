@@ -176,7 +176,7 @@
             </a>
         </div>
         <div class="col-sm-4 col-xs-8">
-            <a href="" data-toggle="tooltip" data-placement="bottom" title="Manage customer feedbacks.">    
+            <a href="../feedback/feedback.php" data-toggle="tooltip" data-placement="bottom" title="Manage customer feedbacks.">    
                 <!-- Feedback tile -->
                 <div id="tile10" class="tile">
                     <div class="carousel slide" data-ride="carousel">

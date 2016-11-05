@@ -45,6 +45,17 @@ $perRoomPrice = $_POST['total'] / $_POST['roomcount']
     <body>
         <div class="loader-anim"></div>
         <?php include './common/minimum-header.php'; ?>
+
+        <?php
+        $_SESSION['check-in'] = $_POST['indate'];
+        $_SESSION['check-out'] = $_POST['outdate'];
+        $_SESSION['room-type'] = $_POST['roomtype'];
+        $_SESSION['meal-plan'] = $_POST['meal-plan'];
+        $_SESSION['room-count'] = $_POST['roomcount'];
+        $_SESSION['full-total'] = $_POST['fulltotal'];
+        $_SESSION['total'] = $_POST['total'];
+        ?>
+
         <div> 
             <div style="margin-top: 80px;">
                 <div class="row">
@@ -101,7 +112,7 @@ $perRoomPrice = $_POST['total'] / $_POST['roomcount']
             <input type='hidden' name='no_shipping' value='1'>
             <input type='hidden' name='currency_code' value='USD'>
             <input type='hidden' name='cancel_return' value=''>
-            <input type='hidden' name='return' value='http://yoursite.com/success.php'>
+            <input type='hidden' name='return' value='http://localhost/olhrs/external/pages/room-reservation-success.php'>
             <!--<input type="hidden" type="image" src="https://paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit">-->
         </form>
 

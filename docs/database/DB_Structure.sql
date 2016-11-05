@@ -69,7 +69,7 @@ CREATE TABLE `feedback` (
   PRIMARY KEY (`feedback_id`),
   KEY `fk_customer$feedback_idx` (`customer_id`),
   CONSTRAINT `fk_customer$feedback` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +224,7 @@ CREATE TABLE `payment` (
   KEY `fk_payment_method$payment_idx` (`payment_method_id`),
   CONSTRAINT `fk_payment_method$payment` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_method` (`payment_method_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_reservation$payment` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +261,7 @@ CREATE TABLE `reservation` (
   KEY `fk_feedback$reservation_idx` (`feedback_id`),
   CONSTRAINT `fk_customer$reservation` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON UPDATE CASCADE,
   CONSTRAINT `fk_feedback$reservation` FOREIGN KEY (`feedback_id`) REFERENCES `feedback` (`feedback_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -295,9 +295,12 @@ CREATE TABLE `room_reservation` (
   `check_in` date NOT NULL,
   `check_out` date NOT NULL,
   `count` int(2) NOT NULL,
+  `meal_plan_id` int(10) NOT NULL,
   PRIMARY KEY (`reservation_id`,`room_type_id`),
   KEY `fk_reservation$room_reservation_idx` (`reservation_id`),
   KEY `fk_room_type$room_reservation_idx` (`room_type_id`),
+  KEY `rd_idx` (`meal_plan_id`),
+  CONSTRAINT `fk_meal_plan$room_reservation` FOREIGN KEY (`meal_plan_id`) REFERENCES `meal_plan` (`meal_plan_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_reservation$room_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `reservation` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_room_type$room_reservation` FOREIGN KEY (`room_type_id`) REFERENCES `room_type` (`room_type_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -385,4 +388,4 @@ CREATE TABLE `verification_code` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-23 22:29:27
+-- Dump completed on 2016-11-06  1:08:03

@@ -7,17 +7,52 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
     exit;
 }
 ?>
-
-<?php
-$year = $_REQUEST['year'];
-?>
-
-<table class="table-bordered" style="width: 100%;">
-    <?php for ($i = 0; $i < 5; $i++) { ?>
+<table class="table-bordered table-condensed" style="width: 100%;">
+    <caption style="font-size: medium;">Yearly Feedbacks Report</caption>
+    <thead>
         <tr>
-            <td><?php echo $year ?></td>
-            <td>asas</td>
+            <th>Customer FName</th>
+            <th>Customer LName</th>
+            <th>Username</th>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>Date</th>
         </tr>
-    <?php }
+    </thead>    
+    <?php
+    include '../../common/dbconnection.php';
+
+    $objDBConnection = new dbconnection();
+    $connection = $objDBConnection->connection();
+
+    $year = $_REQUEST['year'];
+
+    $sql = "SELECT first_name,last_name,username,rating,comment,date FROM
+        reservation r,feedback f,customer c WHERE r.feedback_id=f.feedback_id AND
+        f.customer_id=c.customer_id AND YEAR(f.date)='$year';";
+
+    $result = $connection->query($sql);
+    if ($result) {
+        echo '<tbody>';
+        while ($row = $result->fetch_assoc()) {
+            ?>
+            <tr>
+                <td><?php echo $row['first_name'] ?></td>
+                <td><?php echo $row['last_name'] ?></td>
+                <td><?php echo $row['username'] ?></td>
+                <td><?php echo $row['rating'] ?></td>
+                <td><?php echo $row['comment'] ?></td>
+                <td><?php echo $row['date'] ?></td>
+            </tr>
+            <?php
+        }
+        echo '</tbody>';
+    } else {
+        
+    }
     ?>
 </table>
+
+<div style="padding-top: 10px; display: inline-block;">
+    <a href="feedback-report-print.php?year=<?php echo $year; ?>" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
+</div>

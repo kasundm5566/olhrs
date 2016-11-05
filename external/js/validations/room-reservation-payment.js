@@ -10,7 +10,6 @@ function validatePaymentAmount() {
     var total = $("#room-total").val();
     if (total > 10000) {
         var min = total * 30 / 100;
-        alert(total);
         if (amount < min) {
             $("#room-reserv-payamount-error").show();
             $("#room-reserv-payamount-error").text("Minimum of " + min + " should pay.");

@@ -12,6 +12,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
     <head>
         <title>Monthly Reports</title>
         <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/report-table.css" />
         <link rel="stylesheet" type="text/css" 
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
         <script type="text/javascript" src="../../js/jquery-1.12.2.min.js">
@@ -57,8 +58,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="seli" name="year">
                                                     <?php
-                                                    $currentYear = date("Y");
-                                                    for ($i = 0; $i <= 3; $i++) {
+                                                    $currentYear = date("Y")+2;
+                                                    for ($i = 0; $i <= 4; $i++) {
                                                         ?>
                                                         <option value="<?php echo $currentYear - $i; ?>">
                                                             <?php echo $currentYear - $i; ?>
@@ -66,7 +67,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                     <?php }
                                                     ?>
                                                 </select>
-                                            </div>  
+                                            </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
                                                     <?php
@@ -105,27 +106,18 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" id="selimnth" name="month">
+                                                <select class="form-control" id="seli" name="year">
                                                     <?php
-                                                    $currentMonth = date("F");
-                                                    $months = array("January", "February", "March", "April", "May", "June",
-                                                        "July", "August", "September", "October", "November", "December");
-                                                    for ($i = 0; $i < 12; $i++) {
-                                                        if ($months[$i] == $currentMonth) {
-                                                            ?>
-                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
-                                                            <?php
-                                                        }
+                                                    $currentYear = date("Y")+2;
+                                                    for ($i = 0; $i <= 4; $i++) {
                                                         ?>
-                                                        <?php
-                                                    }
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
                                                     ?>
                                                 </select>
-                                            </div> 
+                                            </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
                                                     <?php
@@ -163,6 +155,19 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
+                                                <select class="form-control" id="seli" name="year">
+                                                    <?php
+                                                    $currentYear = date("Y")+2;
+                                                    for ($i = 0; $i <= 4; $i++) {
+                                                        ?>
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
                                                     <?php
                                                     $currentMonth = date("F");
@@ -182,22 +187,6 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                         <?php
                                                     }
                                                     ?>
-                                                </select>
-                                            </div>  
-                                            <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" id="selimnth" name="month">
-                                                    <option value="January">January</option>
-                                                    <option value="February">February</option>
-                                                    <option value="March">March</option>
-                                                    <option value="April">April</option>
-                                                    <option value="May">May</option>
-                                                    <option value="June">June</option>
-                                                    <option value="July">July</option>
-                                                    <option value="August">August</option>
-                                                    <option value="September">September</option>
-                                                    <option value="October">October</option>
-                                                    <option value="November">November</option>
-                                                    <option value="December">December</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2" style="display: inline-block;">
@@ -215,27 +204,18 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" id="selimnth" name="month">
+                                                <select class="form-control" id="seli" name="year">
                                                     <?php
-                                                    $currentMonth = date("F");
-                                                    $months = array("January", "February", "March", "April", "May", "June",
-                                                        "July", "August", "September", "October", "November", "December");
-                                                    for ($i = 0; $i < 12; $i++) {
-                                                        if ($months[$i] == $currentMonth) {
-                                                            ?>
-                                                            <option value="<?php echo $months[$i] ?>" selected><?php echo $months[$i] ?></option>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                            <option value="<?php echo $months[$i] ?>"><?php echo $months[$i] ?></option>
-                                                            <?php
-                                                        }
+                                                    $currentYear = date("Y")+2;
+                                                    for ($i = 0; $i <= 4; $i++) {
                                                         ?>
-                                                        <?php
-                                                    }
+                                                        <option value="<?php echo $currentYear - $i; ?>">
+                                                            <?php echo $currentYear - $i; ?>
+                                                        </option>
+                                                    <?php }
                                                     ?>
                                                 </select>
-                                            </div>  
+                                            </div> 
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
                                                     <?php
@@ -273,10 +253,10 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" name="year">
+                                                <select class="form-control" id="seli" name="year">
                                                     <?php
-                                                    $currentYear = date("Y");
-                                                    for ($i = 0; $i <= 3; $i++) {
+                                                    $currentYear = date("Y")+2;
+                                                    for ($i = 0; $i <= 4; $i++) {
                                                         ?>
                                                         <option value="<?php echo $currentYear - $i; ?>">
                                                             <?php echo $currentYear - $i; ?>
@@ -284,7 +264,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                     <?php }
                                                     ?>
                                                 </select>
-                                            </div> 
+                                            </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
                                                     <?php
@@ -322,10 +302,10 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" name="year">
+                                                <select class="form-control" id="seli" name="year">
                                                     <?php
-                                                    $currentYear = date("Y");
-                                                    for ($i = 0; $i <= 3; $i++) {
+                                                    $currentYear = date("Y")+2;
+                                                    for ($i = 0; $i <= 4; $i++) {
                                                         ?>
                                                         <option value="<?php echo $currentYear - $i; ?>">
                                                             <?php echo $currentYear - $i; ?>
@@ -333,7 +313,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                     <?php }
                                                     ?>
                                                 </select>
-                                            </div>  
+                                            </div> 
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
                                                     <?php
@@ -371,10 +351,10 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" name="year">
+                                                <select class="form-control" id="seli" name="year">
                                                     <?php
-                                                    $currentYear = date("Y");
-                                                    for ($i = 0; $i <= 3; $i++) {
+                                                    $currentYear = date("Y")+2;
+                                                    for ($i = 0; $i <= 4; $i++) {
                                                         ?>
                                                         <option value="<?php echo $currentYear - $i; ?>">
                                                             <?php echo $currentYear - $i; ?>
@@ -382,7 +362,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                     <?php }
                                                     ?>
                                                 </select>
-                                            </div>  
+                                            </div> 
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
                                                     <?php
@@ -420,10 +400,10 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" name="year">
+                                                <select class="form-control" id="seli" name="year">
                                                     <?php
-                                                    $currentYear = date("Y");
-                                                    for ($i = 0; $i <= 3; $i++) {
+                                                    $currentYear = date("Y")+2;
+                                                    for ($i = 0; $i <= 4; $i++) {
                                                         ?>
                                                         <option value="<?php echo $currentYear - $i; ?>">
                                                             <?php echo $currentYear - $i; ?>
@@ -431,7 +411,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                     <?php }
                                                     ?>
                                                 </select>
-                                            </div>  
+                                            </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
                                                     <?php
@@ -469,10 +449,10 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <label>Year:</label>
                                             </div>
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
-                                                <select class="form-control" name="year">
+                                                <select class="form-control" id="seli" name="year">
                                                     <?php
-                                                    $currentYear = date("Y");
-                                                    for ($i = 0; $i <= 3; $i++) {
+                                                    $currentYear = date("Y")+2;
+                                                    for ($i = 0; $i <= 4; $i++) {
                                                         ?>
                                                         <option value="<?php echo $currentYear - $i; ?>">
                                                             <?php echo $currentYear - $i; ?>
@@ -480,7 +460,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                     <?php }
                                                     ?>
                                                 </select>
-                                            </div>  
+                                            </div> 
                                             <div class="form-group col-md-4 form-group-sm" style="display: inline-block;">
                                                 <select class="form-control" id="selimnth" name="month">
                                                     <?php
@@ -512,7 +492,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                 </div>  
 
                                 <div id="payment" class="tab-pane fade">
-                                    <form id="feedback-form">
+                                    <form id="payment-form">
                                         <div class="row" style="float: right;">
                                             <div class="col-md-1" style="display: inline-block; padding-left: 30px;">
                                                 <label>Year:</label>

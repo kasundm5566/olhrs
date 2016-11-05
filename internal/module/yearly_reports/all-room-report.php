@@ -7,17 +7,19 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
     exit;
 }
 ?>
-<table class="table-bordered" style="width: 100%;">
+<table class="table-bordered table-condensed" style="width: 100%;">
     <caption style="font-size: medium;">Yearly Reservations Report for All Rooms</caption>
-    <tr>
-        <th>Customer first name</th>
-        <th>Customer last name</th>
-        <th>Room type</th>
-        <th>Check in</th>
-        <th>Check out</th>
-        <th>Total</th>
-        <th>Status</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>Customer first name</th>
+            <th>Customer last name</th>
+            <th>Room type</th>
+            <th>Check in</th>
+            <th>Check out</th>
+            <th>Total</th>
+            <th>Status</th>
+        </tr>
+    </thead>
     <?php
     include '../../common/dbconnection.php';
     $objDBConnection = new dbconnection();
@@ -32,6 +34,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 
     $result = $connection->query($sql);
     if ($result) {
+        echo '<tbody>';
         while ($row = $result->fetch_assoc()) {
             ?>
             <tr>
@@ -45,7 +48,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
             </tr>
             <?php
         }
-    }else{
+        echo '</tbody>';
+    } else {
         
     }
     ?>

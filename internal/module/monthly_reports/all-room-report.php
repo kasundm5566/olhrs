@@ -7,24 +7,26 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
     exit;
 }
 ?>
-<table class="table-bordered" style="width: 100%;">
+<table class="table-bordered table-condensed" style="width: 100%;">
     <caption style="font-size: medium;">Monthly Reservations Report for All Rooms</caption>
-    <tr>
-        <th>Customer first name</th>
-        <th>Customer last name</th>
-        <th>Room type</th>
-        <th>Check in</th>
-        <th>Check out</th>
-        <th>Total</th>
-        <th>Status</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>Customer first name</th>
+            <th>Customer last name</th>
+            <th>Room type</th>
+            <th>Check in</th>
+            <th>Check out</th>
+            <th>Total</th>
+            <th>Status</th>
+        </tr>
+    </thead>
     <?php
     include '../../common/dbconnection.php';
     $objDBConnection = new dbconnection();
     $connection = $objDBConnection->connection();
 
     $year = $_REQUEST['year'];
-    $month = $_REQUEST['month'];    
+    $month = $_REQUEST['month'];
 
     $sql = "SELECT * FROM reservation r,room_reservation rr, customer c, room_type rt "
             . "WHERE r.reservation_id=rr.reservation_id AND rr.room_type_id=rt.room_type_id "
@@ -33,6 +35,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 
     $result = $connection->query($sql);
     if ($result) {
+        echo '<tbody>';
         while ($row = $result->fetch_assoc()) {
             ?>
             <tr>
@@ -46,7 +49,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
             </tr>
             <?php
         }
-    }else{
+        echo '</tbody>';
+    } else {
         
     }
     ?>

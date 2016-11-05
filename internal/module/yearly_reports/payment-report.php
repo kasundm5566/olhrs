@@ -7,17 +7,51 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
     exit;
 }
 ?>
-
-<?php
-$year = $_REQUEST['year'];
-?>
-
-<table class="table-bordered" style="width: 100%;">
-    <?php for ($i = 0; $i < 5; $i++) { ?>
+<table class="table-bordered table-condensed" style="width: 100%;">
+    <caption style="font-size: medium;">Yearly Payments Report</caption>
+    <thead>
         <tr>
-            <td><?php echo $year ?></td>
-            <td>asas</td>
+            <th>Payment date</th>
+            <th>Amount</th>
+            <th>Username</th>
+            <th>Reservation type</th>
+            <th>Payment method</th>
         </tr>
-    <?php }
+    </thead>    
+    <?php
+    include '../../common/dbconnection.php';
+
+    $objDBConnection = new dbconnection();
+    $connection = $objDBConnection->connection();
+
+    $year = $_REQUEST['year'];
+
+    $sql = "SELECT payment_date,amount,username,type,payment_method_name"
+            . " FROM payment p,reservation r,customer c,payment_method pm"
+            . " WHERE YEAR(p.payment_date)='$year' AND p.reservation_id=r.reservation_id"
+            . " AND r.customer_id=c.customer_id AND p.payment_method_id=pm.payment_method_id;";
+
+    $result = $connection->query($sql);
+    if ($result) {
+        echo '<tbody>';
+        while ($row = $result->fetch_assoc()) {
+            ?>
+            <tr>
+                <td><?php echo $row['payment_date'] ?></td>
+                <td><?php echo $row['amount'] ?></td>
+                <td><?php echo $row['username'] ?></td>
+                <td><?php echo $row['type'] ?></td>
+                <td><?php echo $row['payment_method_name'] ?></td>
+            </tr>
+            <?php
+        }
+        echo '</tbody>';
+    } else {
+        
+    }
     ?>
 </table>
+
+<div style="padding-top: 10px; display: inline-block;">
+    <a href="payment-report-print.php?year=<?php echo $year; ?>" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
+</div>

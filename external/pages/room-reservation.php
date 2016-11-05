@@ -115,7 +115,7 @@ if ($_SESSION['username'] == "") {
                                                 <label class="lbl-errors" id="room-reserv-payamount-error"></label>
                                                 <div class="col-md-6">
                                                     <label class="control-label">Total</label>
-                                                    <input class="form-control" type="text" id="room-total" readonly>
+                                                    <input class="form-control" type="text" name="fulltotal" id="room-total" readonly>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="control-label">Amount paying</label>                                                    

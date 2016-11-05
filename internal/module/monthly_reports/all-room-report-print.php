@@ -25,9 +25,9 @@ $html="<style>"
         . "table{border:1px solid #D9D5BE; margin:10px; width: 100%;}"
         . "</style>";
 
+$html.="<img src='../../images/icons/logo.png'><br><br>";
 $html.="<h2 align='center'>$room Yearly Report-$month $year</h2>";
 $html.="<h4 align='center'>Aqua Pearl Lake Resort-Moratuwa</h4>";
-//$html.="<img src='/var/www/html/olhrs/internal/images/icons/logo.png'><br><br>";
 $html.="<table>
     <tr>
         <th>Customer first name</th>
@@ -74,5 +74,5 @@ $dompdf = new DOMPDF();
 $dompdf->load_html($html);
 $dompdf->set_paper('A4', 'landscape');
 $dompdf->render();
-$dompdf->stream("All_Rooms_Yearly_Report.pdf", array("Attachment" => false));
+$dompdf->stream("All_Rooms_Monthly_Report.pdf", array("Attachment" => false));
 ?>

@@ -8,18 +8,20 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 }
 ?>
 
-<table class="table-bordered" style="width: 100%;">
+<table class="table-bordered table-condensed" style="width: 100%;">
     <caption style="font-size: medium;">Monthly Reservations Report for All Halls</caption>
-    <tr>
-        <th>Customer first name</th>
-        <th>Customer last name</th>
-        <th>Reservation date</th>
-        <th>Hall name</th>
-        <th>Session</th>
-        <th>Pax</th>
-        <th>Total</th>
-        <th>Status</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>Customer first name</th>
+            <th>Customer last name</th>
+            <th>Reservation date</th>
+            <th>Hall name</th>
+            <th>Session</th>
+            <th>Pax</th>
+            <th>Total</th>
+            <th>Status</th>
+        </tr>
+    </thead>
     <?php
     include '../../common/dbconnection.php';
 
@@ -36,6 +38,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 
     $result = $connection->query($sql);
     if ($result) {
+        echo '<tbody>';
         while ($row = $result->fetch_assoc()) {
             ?>
             <tr>
@@ -50,6 +53,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
             </tr>
             <?php
         }
+        echo '</tbody>';
     } else {
         
     }

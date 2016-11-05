@@ -6,6 +6,10 @@ if ($_SESSION['username'] == "") {
     header("Location:index.php");
     exit;
 }
+include './common/dbconnection.php';
+$objDBConnection = new dbconnection();
+$connection = $objDBConnection->connection();
+$GLOBALS['connection'] = $connection;
 ?>
 <html>
     <head>
@@ -37,6 +41,36 @@ if ($_SESSION['username'] == "") {
     <body>
         <div class="loader-anim"></div>
         <?php include './common/minimum-header.php'; ?>
+
+        <?php
+        $checkIn = $_SESSION['check-in'];
+        $checkOut = $_SESSION['check-out'];
+        $roomType = $_SESSION['room-type'];
+        $mealPlan = $_SESSION['meal-plan'];
+        $roomCount = $_SESSION['room-count'];
+        $fullTotal = $_SESSION['full-total'];
+        $total = $_SESSION['total'];
+        $cust_id = $_SESSION['userinfo']['customer_id'];
+
+        $reservationSql = "INSERT INTO reservation"
+                . " (placed_date,reservation_status,type,total,customer_id) VALUES"
+                . " (CURDATE(),'Pending','Room',$fullTotal,'$cust_id');";
+        $connection->query($reservationSql);
+        $added_resId = $connection->insert_id;
+
+        $roomReservationSql = "INSERT INTO room_reservation"
+                . " (reservation_id,room_type_id,check_in,check_out,count,meal_plan_id) VALUES"
+                . " ('$added_resId',(SELECT room_type_id FROM room_type WHERE room_type_name='$roomType'),"
+                . "'$checkIn','$checkOut','$roomCount',(SELECT meal_plan_id FROM meal_plan WHERE meal_plan_name='$mealPlan'));";
+        $connection->query($roomReservationSql);
+
+        $paymentSql = "INSERT INTO payment"
+                . " (amount,payment_date,reservation_id,payment_method_id) VALUES"
+                . " ('$total',CURDATE(),'$added_resId',"
+                . "(SELECT payment_method_id FROM payment_method WHERE payment_method_name='Online'));";
+        $connection->query($paymentSql);
+        ?>
+
         <div> 
             <div style="margin-top: 80px;">
                 <div class="row">
@@ -64,7 +98,7 @@ if ($_SESSION['username'] == "") {
                             </div>
                             <div>
                                 <a id="anchor-backtohome" href="customer-home.php">Back to homepage</a>
-                                <input type="button" class="btn btn-success btn-sm" value="Print receipt">
+                                <a class="btn btn-success btn-sm" href="./operations/print-room-receipt.php">Print receipt</a>
                             </div>
                         </div>
                     </div>                    

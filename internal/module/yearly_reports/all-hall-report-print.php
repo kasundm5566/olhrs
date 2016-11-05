@@ -23,10 +23,10 @@ $html="<style>"
         . "th,td{border:1px solid #D9D5BE;}"
         ."table{border:1px solid #D9D5BE; margin:10px; width: 100%;}"
         . "</style>";
-
+$html.="<img src='../../images/icons/logo.png'><br><br>";
 $html.="<h2 align='center'>$hall Yearly Report-$year</h2>";
 $html.="<h4 align='center'>Aqua Pearl Lake Resort-Moratuwa</h4>";
-//$html.="<img src='/var/www/html/olhrs/internal/images/icons/logo.png'><br><br>";
+
 $html.="<table>
     <tr>
         <th>Customer first name</th>

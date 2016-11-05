@@ -97,7 +97,7 @@ $GLOBALS['connection'] = $connection;
                             </div>
                             <div>
                                 <a id="anchor-backtohome" href="customer-home.php">Back to homepage</a>
-                                <input type="button" class="btn btn-success btn-sm" value="Print receipt">
+                                <a class="btn btn-success btn-sm" href="./operations/print-hall-receipt.php">Print receipt</a>
                             </div>
                         </div>
                     </div>                    
