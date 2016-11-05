@@ -10,7 +10,7 @@ if ($_SESSION['username'] == "") {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hall Reservation</title>
+        <title>Room Reservation</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min_1.css"/>
@@ -26,6 +26,7 @@ if ($_SESSION['username'] == "") {
         <script src="../js/jquery.easing.1.3.min.js"></script>    
         <script src="../js/effects.js"></script>        
         <script src="../js/room-reservation-calculations.js"></script> 
+        <script src="../js/validations/room-reservation-payment.js"></script> 
         <style>
             #site-footer{
                 position: fixed;
@@ -60,7 +61,7 @@ if ($_SESSION['username'] == "") {
                         </ul>
 
                         <div>
-                            <form role="form" method="POST" target="_blank" action="room-payment.php">
+                            <form role="form" method="POST" target="_blank" action="room-payment.php" onsubmit="return validatePaymentAmount();">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group" id="room-reserv-fname">
@@ -110,8 +111,19 @@ if ($_SESSION['username'] == "") {
                                             </div>
                                         </div>
                                         <div class="form-group" id="room-reserv-total">
-                                            <label class="control-label">Total</label>
-                                            <input class="form-control" type="text" name="total" id="room-total" readonly>
+                                            <div class="row">
+                                                <label class="lbl-errors" id="room-reserv-payamount-error"></label>
+                                                <div class="col-md-6">
+                                                    <label class="control-label">Total</label>
+                                                    <input class="form-control" type="text" id="room-total" readonly>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="control-label">Amount paying</label>                                                    
+                                                    <input class="form-control" type="text" name="total" id="room-payAmount">  
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                         <div style="text-align: center;">
                                             <button type="submit" class="btn btn-success" style="width: 100%;">Proceed Payment</button>

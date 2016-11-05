@@ -6,6 +6,11 @@ if ($_SESSION['username'] == "") {
     header("Location:index.php");
     exit;
 }
+
+include './common/dbconnection.php';
+$objDBConnection = new dbconnection();
+$connection = $objDBConnection->connection();
+$GLOBALS['connection'] = $connection;
 ?>
 <html>
     <head>
@@ -37,6 +42,34 @@ if ($_SESSION['username'] == "") {
     <body>
         <div class="loader-anim"></div>
         <?php include './common/minimum-header.php'; ?>
+
+        <?php
+        $reserv_date = $_SESSION['reservation-date'];
+        $hall_name = $_SESSION['hall-name'];
+        $time = $_SESSION['time'];
+        $pax = $_SESSION['pax'];
+        $advance_payment = $_SESSION['advance-payment'];
+        $cust_id = $_SESSION['userinfo']['customer_id'];
+
+        $reservationSql = "INSERT INTO reservation"
+                . " (placed_date,reservation_status,type,customer_id) VALUES"
+                . " (CURDATE(),'Pending','Hall','$cust_id');";
+        $connection->query($reservationSql);
+        $added_resId = $connection->insert_id;
+
+        $hallReservationSql = "INSERT INTO hall_reservation"
+                . " (reservation_id,hall_id,time,reservation_date,pax) VALUES"
+                . " ('$added_resId',(SELECT hall_id FROM hall WHERE hall_name='$hall_name'),"
+                . "'$time','$reserv_date','$pax');";
+        $connection->query($hallReservationSql);
+
+        $paymentSql = "INSERT INTO payment"
+                . " (amount,payment_date,reservation_id,payment_method_id) VALUES"
+                . " ('$advance_payment',CURDATE(),'$added_resId',"
+                . "(SELECT payment_method_id FROM payment_method WHERE payment_method_name='Online'));";
+        $connection->query($paymentSql);
+        ?>
+
         <div> 
             <div style="margin-top: 80px;">
                 <div class="row">

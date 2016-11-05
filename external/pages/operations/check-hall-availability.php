@@ -13,10 +13,20 @@ $date = $_POST['hall-date'];
 $time = $_POST['session-dropdown'];
 $username = $_SESSION['username'];
 
-$sql = "SELECT hall_name FROM hall WHERE hall_name NOT IN "
-        . "(SELECT hall_name FROM reservation rv, hall_reservation hr, hall h "
-        . "WHERE rv.reservation_id=hr.reservation_id AND hr.hall_id=h.hall_id AND "
-        . "hr.reservation_date='$date' AND (hr.time='$time' OR hr.time='Full day'));";
+$sql = '';
+if ($time == 'Full day') {
+    $sql = "SELECT hall_name FROM hall WHERE hall_name NOT IN "
+            . "(SELECT hall_name FROM reservation rv, hall_reservation hr, hall h "
+            . "WHERE rv.reservation_id=hr.reservation_id AND hr.hall_id=h.hall_id AND "
+            . "hr.reservation_date='$date' AND (hr.time='$time' OR hr.time='Morning' OR hr.time='Evening'));";
+} else {
+    $sql = "SELECT hall_name FROM hall WHERE hall_name NOT IN "
+            . "(SELECT hall_name FROM reservation rv, hall_reservation hr, hall h "
+            . "WHERE rv.reservation_id=hr.reservation_id AND hr.hall_id=h.hall_id AND "
+            . "hr.reservation_date='$date' AND (hr.time='$time' OR hr.time='Full day'));";
+}
+
+
 $result = $connection->query($sql); //To execute query
 
 $halls = [];
