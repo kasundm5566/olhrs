@@ -52,9 +52,14 @@ $GLOBALS['connection'] = $connection;
         $total = $_SESSION['total'];
         $cust_id = $_SESSION['userinfo']['customer_id'];
 
+        $status = "Pending";
+        if (($fullTotal + 0) == $total) {
+            $status = "Completed";
+        }
+
         $reservationSql = "INSERT INTO reservation"
                 . " (placed_date,reservation_status,type,total,customer_id) VALUES"
-                . " (CURDATE(),'Pending','Room',$fullTotal,'$cust_id');";
+                . " (CURDATE(),'$status','Room',$fullTotal,'$cust_id');";
         $connection->query($reservationSql);
         $added_resId = $connection->insert_id;
 

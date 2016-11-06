@@ -1,7 +1,7 @@
 var background_color = "#fde99c";
 
 $(document).ready(function () {
-    
+
     $("#hall-reserv-tel-error").hide();
     $("#hall-reserv-pax-error").hide();
     $("#hall-reserv-advance-error").hide();
@@ -82,6 +82,11 @@ function validateAdvancePayment(field) {
         $(field).css("background-color", background_color);
         $("#hall-reserv-advance-error").show();
         $("#hall-reserv-advance-error").text("Advance payment should be greater than Rs.20000.");
+        return false;
+    } else if ($(field).val() > parseInt($("#hall-total").val())) {
+        $(field).css("background-color", background_color);
+        $("#hall-reserv-advance-error").show();
+        $("#hall-reserv-advance-error").text("Advance payment should not be greater than the total.");
         return false;
     } else {
         var inputVal = $(field).val();

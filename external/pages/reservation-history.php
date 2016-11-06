@@ -30,6 +30,7 @@ $GLOBALS['connection'] = $connection;
         <script src="../js/effects.js"></script>
         <script src="../js/reservation-history.js"></script>
         <script src="../js/jquery-rate-picker.js"></script>
+        <script src="../js/validations/make-payment.js"></script>
     </head>
 
     <body>
@@ -152,7 +153,7 @@ $GLOBALS['connection'] = $connection;
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <a type="button" href="" class="btn btn-success" id="btn-modal-makePayment">Make payment</a>
+                        <a type="button" class="btn btn-success" id="btn-modal-makePayment">Make payment</a>
                     </div>
                 </div>
             </div>

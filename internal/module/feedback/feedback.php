@@ -66,13 +66,13 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                 </select>
                             </div>
                             <div id="pagination" class="text-right"></div>
-                            <div id="pagination2" class="text-right"></div>
                         </div>
                     </div>
                 </div>
             </div> 
         </div> 
 
+        <?php include '../../common/common_modals.php'; ?>
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
         </div>

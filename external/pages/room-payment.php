@@ -104,7 +104,7 @@ $perRoomPrice = $_POST['total'] / $_POST['roomcount']
         </div>
 
         <form id="pay-form" action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
-            <input type='hidden' name='business' value='kasunutube-facilitator@ymail.com'>
+            <input type='hidden' name='business' value='kasunutube@ymail.com'>
             <input type='hidden' name='cmd' value='_xclick'>
             <input type='hidden' name='item_name' value='<?php echo 'Room reservation-' . $_POST['roomtype'] . "-" . $_POST['meal-plan']; ?>'>
             <input type='hidden' name='amount' value='<?php echo convertCurrency($perRoomPrice, "LKR", "USD"); ?>'>

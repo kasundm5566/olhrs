@@ -59,6 +59,10 @@ $html.="<tr>
                 <td>Due amount (Rs): </td>
                 <td>" . $due_amount . "</td>
             </tr>";
+$html.="<tr>
+                <td>Reservation placed date: </td>
+                <td>" . $date . "</td>
+            </tr>";
 
 $html .= "</table>";
 $html.="<br><p><strong>Please bring this receipt when you are visiting hotel for the further processings.</strong></p>";

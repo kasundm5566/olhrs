@@ -252,7 +252,11 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/customer-update.ico"/>
                 <h3 class="modal-title header-panel">&nbsp;Update Customer</h3>
-                <button class="btn btn-warning btn-sm" id="btn-reset-password"><i class="glyphicon glyphicon-refresh"></i> Reset Password</button>
+                <?php
+                if ($_SESSION['group'] == "Admin") {
+                    echo '<button class="btn btn-warning btn-sm" id="btn-reset-password"><i class="glyphicon glyphicon-refresh"></i> Reset Password</button>';
+                }
+                ?>                
             </div>
             <div class="modal-body">
                 <form id="form-updatecustomer">

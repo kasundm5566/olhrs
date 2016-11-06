@@ -27,6 +27,18 @@ if ($result) {
     $due_amount = $total - $paid_amout;
     $table.="<input type='hidden' id='due-amount-hdn' value='$due_amount'/>";
     $table.="<lable id='lbl-due-amount' style='float:right;'>Payment due amount: " . $due_amount . "</lable>";
+
+    $table.="<div id='make-payment-div'>";
+    $table.="<form method='post' action='' onsubmit='return validateMakePaymentAmount();'>";
+
+    $table.="<lable>Amount:</lable>";
+    $table.="<label class='lbl-errors' id='make-payment-error'></label>";
+    $table.="<div>";
+    $table.="<input type='text' name='make-payment-amount' id='make-payment-amount'/>";
+    $table.="<input class='btn btn-primary btn-xs' style='width:70px; margin-left:10px;' type='submit' value='Pay'>";
+    $table.="</div>";
+    $table.="</form>";
+    $table.="</div>";
     echo $table;
 } else {
     echo 'No payment data available.';

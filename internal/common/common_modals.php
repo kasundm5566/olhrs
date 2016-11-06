@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <p><strong>Unexpected error occurred.</strong>
-                    <br>Please try again later. If the issue persisits, please contact the system
+                    <br>Please try again later. If the issue persists, please contact the system
                     administrator.
                     <br>Sorry for the inconvenience.</p>
                 <p id="common-error-msg"></p>

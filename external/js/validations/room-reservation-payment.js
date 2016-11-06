@@ -15,6 +15,11 @@ function validatePaymentAmount() {
             $("#room-reserv-payamount-error").text("Minimum of " + min + " should pay.");
             $("#room-payAmount").css("background-color", background_color);
             return false;
+        } else if (amount > total) {
+            $("#room-reserv-payamount-error").show();
+            $("#room-reserv-payamount-error").text("Payment should not be greater than the total.");
+            $("#room-payAmount").css("background-color", background_color);
+            return false;
         } else {
             $("#room-reserv-payamount-error").hide();
             $("#room-payAmount").css("background-color", "white");

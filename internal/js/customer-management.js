@@ -403,7 +403,7 @@ function loadDataByPageSize() {
         dataType: "json",
         data: {"page": "1", "recordsCount": recPerPage},
         success: function (result) {
-            $('#table').bootstrapTable('load', result);
+            $('#table-customers').bootstrapTable('load', result);
             paginationBar.simplePaginator('changePage', 1);
         }
     });

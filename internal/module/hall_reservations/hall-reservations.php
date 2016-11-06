@@ -10,21 +10,24 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 
 <html>
     <head>
-        <title>Hall Reservations</title>        
+        <title>Feedback Management</title>        
         <link rel="stylesheet" type="text/css" 
               href="../../bootstrap-3.3.7/css/bootstrap.min_1.css" />
+        <link rel="stylesheet" href="../../css/bootstrap-table.min.css"/>
         <link rel="stylesheet" type="text/css" href="../../css/styles.css" />
-        <link rel="stylesheet" type="text/css" href="../../css/pace-theme-center-simple.css" />
-        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-datepicker3.css"/>
+        <link rel="stylesheet" type="text/css" href="../../css/pace-theme-center-simple.css" /> 
         <script type="text/javascript" src="../../js/jquery-1.12.2.min.js">
         </script>       
         <script type="text/javascript" src="../../bootstrap-3.3.7/js/bootstrap.min.js">
-        </script>
-        <script type="text/javascript" src="../../js/bootstrap-datepicker.min.js"></script>
-        <script type="text/javascript" src="../../js/datepicker.js"></script>
+        </script>        
+        <script src="../../js/bootstrap-table.min.js"></script>
+        <script src="../../js/simple-bootstrap-paginator.js"></script>
+        <script src="../../js/bootstrap3-typeahead.min.js"></script>
         <script type="text/javascript" src="../../js/pace.js">
         </script>
         <script type="text/javascript" src="../../js/common.js">
+        </script>
+        <script type="text/javascript" src="../../js/hall-reservations.js">
         </script>
     </head>
 
@@ -43,51 +46,38 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <img class="icons" src="../../images/icons/hall-res.png">
-                        <h3 class="header-panel">Hall Reservations</h3>
+                        <h3 class="header-panel">&nbsp;Hall Reservations</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="container" style="width: 800px; height: 300px;">
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-5" style="padding-top: 20px;">
-                                    <form method="POST" action="">
-
-                                        <strong>Date</strong>
-                                        <div class="input-group" style="width: 220px;">
-                                            <input type="text" class="form-control" id="hall-date" name="hall-date"
-                                                   placeholder="Select a date" readonly/>
-                                        </div>
-
-                                        <div style="margin-top: 20px;">     
-                                            <strong>Session</strong>
-                                            <div class="form-group" style="width: 220px;">
-                                                <select class="form-control" id="sel1" name="session-dropdown">
-                                                    <option value="Morning">Morning</option>
-                                                    <option value="Evening">Evening</option>
-                                                    <option value="Full day">Full day</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div style="margin-top: 30px; text-align: center;">
-                                            <input type="submit" class="btn btn-success" id="btn-checkHallAvailability" value="Check availability">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-5">
-                                    <strong>Available halls</strong>
-                                </div>
-                                <div class="col-md-1"></div>
+                        <div class="container" style="min-width: 800px;">
+                            <div><table id="table-hall-reservations"></table></div>
+                            <div class="input-group pull-right" style="margin-top:21px; margin-left:5px;">
+                                <label class="pagiTexts" style="display: inline;">Go to page: </label>
+                                <select id="comboPages" style="height: 32px; border-radius:4px; background-color: transparent;">
+                                </select>
+                                &nbsp;&nbsp;
+                                <label class="pagiTexts" style="display: inline;">Records per page: </label>
+                                <select id="comboRecCount" style="height: 32px; border-radius:4px; background-color: transparent;">
+                                    <option value="10" selected>10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="1000">1000</option>
+                                </select>
                             </div>
+                            <div id="pagination" class="text-right"></div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div style="text-align: right;">
+                            <a href="../reservations/reservations-home.php" class="btn btn-primary btn-xs">Reservations home</a>
                         </div>
                     </div>
                 </div>
             </div> 
-        </div> 
+        </div>
 
-        <?php include './modals.php'; ?>
         <?php include '../../common/common_modals.php'; ?>
-
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
         </div>

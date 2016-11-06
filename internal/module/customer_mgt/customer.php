@@ -52,7 +52,11 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                     <div class="panel-body">
                         <div class="container" style="min-width: 800px;">
                             <div class="pull-left">
-                                <button class="btn btn-success btn-sm" id="btn-addcustomer"><i class="glyphicon glyphicon-plus-sign"></i> Add new customer</button>
+                                <?php
+                                if ($_SESSION['group'] == "Admin") {
+                                    echo '<button class="btn btn-success btn-sm" id="btn-addcustomer"><i class="glyphicon glyphicon-plus-sign"></i> Add new customer</button>';
+                                }
+                                ?>                                
                             </div>
                             <div class="input-group pull-right" style="margin-bottom: 5px;">
                                 <div class="input-group">

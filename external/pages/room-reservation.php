@@ -122,8 +122,6 @@ if ($_SESSION['username'] == "") {
                                                     <input class="form-control" type="text" name="total" id="room-payAmount">  
                                                 </div>
                                             </div>
-
-
                                         </div>
                                         <div style="text-align: center;">
                                             <button type="submit" class="btn btn-success" style="width: 100%;">Proceed Payment</button>

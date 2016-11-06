@@ -46,6 +46,7 @@ function convertCurrency($amount, $from, $to) {
         $_SESSION['hall-name'] = $_POST['hall'];
         $_SESSION['time'] = $_POST['time'];
         $_SESSION['pax'] = $_POST['pax'];
+        $_SESSION['hall-total'] = $_POST['total-amount'];
         $_SESSION['advance-payment'] = $_POST['advance-payment'];
         ?>
         <div class="loader-anim"></div>
@@ -83,6 +84,9 @@ function convertCurrency($amount, $from, $to) {
                                 <p>Pax: <?php echo $_POST['pax']; ?></p>
                             </div>
                             <div>
+                                <p>Total: <?php echo $_POST['total-amount']; ?></p>
+                            </div>
+                            <div>
                                 <p>Advance payment: $<?php echo convertCurrency($_POST['advance-payment'], "LKR", "USD"); ?> USD</p>
                             </div>
                         </div>
@@ -95,7 +99,7 @@ function convertCurrency($amount, $from, $to) {
         </div>
 
         <form id="pay-form" action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
-            <input type='hidden' name='business' value='kasunutube-facilitator@ymail.com'>
+            <input type='hidden' name='business' value='kasunutube@ymail.com'>
             <input type='hidden' name='cmd' value='_xclick'>
             <input type='hidden' name='item_name' value='<?php echo 'Hall reservation-' . $_POST['hall']; ?>'>
             <input type='hidden' name='amount' value='<?php echo convertCurrency($_POST['advance-payment'], "LKR", "USD"); ?>'>

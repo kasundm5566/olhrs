@@ -260,8 +260,12 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <img class="header-icons" src="../../images/icons/customer-update.ico"/>
-                <h3 class="modal-title header-panel">&nbsp;Update Staff Member</h3>
-                <button class="btn btn-warning btn-sm" id="btn-reset-password"><i class="glyphicon glyphicon-refresh"></i> Reset Password</button>
+                <h3 class="modal-title header-panel">&nbsp;Update Staff Member</h3>                
+                <?php
+                if ($_SESSION['group'] == "Admin") {
+                    echo '<button class="btn btn-warning btn-sm" id="btn-reset-password"><i class="glyphicon glyphicon-refresh"></i> Reset Password</button>';
+                }
+                ?>
             </div>
             <div class="modal-body">
                 <form id="form-updateuser">
@@ -284,11 +288,11 @@
                     <label>User name </label>
                     <label class="lbl-signup-errors" id="lbl-update-username-error">username can not be changed</label>
                     <input type="text" name="update-username" class="form-control update-input-fields" id="update-username" disabled>
-                    
+
                     <label>Group </label>
                     <div class="form-group">
                         <select class="form-control" id="update-user-group" name="update-group">
-                            
+
                         </select>
                     </div>
 

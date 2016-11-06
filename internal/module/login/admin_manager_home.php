@@ -46,7 +46,7 @@
             </a> 
         </div>
         <div class="col-sm-2 col-xs-4">
-            <a href="" data-toggle="tooltip" data-placement="bottom" title="Manage payments related things.">    
+            <a href="../payment/payment.php" data-toggle="tooltip" data-placement="bottom" title="Manage payments related things.">    
                 <!-- Payments tile -->
                 <div id="tile9" class="tile">
                     <div class="carousel slide" data-ride="carousel">

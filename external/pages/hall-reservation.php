@@ -26,6 +26,7 @@ if ($_SESSION['username'] == "") {
         <script src="../js/jquery.easing.1.3.min.js"></script>    
         <script src="../js/effects.js"></script>        
         <script src="../js/validations/hall-reservation.js"></script>   
+        <script src="../js/validations/hall-reservation-calculations.js"></script>   
         <style>
             #site-footer{
                 position: fixed;
@@ -102,7 +103,7 @@ if ($_SESSION['username'] == "") {
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Hall</label>
-                                                    <select class="form-control" name="hall">
+                                                    <select class="form-control" name="hall" id="hall-reserv-hall-select">
                                                         <?php
                                                         $hallData = [];
                                                         $halls = base64_decode($_REQUEST['halls']);
@@ -124,17 +125,25 @@ if ($_SESSION['username'] == "") {
                                         </div>
 
                                         <div>
-                                            <div class="form-group" id="hall-reserv-advance">
-                                                <label class="control-label">Advance</label>
-                                                <label class="lbl-errors" id="hall-reserv-advance-error"></label>
-                                                <input class="form-control" type="text" name="advance-payment" id="hall-advpay">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group" id="hall-reserv-advance">
+                                                        <label class="control-label">Total</label>
+                                                        <input class="form-control" type="text" name="total-amount" id="hall-total" readonly="true">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group" id="hall-reserv-advance">
+                                                        <label class="control-label">Advance</label>
+                                                        <label class="lbl-errors" id="hall-reserv-advance-error"></label>
+                                                        <input class="form-control" type="text" name="advance-payment" id="hall-advpay">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div>
                                             <label>
-                                                Please note the advance payment for reservation only. 
-                                                Total will mainly depend on the pax and the selected menu.
-                                                Please visit us for the further processes.<br>
+                                                Please note the advance payment for reservation only.<br>
                                                 <strong>Your reservation will be confirmed once you make the payment.</strong>
                                             </label>
                                         </div>

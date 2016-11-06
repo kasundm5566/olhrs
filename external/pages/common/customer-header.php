@@ -37,7 +37,8 @@
             window.location.href = '../index.php';
         });
         $("#link-profile-nav").click(function () {
-            window.location.href = './profile.php';
+//            window.location.href = './profile.php';
+            window.open('./profile.php', '_self');
         });
     });
 </script>  

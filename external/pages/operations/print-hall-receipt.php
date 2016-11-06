@@ -7,14 +7,17 @@ $reserv_date = $_SESSION['reservation-date'];
 $hall_name = $_SESSION['hall-name'];
 $time = $_SESSION['time'];
 $pax = $_SESSION['pax'];
+$fullTotal = $_SESSION['hall-total'];
 $advance_payment = $_SESSION['advance-payment'];
 $cust_id = $_SESSION['userinfo']['customer_id'];
+$due_amount = $fullTotal - $advance_payment;
 $date = date('Y-m-d');
-$printedDate = date('Y-m-d H:i:s',  time());
+$printedDate = date('Y-m-d H:i:s', time());
 ?>
 
 <?php
-$html="<img src='../../images/icons/logo.png'><br><br>";
+
+$html = "<img src='../../images/icons/logo.png'><br><br>";
 $html.="<h2 align='center'>Hall Reservation Receipt</h2>";
 $html.="<h4 align='center'>Aqua Pearl Lake Resort-Moratuwa</h4>";
 $html.="<hr>";
@@ -40,8 +43,16 @@ $html.="<tr>
                 <td>" . $pax . "</td>
             </tr>";
 $html.="<tr>
+                <td>Total (Rs): </td>
+                <td>" . $fullTotal . "</td>
+            </tr>";
+$html.="<tr>
                 <td>Payment amount (Rs): </td>
                 <td>" . $advance_payment . "</td>
+            </tr>";
+$html.="<tr>
+                <td>Due amount (Rs): </td>
+                <td>" . $due_amount . "</td>
             </tr>";
 $html.="<tr>
                 <td>Reservation placed date: </td>

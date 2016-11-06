@@ -48,12 +48,19 @@ $GLOBALS['connection'] = $connection;
         $hall_name = $_SESSION['hall-name'];
         $time = $_SESSION['time'];
         $pax = $_SESSION['pax'];
+        $total = $_SESSION['hall-total'];
         $advance_payment = $_SESSION['advance-payment'];
         $cust_id = $_SESSION['userinfo']['customer_id'];
 
+        $status = "Pending";
+        if (($total + 0) == $advance_payment) {
+            $status = "Completed";
+        }
+        
+
         $reservationSql = "INSERT INTO reservation"
-                . " (placed_date,reservation_status,type,customer_id) VALUES"
-                . " (CURDATE(),'Pending','Hall','$cust_id');";
+                . " (placed_date,reservation_status,type,total,customer_id) VALUES"
+                . " (CURDATE(),'$status','Hall',$total,'$cust_id');";
         $connection->query($reservationSql);
         $added_resId = $connection->insert_id;
 

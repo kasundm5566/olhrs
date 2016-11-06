@@ -1,0 +1,16 @@
+.tbd-daily {
+    display:block;
+    height:220px;
+    overflow:auto;
+}
+.thd-daily, .tbd-daily tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+/*thead {
+    width: calc( 100% - 1.5em ) scrollbar is average 1em/16px width, remove it from thead width 
+}*/
+.tbl-daily {
+    width:100%;
+}
