@@ -31,7 +31,7 @@ $(document).ready(function () {
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $("#modal-commonError").modal('show');
-                    $("#common-error-msg").text("Error validating the username. Message: " + errorThrown);
+                    $("#common-error-msg").text("Error validating the username.");
                 }
             });
         }

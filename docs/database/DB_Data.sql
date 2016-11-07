@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for linux-glibc2.5 (x86_64)
 --
 -- Host: localhost    Database: olhrs
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.16-MariaDB
+-- Server version	5.7.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -71,7 +71,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `hall` WRITE;
 /*!40000 ALTER TABLE `hall` DISABLE KEYS */;
-INSERT INTO `hall` VALUES (1,'Kings Hall',35000.00),(2,'Queens Hall A',25000.00),(3,'Queens Hall B',25000.00);
+INSERT INTO `hall` VALUES (1,'Kings Hall',35000.00,200),(2,'Queens Hall A',25000.00,150),(3,'Queens Hall B',25000.00,150);
 /*!40000 ALTER TABLE `hall` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-06  1:07:33
+-- Dump completed on 2016-11-07 17:07:47

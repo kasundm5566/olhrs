@@ -1,7 +1,6 @@
 var background_color = "#fde99c";
-
+var maxPax = 200;
 $(document).ready(function () {
-
     $("#hall-reserv-tel-error").hide();
     $("#hall-reserv-pax-error").hide();
     $("#hall-reserv-advance-error").hide();
@@ -29,9 +28,26 @@ $(document).ready(function () {
         validateAdvancePayment($("#hall-advpay"));
     });
 
+    $("#hall-reserv-hall-select").change(function () {
+        getMaxPax();
+    })
 
 });
 
+function getMaxPax() {
+    $.ajax({
+        type: 'POST',
+        url: "./dao/hall/get_hall_pax.php",
+        data: {"hall-name": $("#hall-reserv-hall-select").val()},
+        success: function (result) {
+            maxPax = result;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $("#modal-commonError").modal('show');
+            $("#common-error-msg").text("Error getting hall pax.");
+        }
+    });
+}
 
 // Validate the tel no
 function validateContactNo(field) {
@@ -56,10 +72,11 @@ function validateContactNo(field) {
 
 // Validate the pax
 function validatePax(field) {
-    if ($(field).val() < 100 || $(field).val() > 250) {
+    getMaxPax();
+    if ($(field).val() < 100 || $(field).val() > maxPax) {
         $(field).css("background-color", background_color);
         $("#hall-reserv-pax-error").show();
-        $("#hall-reserv-pax-error").text("Pax should be within 100-250.");
+        $("#hall-reserv-pax-error").text("Pax should be within 100-"+maxPax+".");
         return false;
     } else {
         var inputVal = $(field).val();
