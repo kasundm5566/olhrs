@@ -7,6 +7,7 @@ $connection = $objDBConnection->connection();
 $mealplan = $_REQUEST['mealplan'];
 $roomtype = $_REQUEST['roomtype'];
 
+// Get the price for a room according to the selected meal plan
 $sql = "SELECT price from room_type_meal_plan WHERE room_type_id IN (SELECT room_type_id FROM room_type WHERE room_type_name='$roomtype') 
 AND meal_plan_id IN (SELECT meal_plan_id FROM meal_plan WHERE meal_plan_name='$mealplan');";
 

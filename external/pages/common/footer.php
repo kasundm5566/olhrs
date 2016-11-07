@@ -1,3 +1,4 @@
+<!-- Website footer -->
 <div style="text-align: left;width: 100%;">
     Aqua Pearl Lake Resort-2016
     <div style="display: inline-block; float: right;">

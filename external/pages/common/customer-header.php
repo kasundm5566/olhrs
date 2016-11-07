@@ -1,3 +1,4 @@
+<!-- Header of the logged in customer -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -11,6 +12,7 @@
         <div>
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                 <ul class="nav navbar-nav">
+                    <!--Sections of the index page-->
                     <li><a class="page-scroll" href="#welcome-section">Welcome</a></li>
                     <li><a class="page-scroll" href="#overview-section">Overview</a></li>
                     <li><a class="page-scroll" href="#gallery-section">Gallery</a></li>
@@ -33,9 +35,12 @@
 </nav>
 <script>
     $(document).ready(function () {
-        $("#link-logout-nav").click(function () {
+        // Logout action
+        $("#link-logout-nav").click(function () {            
             window.location.href = '../index.php';
         });
+        
+        // Action to view profile
         $("#link-profile-nav").click(function () {
 //            window.location.href = './profile.php';
             window.open('./profile.php', '_self');

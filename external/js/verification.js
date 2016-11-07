@@ -4,6 +4,7 @@ $(document).ready(function () {
     $("#resend-success").hide();
     $("#resend-failed").hide();
 
+    // Resend verification code
     $("#btn-veri-resend").click(function () {
         $("#veri-success").hide();
         $("#veri-failed").hide();
@@ -28,6 +29,7 @@ $(document).ready(function () {
         return false;
     });
 
+    // Confirm verification code
     $("#btn-veri-confirm").click(function () {
         $("#veri-success").hide();
         $("#veri-failed").hide();
@@ -39,6 +41,7 @@ $(document).ready(function () {
             data: $("#veri-form").serialize(),
             success: function (result) {
                 if ($.trim(result) != 0) {
+                    // If the verification is success, update the status of the customer.
                     $.ajax({
                         type: 'POST',
                         url: "./dao/customer/update-status.php",

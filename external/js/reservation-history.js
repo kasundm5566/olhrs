@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    var ratingStars = 5;
+    var ratingStars = 5; // Star rating initial value
+    // Initialize star rating plugin
     $.ratePicker("#ratingStars", {
         max: 10,
         rate: function (stars) {
@@ -10,7 +11,8 @@ $(document).ready(function () {
     $(".btn-payment-history").click(function () {
         var res_id = $(this).closest("tr").find("td.res-id").text();
         var total = $(this).closest("tr").find("td.res-total").text();
-
+        
+        // Load payment history details in tabular format to the modal body
         $('.payment-modal-body').load('./dao/payment/get-payment-history.php?res=' + res_id + '&total=' + total, function (result) {
             $("#btn-modal-makePayment").hide();
 
@@ -28,25 +30,30 @@ $(document).ready(function () {
         });
     });
 
+    // Add a feedback
     $(".btn-add-feedback").click(function () {
         $("#addfeedback-success").hide();
         $("#addfeedback-error").hide();
-        var res_id = $(this).closest("tr").find("td.res-id").text();
+        var res_id = $(this).closest("tr").find("td.res-id").text(); // Get reservation id
+        // Get previous feedback if exists
         $('#feedback-comment').load('./dao/feedback/get-feedback.php?res=' + res_id, function (result) {
             $('#feedback-comment').val(result);
             $('#modal-add-feedback-popup').modal({show: true});
             if ($('#feedback-comment').val() != "") {
+                // If previous feedback found, button text will change to update.
                 $("#btn-add-feedback-ok").text("Update feedback");
             } else {
+                // If previous feedback not found, button text will change to add.
                 $("#btn-add-feedback-ok").text("Add feedback");
             }
         });
 
-        $('#btn-add-feedback-ok').off('click');
+        $('#btn-add-feedback-ok').off('click'); // Remove previous event bindings
         $("#btn-add-feedback-ok").click(function () {
-            var isCommentValid = validateComment();
-            if ($("#btn-add-feedback-ok").text() == "Add feedback") {
+            var isCommentValid = validateComment(); // Check comment validation status
+            if ($("#btn-add-feedback-ok").text() == "Add feedback") { // If adding a feedback
                 if (isCommentValid != false) {
+                    // Send Ajax request to add the feedback
                     $.ajax({
                         type: "POST",
                         url: "./operations/add-feedback.php",
@@ -68,7 +75,7 @@ $(document).ready(function () {
                         }
                     });
                 }
-            } else {
+            } else { // If updating a feedback
                 if (isCommentValid != false) {
                     $.ajax({
                         type: "POST",
@@ -100,6 +107,7 @@ $(document).ready(function () {
 
 });
 
+// Validate the comment
 function validateComment() {
     var background_color = "#fde99c";
     if ($("#feedback-comment").val().length == 0) {
@@ -109,7 +117,7 @@ function validateComment() {
         return false;
     } else {
         var inputVal = $("#feedback-comment").val();
-        var numericReg = /^\s+$/;
+        var numericReg = /^\s+$/; // Check whether the feedback contains only whitespaces
         if (numericReg.test(inputVal)) {
             $("#feedback-comment-error").show();
             $("#feedback-comment").css("background-color", background_color);

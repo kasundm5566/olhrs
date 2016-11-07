@@ -5,6 +5,7 @@ $(document).ready(function () {
     });
 });
 
+// Get the price of a selected hall
 function getHallPrice() {
     $.ajax({
         type: 'POST',

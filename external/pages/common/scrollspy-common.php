@@ -1,3 +1,4 @@
+<!--Content of the index page-->
 <div id="welcome-section" class="container-fluid" style="overflow: hidden;">
     <h1 style="margin-top: 60px;">Welcome</h1>
     <?php include './welcome-carousel.php'; ?>

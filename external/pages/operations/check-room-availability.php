@@ -29,8 +29,8 @@ if ($result) {
         $available_room_count = $row['available_room_count'];
     }
 }
-if ($available_room_count > 0) {
-    if ($username != "") {
+if ($available_room_count > 0) { // Rooms are available
+    if ($username != "") { // Check the login status
         $encoded_indate = base64_encode($indate); //Encoding Mechanism
         $encoded_outdate = base64_encode($outdate);
         $encoded_type = base64_encode($type);
@@ -42,7 +42,7 @@ if ($available_room_count > 0) {
         header("Location:../index.php?room-status=$status1#reservation-section"); //Redirection n passing data
         //Through URL
     }
-} else {
+} else { // Rooms are unavailable
     if (!empty($username)) {
         $status = "Sorry, Rooms are not available.";
         $status1 = base64_encode($status); //Encoding Mechanism

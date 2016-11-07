@@ -42,6 +42,7 @@ function convertCurrency($amount, $from, $to) {
 
     <body>
         <?php
+        // Saveing reservation data to the session
         $_SESSION['reservation-date'] = $_POST['date'];
         $_SESSION['hall-name'] = $_POST['hall'];
         $_SESSION['time'] = $_POST['time'];
@@ -98,6 +99,7 @@ function convertCurrency($amount, $from, $to) {
             </div>
         </div>
 
+        <!--Configuring paypal payment form-->
         <form id="pay-form" action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post'>
             <input type='hidden' name='business' value='kasunutube@ymail.com'>
             <input type='hidden' name='cmd' value='_xclick'>

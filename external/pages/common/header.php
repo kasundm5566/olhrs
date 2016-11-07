@@ -1,3 +1,4 @@
+<!-- Default header -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -11,6 +12,7 @@
         <div>
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                 <ul class="nav navbar-nav">
+                    <!--Sections of the index page-->
                     <li><a class="page-scroll" href="#welcome-section">Welcome</a></li>
                     <li><a class="page-scroll" href="#overview-section">Overview</a></li>
                     <li><a class="page-scroll" href="#gallery-section">Gallery</a></li>

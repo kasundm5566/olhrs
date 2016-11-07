@@ -1,4 +1,4 @@
-var background_color = "#fde99c";
+var background_color = "#fde99c"; // Color of the validation failed fields
 
 $(document).ready(function () {
     $("#btn-contact-submit").prop('disabled', true);
@@ -45,6 +45,7 @@ $(document).ready(function () {
     });
 });
 
+// Check the status of captcha verification
 function recaptchaCallback() {
     if (grecaptcha.getResponse().length === 0) {
         $("#btn-contact-submit").prop('disabled', true);
@@ -53,6 +54,7 @@ function recaptchaCallback() {
     }
 }
 
+// Check whether the message is empty or not
 function validateMessage(field, error_field) {
     if ($(field).val().length == 0) {
         $(error_field).show();

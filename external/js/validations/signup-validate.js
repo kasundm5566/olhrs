@@ -209,6 +209,7 @@ function validateUserName(field, error_field) {
         $("#btn-signup-ok").attr('disabled', true);
         return false;
     } else {
+        // Check for a unique username
         $.ajax({
             type: 'GET',
             url: "./dao/customer/username_checker.php",

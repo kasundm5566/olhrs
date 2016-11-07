@@ -7,6 +7,7 @@ $(document).ready(function () {
     });
 });
 
+// Enable readonly fields
 function enableFields() {
     $("#profile-fname").prop("readonly", false);
     $("#profile-lname").prop("readonly", false);

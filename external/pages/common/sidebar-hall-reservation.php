@@ -1,3 +1,4 @@
+<!--Side bar with a carousel appear on hall reservation pages-->
 <h4>Why Aqua Pearl</h4>
 
 <span id="demo" style="color: #1DC116; font-size: large;">
@@ -49,6 +50,7 @@
 </div>
 
 <script>
+    // Change the text content time to time
     $('#demo').cycleText({
         // text separator
         separator: '|',

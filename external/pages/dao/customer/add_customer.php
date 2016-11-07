@@ -12,6 +12,7 @@ $password = sha1($_REQUEST['signup-password']);
 $username = $_REQUEST['signup-username'];
 $date = date("Y-m-d");
 
+// Generate a verification code
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);

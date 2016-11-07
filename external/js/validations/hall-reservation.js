@@ -42,7 +42,7 @@ function validateContactNo(field) {
         return false;
     } else {
         var inputVal = $(field).val();
-        var telReg = /^0[^0]\d+$/;
+        var telReg = /^0[^0]\d+$/; // Pattern should start with zero
         if (!telReg.test(inputVal)) {
             $(field).css("background-color", background_color);
             $("#hall-reserv-tel-error").text("Invalid contact no.");
@@ -63,7 +63,7 @@ function validatePax(field) {
         return false;
     } else {
         var inputVal = $(field).val();
-        var telReg = /^[^0]\d+$/;
+        var telReg = /^[^0]\d+$/;// Check for a numerical value
         if (!telReg.test(inputVal)) {
             $(field).css("background-color", background_color);
             $("#hall-reserv-pax-error").show();
@@ -78,19 +78,19 @@ function validatePax(field) {
 
 // Validate the advance payment
 function validateAdvancePayment(field) {
-    if ($(field).val() < 20000) {
+    if ($(field).val() < 20000) { // Minimum of Rs.20000 should pay
         $(field).css("background-color", background_color);
         $("#hall-reserv-advance-error").show();
         $("#hall-reserv-advance-error").text("Advance payment should be greater than Rs.20000.");
         return false;
-    } else if ($(field).val() > parseInt($("#hall-total").val())) {
+    } else if ($(field).val() > parseInt($("#hall-total").val())) { // Maximum payment amount is total
         $(field).css("background-color", background_color);
         $("#hall-reserv-advance-error").show();
         $("#hall-reserv-advance-error").text("Advance payment should not be greater than the total.");
         return false;
     } else {
         var inputVal = $(field).val();
-        var telReg = /^[^0]\d+$/;
+        var telReg = /^[^0]\d+$/; // Check for a numerical value
         if (!telReg.test(inputVal)) {
             $(field).css("background-color", background_color);
             $("#hall-reserv-advance-error").show();
@@ -103,6 +103,7 @@ function validateAdvancePayment(field) {
     }
 }
 
+// Check date
 function validateHallReservationDate() {
     if ($("#hall-date").val().length == 0) {
         $("#hall-date").css("background-color", background_color);
@@ -116,6 +117,7 @@ function validateHallReservationDate() {
     }
 }
 
+// Check all the fields
 function validateAll() {
     var isTelValid = validateContactNo($("#hall-reserv-tel"));
     var isPaxValid = validatePax($("#hall-pax"));

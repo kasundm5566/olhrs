@@ -44,6 +44,7 @@ $GLOBALS['connection'] = $connection;
         <?php include './common/minimum-header.php'; ?>
 
         <?php
+        // Adding reservation data after making a successful payment
         $reserv_date = $_SESSION['reservation-date'];
         $hall_name = $_SESSION['hall-name'];
         $time = $_SESSION['time'];

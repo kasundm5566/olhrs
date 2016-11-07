@@ -14,7 +14,8 @@ $(document).ready(function () {
         var isNewPassOk = validatePassword($("#txt-newpw"), $("#profile-newpw-error"));
         var isNewPassReOk = validateRetypedPass($("#txt-newpwRe"), $("#profile-newpwRe-error"), $("#txt-newpw"))
 
-        if (isCurrentPassOk != false && isNewPassOk != false && isNewPassReOk != false) {
+        if (isCurrentPassOk != false && isNewPassOk != false && isNewPassReOk != false) { // All validations should pass
+            // Ajax call with data to the mentioned PHP file to process the change password operation
             $.ajax({
                 type: 'POST',
                 url: "./dao/customer/change_password.php",
@@ -37,6 +38,7 @@ $(document).ready(function () {
     });
 });
 
+// Validate the input fields of the profile page
 function validateProfileFields() {
     var isFnameValid = validateFirstName($("#profile-fname"), $("#profile-fname-error"));
     var isLnameValid = validateLastName($("#profile-lname"), $("#profile-lname-error"));
@@ -50,6 +52,7 @@ function validateProfileFields() {
     }
 }
 
+// Validate current password for a minimum of 8 characters
 function validateCurrentPassword() {
     if ($("#txt-currentpw").val().length < 8) {
         $("#profile-currentpw-error").show();

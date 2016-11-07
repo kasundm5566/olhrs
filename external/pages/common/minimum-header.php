@@ -1,3 +1,4 @@
+<!--Header with less links. Used in some pages.-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">

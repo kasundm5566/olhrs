@@ -1,5 +1,6 @@
 var background_color = "#fde99c";
 
+// Validate date fields
 function validateRoomReservationDates() {
     if (validateInDate() == false || validateOutDate() == false || validateBothDates() == false) {
         return false;
@@ -8,6 +9,7 @@ function validateRoomReservationDates() {
     }
 }
 
+// Validate check in date
 function validateInDate() {
     if ($("#room-in-date").val().length == 0) {
         $("#room-in-date").css("background-color", background_color);
@@ -21,6 +23,7 @@ function validateInDate() {
     }
 }
 
+// Validate check out date
 function validateOutDate() {
     if ($("#room-out-date").val().length == 0) {
         $("#room-out-date").css("background-color", background_color);
@@ -34,6 +37,8 @@ function validateOutDate() {
     }
 }
 
+// Validate the date difference between check in and check out dates.
+// Check in date should not be less than check out date.
 function validateBothDates() {
     var inDate = $("#room-in-date").val();
     var outDate = $("#room-out-date").val();

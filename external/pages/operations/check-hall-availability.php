@@ -36,8 +36,8 @@ if ($result) {
     }
 }
 
-if (count($halls) != 0) {
-    if (!empty($username)) {
+if (count($halls) != 0) { // Halls are available
+    if (!empty($username)) { // Check the login status
         $hallNames;
         for ($i = 0; $i < count($halls); $i++) {
             $hallNames.=$halls[$i];
@@ -57,7 +57,7 @@ if (count($halls) != 0) {
         header("Location:../index.php?status=$status1#reservation-section"); //Redirection n passing data
         //Through URL
     }
-} else {
+} else { // Halls are unavailable
     if (!empty($username)) {
         $status = "Sorry, Halls are not available.";
         $status1 = base64_encode($status); //Encoding Mechanism

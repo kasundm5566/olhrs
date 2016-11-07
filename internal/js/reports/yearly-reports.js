@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+    /* Generate a report when page is loading according to the details
+       selected by default (if exists) */
     $.ajax({
         url: "all-hall-report.php",
         type: "POST",
@@ -12,6 +13,7 @@ $(document).ready(function () {
         }
     });
 
+    // Action to generate report for all halls reservations
     $("#all-hall-submitYearly").click(function () {
         $.ajax({
             url: "all-hall-report.php",
@@ -25,7 +27,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Action to generate report for kings hall reservations
     $("#kings-hall-submitYearly").click(function () {
         $.ajax({
             url: "kings-hall-report.php",
@@ -39,7 +41,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Action to generate report for queens A hall reservations
     $("#queena-hall-submitYearly").click(function () {
         $.ajax({
             url: "queensa-hall-report.php",
@@ -53,7 +55,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Action to generate report for queens B hall reservations
     $("#queenb-hall-submitYearly").click(function () {
         $.ajax({
             url: "queensb-hall-report.php",
@@ -67,7 +69,8 @@ $(document).ready(function () {
             }
         });
     });
-
+    
+    // Action to generate report for all rooms reservations
     $("#room-all-submitYearly").click(function () {
         $.ajax({
             url: "all-room-report.php",
@@ -81,7 +84,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Action to generate report for single rooms reservations
     $("#single-room-submitYearly").click(function () {
         $.ajax({
             url: "single-room-report.php",
@@ -95,7 +98,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Action to generate report for double rooms reservations
     $("#double-room-submitYearly").click(function () {
         $.ajax({
             url: "double-room-report.php",
@@ -109,7 +112,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Action to generate report for family rooms reservations
     $("#family-room-submitYearly").click(function () {
         $.ajax({
             url: "family-room-report.php",
@@ -123,7 +126,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Action to generate report for cottage reservations
     $("#cottage-submitYearly").click(function () {
         $.ajax({
             url: "cottage-report.php",
@@ -137,7 +140,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Action to generate report for payments
     $("#payment-submitYearly").click(function () {
         $.ajax({
             url: "payment-report.php",
@@ -151,7 +154,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    // Action to generate report for feedbacks
     $("#feedback-submitYearly").click(function () {
         $.ajax({
             url: "feedback-report.php",

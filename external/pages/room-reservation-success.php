@@ -43,6 +43,7 @@ $GLOBALS['connection'] = $connection;
         <?php include './common/minimum-header.php'; ?>
 
         <?php
+        // Adding reservation data after making a successful payment
         $checkIn = $_SESSION['check-in'];
         $checkOut = $_SESSION['check-out'];
         $roomType = $_SESSION['room-type'];

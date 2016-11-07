@@ -10,6 +10,7 @@ $(document).ready(function () {
     });
 });
 
+// Calculate room total price
 function calculateTotal() {
     var mealplan = $("#room-meal-plan").val();
     var roomcount = $(':input[type="number"]').val()
@@ -18,6 +19,7 @@ function calculateTotal() {
     $("#room-reserv-payamount-error").hide();
     $("#room-payAmount").css("background-color", "white");
 
+    // Get price for the selected meal paln
     $.ajax({
         type: 'POST',
         url: "./dao/room/get_mealtype_price.php",
@@ -25,7 +27,7 @@ function calculateTotal() {
         success: function (result) {
             var total = result * roomcount;
             $("#room-total").val(total);
-            if (total < 10000) {
+            if (total < 10000) { // If the total is less than Rs.10000, total shoul pay.
                 $("#room-payAmount").val(total);
                 $("#room-payAmount").prop("readonly", true);
             } else {
