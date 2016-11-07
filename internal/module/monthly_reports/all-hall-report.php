@@ -66,3 +66,17 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 <div style="padding-top: 10px; display: inline-block;">
     <a href="all-hall-chart.php?year=<?php echo $year; ?>&month=<?php echo $month; ?>" target="_blank" class="btn btn-success btn-xs">View chart</a>
 </div>
+<?php
+$total = 0;
+$sql2 = "SELECT sum(total) as total FROM reservation r,hall_reservation hr, customer c, hall h "
+            . "WHERE r.reservation_id=hr.reservation_id AND hr.hall_id=h.hall_id "
+            . "AND r.customer_id=c.customer_id AND year(reservation_date)='$year' "
+            . "AND monthname(reservation_date)='$month';";
+$result2 = $connection->query($sql2);
+while ($row2 = $result2->fetch_assoc()) {
+    $total = $row2['total'];
+}
+?>
+<div style="padding-top: 10px; display: inline-block; float: right;">
+    <h4>Total: <?php echo $total; ?></h4>
+</div>

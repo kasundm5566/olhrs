@@ -56,11 +56,19 @@ if ($result) {
                 <td>" . $row['total'] . "</td>
             </tr>";
     }
-} else {
-    
 }
-
 $html .= "</table>";
+$total = 0;
+$sql2 = "SELECT sum(total) AS total FROM reservation r,hall_reservation hr, customer c, hall h"
+        . " WHERE r.reservation_id=hr.reservation_id AND hr.hall_id=h.hall_id"
+        . " AND r.customer_id=c.customer_id AND hr.reservation_date='$date';";
+$result2 = $connection->query($sql2);
+while ($row2 = $result2->fetch_assoc()) {
+    $total = $row2['total'];
+}
+$html.="<div style='text-align:right;margin-right:15px;'>";
+$html.= "<h4>Total (Rs.): ".$total."</h4>";
+$html.="</div>";
 ?>
 
 <?php

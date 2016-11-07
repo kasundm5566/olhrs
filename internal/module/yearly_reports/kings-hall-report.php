@@ -59,3 +59,17 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 <div style="padding-top: 10px;">
     <a href="kings-hall-report-print.php?year=<?php echo $year; ?>&hall=Kings Hall" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
 </div>
+<?php
+$total = 0;
+$sql2 = "SELECT sum(total) AS total FROM reservation r,hall_reservation hr, customer c, hall h "
+        . "WHERE r.reservation_id=hr.reservation_id AND hr.hall_id=h.hall_id AND"
+        . " r.customer_id=c.customer_id AND year(reservation_date)='$year' AND "
+        . "hall_name='Kings Hall';";
+$result2 = $connection->query($sql2);
+while ($row2 = $result2->fetch_assoc()) {
+    $total = $row2['total'];
+}
+?>
+<div style="padding-top: 10px; display: inline-block; float: right;">
+    <h4>Total (Rs.): <?php echo $total; ?></h4>
+</div>

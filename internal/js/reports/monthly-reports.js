@@ -87,7 +87,7 @@ $(document).ready(function () {
     // Action to generate report for single rooms reservations
     $("#single-room-submitMonthly").click(function () {
         $.ajax({
-            url: "all-room-report.php",
+            url: "single-room-report.php",
             type: "POST",
             data: $("#single-room-form").serialize(),
             success: function (data) {

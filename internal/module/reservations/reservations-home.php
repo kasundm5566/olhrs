@@ -61,7 +61,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <div>
                                                     <label>Date:</label>
                                                     <label style="color: red;" class="lbl-errors" id="hall-reserv-date-error"></label>
-                                                    <input type="text" class="form-control" id="hall-date" name="hall-date"
+                                                    <input type="text" class="form-control date-rec1" id="hall-date" name="hall-date"
                                                            placeholder="Select a date" readonly/>
                                                 </div>
                                                 <div class="form-group">

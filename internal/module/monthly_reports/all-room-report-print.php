@@ -20,7 +20,7 @@ $year = $_REQUEST['year'];
 $month = $_REQUEST['month'];
 $room = $_REQUEST['room'];
 
-$html="<style>"
+$html = "<style>"
         . "th,td{border:1px solid #D9D5BE;}"
         . "table{border:1px solid #D9D5BE; margin:10px; width: 100%;}"
         . "</style>";
@@ -39,10 +39,10 @@ $html.="<table>
         <th>Status</th>
     </tr>";
 
-    $sql = "SELECT * FROM reservation r,room_reservation rr, customer c, room_type rt "
-            . "WHERE r.reservation_id=rr.reservation_id AND rr.room_type_id=rt.room_type_id "
-            . "AND r.customer_id=c.customer_id AND year(check_in)='$year' AND "
-            . "monthname(check_in)='$month';";
+$sql = "SELECT * FROM reservation r,room_reservation rr, customer c, room_type rt "
+        . "WHERE r.reservation_id=rr.reservation_id AND rr.room_type_id=rt.room_type_id "
+        . "AND r.customer_id=c.customer_id AND year(check_in)='$year' AND "
+        . "monthname(check_in)='$month';";
 
 $result = $connection->query($sql);
 if ($result) {
@@ -58,11 +58,20 @@ if ($result) {
                 <td>" . $row['reservation_status'] . "</td>
             </tr>";
     }
-} else {
-    
 }
-
 $html .= "</table>";
+$total = 0;
+$sql2 = "SELECT sum(total) AS total FROM reservation r,room_reservation rr, customer c, room_type rt "
+        . "WHERE r.reservation_id=rr.reservation_id AND rr.room_type_id=rt.room_type_id "
+        . "AND r.customer_id=c.customer_id AND year(check_in)='$year' AND "
+        . "monthname(check_in)='$month';";
+$result2 = $connection->query($sql2);
+while ($row2 = $result2->fetch_assoc()) {
+    $total = $row2['total'];
+}
+$html.="<div style='text-align:right;margin-right:15px;'>";
+$html.= "<h4>Total (Rs.): " . $total . "</h4>";
+$html.="</div>";
 ?>
 
 <?php

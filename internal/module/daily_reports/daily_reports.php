@@ -21,6 +21,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
         </script>
         <script type="text/javascript" src="../../js/bootstrap-datepicker.min.js">
         </script>
+        <script type="text/javascript" src="../../js/common.js">
+        </script>
         <script type="text/javascript" src="../../js/datepicker.js">
         </script>
         <script type="text/javascript" src="../../js/reports/daily-reports.js">
@@ -121,6 +123,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
-        </div>        
+        </div>
+        <?php include '../../common/common_modals.php'; ?>
     </body>
 </html>

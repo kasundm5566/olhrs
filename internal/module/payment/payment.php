@@ -74,15 +74,25 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <div>
                                                     <label>Date:</label>
                                                     <label style="color: red;" class="lbl-errors" id="hall-reserv-date-error"></label>
-                                                    <input type="text" class="form-control" id="hall-date" name="hall-date"
+                                                    <input type="text" class="form-control date-rec" id="hall-date" name="hall-date"
                                                            placeholder="Select a date" readonly/>
                                                 </div>
                                                 <div class="form-group" style="margin-top: 10px;">
                                                     <label>Hall:</label>
                                                     <select class="form-control" name="sel-hall" id="sel-hall">
-                                                        <option value="Kings Hall">Kings Hall</option>
-                                                        <option value="Queens Hall A">Queens Hall A</option>
-                                                        <option value="Queens Hall B">Queens Hall B</option>
+                                                        <?php
+                                                        include '../../common/dbconnection.php';
+                                                        $objDBConnection = new dbconnection();
+                                                        $connection = $objDBConnection->connection();
+                                                        $sql = "SELECT hall_name FROM hall;";
+                                                        $result = $connection->query($sql);
+                                                        if ($result) {
+                                                            while ($row = $result->fetch_assoc()) {
+                                                                $hallName = $row['hall_name'];
+                                                                echo "<option value='$hallName'>" . $hallName . "</option>";
+                                                            }
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
@@ -114,22 +124,28 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                                 <div>
                                                     <label>Check in:</label>
                                                     <label style="color: red;" class="lbl-errors" id="room-reserv-intime-error"></label>
-                                                    <input type="text" class="form-control date" id="room-in-date" name="room-in-date"
+                                                    <input type="text" class="form-control date-rec" id="room-in-date" name="room-in-date"
                                                            placeholder="Select a date" readonly/>
                                                 </div>
                                                 <div style="padding-top: 10px;">
                                                     <label>Check out:</label>
                                                     <label style="color: red;" class="lbl-errors" id="room-reserv-outtime-error"></label>
-                                                    <input type="text" class="form-control date" id="room-out-date" name="room-out-date"
+                                                    <input type="text" class="form-control date-rec" id="room-out-date" name="room-out-date"
                                                            placeholder="Select a date" readonly/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Session:</label>
                                                     <select class="form-control" name="sel-room-type" id="sel-room-type">
-                                                        <option value="Single">Single Room</option>
-                                                        <option value="Double">Double Room</option>
-                                                        <option value="Family">Family Room</option>
-                                                        <option value="Cottage">Cottage</option>
+                                                        <?php
+                                                        $sql2 = "SELECT room_type_name FROM room_type;";
+                                                        $result2 = $connection->query($sql2);
+                                                        if ($result2) {
+                                                            while ($row2 = $result2->fetch_assoc()) {
+                                                                $roomType = $row2['room_type_name'];
+                                                                echo "<option value='$roomType'>" . $roomType . "</option>";
+                                                            }
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                                 <div style="padding-top: 15px; float: right;">

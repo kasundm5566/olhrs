@@ -35,10 +35,10 @@ $html.="<table>
         <th>Payment method</th>
     </tr>";
 
-    $sql = "SELECT payment_date,amount,username,type,payment_method_name FROM"
-            . " payment p,reservation r,customer c,payment_method pm WHERE"
-            . " p.payment_date='$date' AND p.reservation_id=r.reservation_id"
-            . " AND r.customer_id=c.customer_id AND p.payment_method_id=pm.payment_method_id;";
+$sql = "SELECT payment_date,amount,username,type,payment_method_name FROM"
+        . " payment p,reservation r,customer c,payment_method pm WHERE"
+        . " p.payment_date='$date' AND p.reservation_id=r.reservation_id"
+        . " AND r.customer_id=c.customer_id AND p.payment_method_id=pm.payment_method_id;";
 
 $result = $connection->query($sql);
 if ($result) {
@@ -52,11 +52,20 @@ if ($result) {
                 <td>" . $row['payment_method_name'] . "</td>
             </tr>";
     }
-} else {
-    
 }
-
 $html .= "</table>";
+$total = 0;
+$sql2 = "SELECT sum(amount) AS total FROM"
+        . " payment p,reservation r,customer c,payment_method pm WHERE"
+        . " p.payment_date='$date' AND p.reservation_id=r.reservation_id"
+        . " AND r.customer_id=c.customer_id AND p.payment_method_id=pm.payment_method_id;";
+$result2 = $connection->query($sql2);
+while ($row2 = $result2->fetch_assoc()) {
+    $total = $row2['total'];
+}
+$html.="<div style='text-align:right;margin-right:15px;'>";
+$html.= "<h4>Total (Rs.): " . $total . "</h4>";
+$html.="</div>";
 ?>
 
 <?php

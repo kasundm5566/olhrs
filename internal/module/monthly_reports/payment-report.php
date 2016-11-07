@@ -57,3 +57,18 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
 <div style="padding-top: 10px; display: inline-block;">
     <a href="payment-report-print.php?year=<?php echo $year; ?>&month=<?php echo $month; ?>" target="_blank" class="btn btn-success btn-xs">Print PDF</a>
 </div>
+<?php
+$total = 0;
+$sql2 = "SELECT sum(amount) AS total"
+        . " FROM payment p,reservation r,customer c,payment_method pm"
+        . " WHERE YEAR(p.payment_date)='$year' AND MONTHNAME(p.payment_date)='$month'"
+        . " AND p.reservation_id=r.reservation_id"
+        . " AND r.customer_id=c.customer_id AND p.payment_method_id=pm.payment_method_id;";
+$result2 = $connection->query($sql2);
+while ($row2 = $result2->fetch_assoc()) {
+    $total = $row2['total'];
+}
+?>
+<div style="padding-top: 10px; display: inline-block; float: right;">
+    <h4>Total (Rs.): <?php echo $total; ?></h4>
+</div>
