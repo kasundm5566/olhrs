@@ -19,6 +19,9 @@ if (!isset($_SESSION)) {
         <link rel="stylesheet" href="../css/styles.css"/>
         <link rel="stylesheet" href="../css/anchorHoverEffect.css"/>
         <link rel="stylesheet" href="../css/bootstrap-datepicker3.css"/>
+        <link rel="stylesheet" href="../css/lightgallery.css"/>
+        <link rel="stylesheet" href="../css/gallery.css"/>
+        <link rel="stylesheet" href="../css/lg-transitions.min.css"/>
         <script src="../js/jquery-1.12.2.min.js"></script>
         <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>  
         <script src="https://www.google.com/recaptcha/api.js"></script>
@@ -33,6 +36,9 @@ if (!isset($_SESSION)) {
         <script src="../js/validations/contactus-validate.js"></script>             
         <script src="../js/common.js"></script>        
         <script src="../js/effects.js"></script>        
+        <script src="../js/lightgallery.min.js"></script>        
+        <script src="../js/lg-thumbnail.min.js"></script>        
+        <script src="../js/lg-fullscreen.min.js"></script>        
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
         <div class="loader-anim"></div>

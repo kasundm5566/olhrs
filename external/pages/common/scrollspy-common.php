@@ -11,7 +11,7 @@
 
 <div id="gallery-section" class="container-fluid dynamic-section">
     <h1>Gallery</h1>
-    <p>sfsdfsdfsd dfs fs sdfsd fssdfssdfsd<br>dfsdf dfs d.</p>
+    <?php include './gallery.php'; ?>
 </div>
 
 <div id="reservation-section" class="container-fluid dynamic-section">
