@@ -11,7 +11,7 @@ $GLOBALS['connection'] = $connection;
 $username = $_POST['login-username'];
 $password = sha1($_POST['login-password']);
 
-$sql = "SELECT * FROM customer WHERE username='$username' AND password='$password';";
+$sql = "SELECT * FROM customer WHERE BINARY username='$username' AND password='$password';";
 $result = $connection->query($sql); //To execute query
 
 $records_count = $result->num_rows; //To count the rows

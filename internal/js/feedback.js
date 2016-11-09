@@ -12,7 +12,6 @@ $(document).ready(function () {
     $('#comboRecCount').change(function () {
         loadDataByPageSize();
     });
-
 });
 
 // Initialize the bootstrap table with data

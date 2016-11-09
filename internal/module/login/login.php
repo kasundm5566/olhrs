@@ -12,7 +12,7 @@ class login {
         $connection = $GLOBALS['connection'];
         
         $sql = "SELECT username,group_name FROM user u,groups g WHERE u.group_id=g.group_id "
-                . "AND u.username='$username' AND password='$password';";
+                . "AND BINARY u.username='$username' AND password='$password';";
         $result = $connection->query($sql); //To execute query
         return $result;
     }

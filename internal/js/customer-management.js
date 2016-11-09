@@ -1,13 +1,13 @@
 var paginationBar;
 var currentPage = 1;
 var recPerPage = 10;
-$(document).ready(function () {
+$(document).ready(function () {    
     initCustomerTable();
     pagination();
 
     $("#btnRefreshCustomers").click(function () {
         refreshCustomerTablePage(currentPage);
-    });
+    });$("#table-customers").bootstrapTable('hideColumn', 'operate');
 
     $('#txtSearchCustomer').keyup(function () {
         autoFillSearch();
@@ -41,7 +41,6 @@ $(document).ready(function () {
             addCustomer();
         });
     });
-
 });
 
 // Initialize the bootstrap table with data
