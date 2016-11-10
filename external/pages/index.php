@@ -54,5 +54,46 @@ if (!isset($_SESSION)) {
         <div id="site-footer">
             <?php include './common/footer.php'; ?>
         </div>
+
+        <!-- Forgot username modal -->
+        <div class="modal fade" id="modal-forgotpass">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" action="./operations/forgot-password.php" method="post" onsubmit="return validateForgotPassForm();">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Forgot Password</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <label>Username</label>
+                                </div>
+
+                                <div class="col-sm-10">
+                                    <label class="lbl-signup-errors" id="lbl-username-error"></label>
+                                    <input type="text" class="form-control" name="forgotpass-username" id="forgotpass-username" placeholder="Enter username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <label class="lbl-signup-errors" id="lbl-email-error"></label>
+                                    <input type="text" class="form-control" name="forgotpass-email" id="forgotpass-email" placeholder="Enter email used to register">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-default" data-dismiss="modal">Close</a>
+                            <button type="submit" class="btn btn-primary" id="btn-submit-forgotpass">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     </body>
 </html>

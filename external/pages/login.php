@@ -14,7 +14,7 @@
                 <input class="form-control" placeholder="Enter password" type="password" name="login-password">
             </div>
             <div style="text-align: right;">
-                <a id="anchor-forgotpass" href="">Forgot password</a>
+                <a id="anchor-forgotpass">Forgot password</a>
                 <input type="submit" class="btn btn-success" id="btn-loginsubmit" value="Login">
             </div>
             <div style="margin-bottom: 20px;"></div>

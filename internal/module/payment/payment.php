@@ -175,6 +175,27 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                             </div>
                             <div class="panel-body">
                                 <div class="container" style="min-width: 800px;">
+                                    <div class="input-group pull-right" style="margin-bottom: 5px;">
+                                        <div class="input-group">
+                                            <select class="form-control" id="sel-search-payment" style="height: 33px; font-size:12px;">
+                                                <option value="select-year" selected="true">Select year</option>
+                                                <?php
+                                                $currentYear = date("Y") + 2;
+                                                for ($i = 0; $i <= 4; $i++) {
+                                                    ?>
+                                                    <option value="<?php echo $currentYear - $i; ?>">
+                                                        <?php echo $currentYear - $i; ?>
+                                                    </option>
+                                                <?php }
+                                                ?>
+                                            </select>
+
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default" id="btnSearchPayments" type="submit"><i class="glyphicon glyphicon-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div><table id="table-payments"></table></div>
                                     <div class="input-group pull-right" style="margin-top:21px; margin-left:5px;">
                                         <label class="pagiTexts" style="display: inline;">Go to page: </label>
@@ -191,6 +212,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                                         </select>
                                     </div>
                                     <div id="pagination" class="text-right"></div>
+                                    <div id="pagination2" class="text-right"></div>
                                 </div>
                             </div>
                         </div>

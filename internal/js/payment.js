@@ -13,6 +13,10 @@ $(document).ready(function () {
         loadDataByPageSize();
     });
 
+    $("#btnSearchPayments").click(function () {
+        search();
+    });
+
 });
 
 // Initialize the bootstrap table with data
@@ -28,7 +32,6 @@ function initPaymentsTable() {
                 pageSize: recPerPage,
                 data: data,
                 singleSelect: true,
-                showToggle:true,
                 columns: [{
                         field: 'payment_date',
                         title: 'Payment date',
@@ -103,6 +106,9 @@ function pagination() {
         url: "../../dao/payments/get_payments_count.php",
         success: function (result) {
             var pageCount = Math.ceil(result / recPerPage);
+            if (pageCount == 0) {
+                pageCount = 1;
+            }
             paginationBar.simplePaginator('setTotalPages', pageCount);
             loadPageSelect(pageCount);
         },
@@ -157,8 +163,84 @@ function loadDataByPageSize() {
         url: "../../dao/payments/get_payments_count.php",
         success: function (result) {
             var totalPages = Math.ceil(result / recPerPage);
+            if (pageCount == 0) {
+                pageCount = 1;
+            }
             paginationBar.simplePaginator('setTotalPages', totalPages);
             loadPageSelect(totalPages);
         }
     });
+}
+
+// Search payments
+function search() {
+    var searchYear = $('#sel-search-payment').val();
+    if (searchYear === "select-year") {
+        $('#pagination2').hide();
+        $('#pagination').show();
+        $('#comboPages').show();
+        $('#comboRecCount').show();
+        $('.pagiTexts').show();
+
+        $.ajax({
+            type: "GET",
+            url: "../../dao/payments/get_payments.php",
+            dataType: "json",
+            data: {"page": 1, "recordsCount": recPerPage},
+            success: function (result) {
+                $('#table-payments').bootstrapTable('load', result);
+                paginationBar.simplePaginator('changePage', 1);
+            }
+        });
+    } else {
+        $('#pagination').hide();
+        $('#pagination2').show();
+        $('#comboPages').hide();
+        $('#comboRecCount').hide();
+        $('.pagiTexts').hide();
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "../../dao/payments/search_payments.php",
+            data: {"searchYear": searchYear, "page": 1},
+            success: function (result) {
+                $('#table-payments').bootstrapTable('load', result);
+            }
+        });
+
+        $.ajax({
+            type: "get",
+            url: "../../dao/payments/pagination_search.php",
+            data: {"searchYear": searchYear},
+            success: function (result) {
+                var pageCount = Math.ceil(result / recPerPage);
+                if (pageCount == 0) {
+                    pageCount = 1;
+                }
+                $('#pagination2').simplePaginator('setTotalPages', pageCount);
+            }
+        });
+
+        paginationBar2 = $('#pagination2').simplePaginator({
+            totalPages: 1,
+            maxButtonsVisible: 5,
+            currentPage: 1,
+            nextLabel: 'Next',
+            prevLabel: 'Prev',
+            firstLabel: 'First',
+            lastLabel: 'Last',
+            pageChange: function (page) {
+                $.ajax({
+                    type: "GET",
+                    url: "../../dao/payments/search_payments.php",
+                    dataType: "json",
+                    data: {"searchYear": searchYear, "page": page},
+                    success: function (result) {
+                        $('#table-payments').bootstrapTable('load', result);
+                    }
+                });
+            }
+        });
+    }
 }

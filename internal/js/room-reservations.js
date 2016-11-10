@@ -13,6 +13,10 @@ $(document).ready(function () {
         loadDataByPageSize();
     });
 
+    $("#btnSearchReservs").click(function () {
+        search();
+    });
+
 });
 
 // Initialize the bootstrap table with data
@@ -28,7 +32,6 @@ function initRoomReservTable() {
                 pageSize: recPerPage,
                 data: data,
                 singleSelect: true,
-                showToggle: true,
                 columns: [{
                         field: 'room_type_name',
                         title: 'Room type',
@@ -47,7 +50,7 @@ function initRoomReservTable() {
                         align: 'left',
                         valign: 'bottom',
                         sortable: true
-                    },{
+                    }, {
                         field: 'check_out',
                         title: 'Check out',
                         align: 'left',
@@ -115,6 +118,9 @@ function pagination() {
         url: "../../dao/room_reservations/get_reservations_count.php",
         success: function (result) {
             var pageCount = Math.ceil(result / recPerPage);
+            if (pageCount == 0) {
+                pageCount = 1;
+            }
             paginationBar.simplePaginator('setTotalPages', pageCount);
             loadPageSelect(pageCount);
         },
@@ -173,4 +179,77 @@ function loadDataByPageSize() {
             loadPageSelect(totalPages);
         }
     });
+}
+
+// Search reservations
+function search() {
+    var searchYear = $('#sel-search-reserv').val();
+    if (searchYear === "select-year") {
+        $('#pagination2').hide();
+        $('#pagination').show();
+        $('#comboPages').show();
+        $('#comboRecCount').show();
+        $('.pagiTexts').show();
+
+        $.ajax({
+            type: "GET",
+            url: "../../dao/room_reservations/get_room_reservations.php",
+            dataType: "json",
+            data: {"page": 1, "recordsCount": recPerPage},
+            success: function (result) {
+                $('#table-room-reservations').bootstrapTable('load', result);
+                paginationBar.simplePaginator('changePage', 1);
+            }
+        });
+    } else {
+        $('#pagination').hide();
+        $('#pagination2').show();
+        $('#comboPages').hide();
+        $('#comboRecCount').hide();
+        $('.pagiTexts').hide();
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "../../dao/room_reservations/search_room_reservations.php",
+            data: {"searchYear": searchYear, "page": 1},
+            success: function (result) {
+                $('#table-room-reservations').bootstrapTable('load', result);
+            }
+        });
+
+        $.ajax({
+            type: "get",
+            url: "../../dao/room_reservations/pagination_search.php",
+            data: {"searchYear": searchYear},
+            success: function (result) {
+                var pageCount = Math.ceil(result / recPerPage);
+                if (pageCount == 0) {
+                    pageCount = 1;
+                }
+                $('#pagination2').simplePaginator('setTotalPages', pageCount);
+            }
+        });
+
+        paginationBar2 = $('#pagination2').simplePaginator({
+            totalPages: 1,
+            maxButtonsVisible: 5,
+            currentPage: 1,
+            nextLabel: 'Next',
+            prevLabel: 'Prev',
+            firstLabel: 'First',
+            lastLabel: 'Last',
+            pageChange: function (page) {
+                $.ajax({
+                    type: "GET",
+                    url: "../../dao/room_reservations/search_room_reservations.php",
+                    dataType: "json",
+                    data: {"searchYear": searchYear, "page": page},
+                    success: function (result) {
+                        $('#table-room-reservations').bootstrapTable('load', result);
+                    }
+                });
+            }
+        });
+    }
 }

@@ -1,13 +1,13 @@
 var paginationBar;
 var currentPage = 1;
 var recPerPage = 10;
-$(document).ready(function () {    
+$(document).ready(function () {
     initCustomerTable();
     pagination();
 
     $("#btnRefreshCustomers").click(function () {
         refreshCustomerTablePage(currentPage);
-    });$("#table-customers").bootstrapTable('hideColumn', 'operate');
+    });
 
     $('#txtSearchCustomer').keyup(function () {
         autoFillSearch();
@@ -190,12 +190,12 @@ function initCustomerTable() {
             $("#lbFname").text("");
             $("#lbFname").text("First name: " + obj["first_name"]);
             $("#lbLname").text("");
-            if(obj["last_name"]==null){
+            if (obj["last_name"] == null) {
                 $("#lbLname").text("Last name: -");
-            }else{
+            } else {
                 $("#lbLname").text("Last name: " + obj["last_name"]);
             }
-            
+
             $("#lbUsrname").text("");
             $("#lbUsrname").text("Username: " + username);
             $("#lbEmail").text("");
@@ -270,6 +270,9 @@ function pagination() {
         url: "../../dao/customer_management/get_customers_count.php",
         success: function (result) {
             var pageCount = Math.ceil(result / recPerPage);
+            if (pageCount == 0) {
+                pageCount = 1;
+            }
             paginationBar.simplePaginator('setTotalPages', pageCount);
             loadPageSelect(pageCount);
         },
@@ -340,6 +343,9 @@ function search() {
             data: {"searchName": searchName},
             success: function (result) {
                 var pageCount = Math.ceil(result / recPerPage);
+                if (pageCount == 0) {
+                    pageCount = 1;
+                }
                 $('#pagination2').simplePaginator('setTotalPages', pageCount);
             }
         });
@@ -411,6 +417,9 @@ function loadDataByPageSize() {
         url: "../../dao/customer_management/get_customers_count.php",
         success: function (result) {
             var totalPages = Math.ceil(result / recPerPage);
+            if (pageCount == 0) {
+                pageCount = 1;
+            }
             paginationBar.simplePaginator('setTotalPages', totalPages);
             loadPageSelect(totalPages);
         }

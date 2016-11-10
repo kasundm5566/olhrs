@@ -101,5 +101,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
         </div>
+        <script>
+        $("#table-customers").bootstrapTable('destroy');
+        </script>
     </body>
 </html>
