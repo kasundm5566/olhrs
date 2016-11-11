@@ -54,6 +54,7 @@ $GLOBALS['connection'] = $connection;
                 <table class="table table-bordered table-condensed" style="width: 80%;">
                     <thead>
                         <tr>
+                            <th style="display: none;">Type</th>
                             <th>Hall</th>
                             <th>Session</th>
                             <th>Reservation date</th>                       
@@ -67,6 +68,7 @@ $GLOBALS['connection'] = $connection;
                         <?php while ($row = $result->fetch_assoc()) { ?>
 
                             <tr>
+                                <td class="res-type" style="display: none;">Hall</td>
                                 <td><?php echo $row['hall_name']; ?></td>
                                 <td><?php echo $row['time']; ?></td>
                                 <td><?php echo $row['reservation_date']; ?></td>                            
@@ -107,6 +109,7 @@ $GLOBALS['connection'] = $connection;
                 <table class="table table-bordered table-condensed" style="width: 80%;">
                     <thead>
                         <tr>
+                            <th style="display: none;">Type</th>
                             <th>Room</th>                     
                             <th>Meal plan</th>                     
                             <th>Check in</th>
@@ -120,6 +123,7 @@ $GLOBALS['connection'] = $connection;
                         <?php while ($row2 = $result2->fetch_assoc()) { ?>
 
                             <tr>
+                                <td class="res-type" style="display: none;">Room</td>
                                 <td><?php echo $row2['room_type_name']; ?></td>
                                 <td><?php echo $row2['meal_plan_name']; ?></td>
                                 <td><?php echo $row2['check_in']; ?></td>                            

@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <h4 class="title">Rooms</h4>
         <hr>
-        <div id="roomgallery">
+        <div id="roomgallery" class="box-A magic-display magic-left">
             <a href="../images/gallery/room/01.jpg">
                 <img class="thumbs" src="../images/gallery/room/01.jpg"/>
             </a>
@@ -30,7 +30,7 @@
     <div class="col-md-6">
         <h4 class="title">Halls</h4>
         <hr>
-        <div id="hallgallery">
+        <div id="hallgallery" class="box-A magic-display magic-right">
             <a href="../images/gallery/hall/01.jpg">
                 <img class="thumbs" src="../images/gallery/hall/01.jpg"/>
             </a>
@@ -55,8 +55,6 @@
         </div>
     </div>
 </div>
-
-
 
 <script type="text/javascript">
     $(document).ready(function () {

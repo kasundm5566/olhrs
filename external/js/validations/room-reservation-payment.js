@@ -7,8 +7,8 @@ $(document).ready(function () {
 
 // Validate the amount going to pay
 function validatePaymentAmount() {
-    var amount = $("#room-payAmount").val();
-    var total = $("#room-total").val();
+    var amount = parseInt($("#room-payAmount").val());
+    var total = parseInt($("#room-total").val());
     if (total > 10000) {
         var min = total * 30 / 100; // Minimum of 30% should pay
         if (amount < min) {

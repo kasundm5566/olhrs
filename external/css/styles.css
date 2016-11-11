@@ -76,3 +76,7 @@ textarea{
 #div-rightPane{
     height: 500px;
 }
+
+.magic-display {
+    opacity: 0;
+}

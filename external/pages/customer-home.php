@@ -19,6 +19,9 @@ if ($_SESSION['username'] == "") {
         <link rel="stylesheet" href="../css/styles.css"/>
         <link rel="stylesheet" href="../css/anchorHoverEffect.css"/>
         <link rel="stylesheet" href="../css/bootstrap-datepicker3.css"/>
+        <link rel="stylesheet" href="../css/lightgallery.css"/>
+        <link rel="stylesheet" href="../css/gallery.css"/>
+        <link rel="stylesheet" href="../css/lg-transitions.min.css"/>
         <script src="../js/jquery-1.12.2.min.js"></script>
         <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>  
         <script src="https://www.google.com/recaptcha/api.js"></script>
@@ -30,7 +33,11 @@ if ($_SESSION['username'] == "") {
         <script src="../js/jquery.easing.1.3.min.js"></script>
         <script src="../js/anchorHoverEffect.js"></script>
         <script src="../js/validations/contactus-validate.js"></script>        
-        <script src="../js/effects.js"></script>        
+        <script src="../js/effects.js"></script>
+        <script src="../js/lightgallery.min.js"></script>
+        <script src="../js/lg-thumbnail.min.js"></script>
+        <script src="../js/lg-fullscreen.min.js"></script>
+        <script src="../js/jquery.magic.display.min.js"></script>   
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
         <div class="loader-anim"></div>

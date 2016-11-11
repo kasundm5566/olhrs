@@ -8,18 +8,22 @@ $(document).ready(function () {
         }
     });
 
+    $('.btn-payment-history').off('click');
     $(".btn-payment-history").click(function () {
         var res_id = $(this).closest("tr").find("td.res-id").text();
         var total = $(this).closest("tr").find("td.res-total").text();
-        
+        var type = $(this).closest("tr").find("td.res-type").text();
+
         // Load payment history details in tabular format to the modal body
-        $('.payment-modal-body').load('./dao/payment/get-payment-history.php?res=' + res_id + '&total=' + total, function (result) {
+        $('.payment-modal-body').load('./dao/payment/get-payment-history.php?res=' + res_id + '&total=' + total + "&type=" + type, function (result) {
             $("#btn-modal-makePayment").hide();
 
             $('#modal-payment-history-popup').modal({show: true});
             if ($("#due-amount-hdn").val() > 0) {
                 $("#btn-modal-makePayment").show();
                 $("#make-payment-div").hide();
+
+                $('#btn-modal-makePayment').off('click');
                 $("#btn-modal-makePayment").click(function () {
                     $("#make-payment-div").show();
                 });

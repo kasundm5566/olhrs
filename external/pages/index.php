@@ -39,6 +39,7 @@ if (!isset($_SESSION)) {
         <script src="../js/lightgallery.min.js"></script>        
         <script src="../js/lg-thumbnail.min.js"></script>        
         <script src="../js/lg-fullscreen.min.js"></script>        
+        <script src="../js/jquery.magic.display.min.js"></script>        
     </head>
     <body data-spy="scroll" data-target=".navbar" data-offset="50">
         <div class="loader-anim"></div>

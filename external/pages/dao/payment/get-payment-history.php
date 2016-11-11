@@ -6,7 +6,9 @@ $connection = $objDBConnection->connection();
 
 $res_id = $_GET['res'];
 $total = $_GET['total'];
+$type = $_GET['type'];
 $paid_amout = 0;
+$res_idEnc= base64_encode($res_id);
 
 $sql = "SELECT * FROM payment p,payment_method pm WHERE p.payment_method_id=pm.payment_method_id"
         . " AND reservation_id=$res_id;";
@@ -29,13 +31,13 @@ if ($result) {
     $table.="<lable id='lbl-due-amount' style='float:right;'>Payment due amount: " . $due_amount . "</lable>";
 
     $table.="<div id='make-payment-div'>";
-    $table.="<form method='post' action='' onsubmit='return validateMakePaymentAmount();'>";
+    $table.="<form method='post' action='./make-payment.php?res=$res_idEnc&type=$type' target='_blank' onsubmit='return validateMakePaymentAmount();'>";
 
     $table.="<lable>Amount:</lable>";
     $table.="<label class='lbl-errors' id='make-payment-error'></label>";
     $table.="<div>";
     $table.="<input type='text' name='make-payment-amount' id='make-payment-amount'/>";
-    $table.="<input class='btn btn-primary btn-xs' style='width:70px; margin-left:10px;' type='submit' value='Pay'>";
+    $table.="<input class='btn btn-primary btn-xs' id='btn-makepayment-submit' style='width:70px; margin-left:10px;' type='submit' value='Pay'>";
     $table.="</div>";
     $table.="</form>";
     $table.="</div>";

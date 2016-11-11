@@ -23,3 +23,7 @@
     <h1>Contact us</h1>
     <?php include './contact.php'; ?>
 </div>
+
+<script>
+    $('.magic-display').magicDisplay();
+</script>
