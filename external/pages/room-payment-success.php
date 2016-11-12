@@ -82,7 +82,8 @@ $GLOBALS['connection'] = $connection;
 
                         <div class="col-md-8" id="div-rightPane">                      
                             <div style="text-align: center;">
-                                <div style="margin-top: 50px;">
+                                <img src="../images/icons/success-icon.png" width="150px" height="150px"/>
+                                <div style="margin-top: 30px;">
                                     <h3>Payment success</h3>
                                     <h1>Thank you!</h1>
                                 </div>
@@ -107,13 +108,14 @@ $GLOBALS['connection'] = $connection;
                 <div style="margin-top: 80px;">
                     <div class="row">
 
-                        <div class="col-md-2" id="div-leftPane">
+                        <div class="col-md-2">
 
                         </div>
 
                         <div class="col-md-8" id="div-rightPane">                      
                             <div style="text-align: center;">
-                                <div style="margin-top: 50px;">
+                                <img src="../images/icons/error.png" width="150px" height="150px"/>
+                                <div style="margin-top: 30px;">
                                     <h3>Payment failed</h3>
                                 </div>
                                 <div style="margin-top: 30px;">                
@@ -132,7 +134,6 @@ $GLOBALS['connection'] = $connection;
             <?php
         }
         ?>
-
 
         <div id="site-footer">
             <?php include './common/footer.php'; ?>

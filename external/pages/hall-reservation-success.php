@@ -57,61 +57,98 @@ $GLOBALS['connection'] = $connection;
         if (($total + 0) == $advance_payment) {
             $status = "Completed";
         }
-        
+
 
         $reservationSql = "INSERT INTO reservation"
                 . " (placed_date,reservation_status,type,total,customer_id) VALUES"
                 . " (CURDATE(),'$status','Hall',$total,'$cust_id');";
-        $connection->query($reservationSql);
+        $res1 = $connection->query($reservationSql);
         $added_resId = $connection->insert_id;
 
         $hallReservationSql = "INSERT INTO hall_reservation"
                 . " (reservation_id,hall_id,time,reservation_date,pax) VALUES"
                 . " ('$added_resId',(SELECT hall_id FROM hall WHERE hall_name='$hall_name'),"
                 . "'$time','$reserv_date','$pax');";
-        $connection->query($hallReservationSql);
+        $res2 = $connection->query($hallReservationSql);
 
         $paymentSql = "INSERT INTO payment"
                 . " (amount,payment_date,reservation_id,payment_method_id) VALUES"
                 . " ('$advance_payment',CURDATE(),'$added_resId',"
                 . "(SELECT payment_method_id FROM payment_method WHERE payment_method_name='Online'));";
-        $connection->query($paymentSql);
+        $res3 = $connection->query($paymentSql);
         ?>
 
-        <div> 
-            <div style="margin-top: 80px;">
-                <div class="row">
+        <?php
+        if ($res1 && $res2 && $res3) {
+            ?>
+            <div> 
+                <div style="margin-top: 80px;">
+                    <div class="row">
 
-                    <div class="col-md-3" id="div-leftPane">
-                        <?php include './common/sidebar-hall-reservation.php'; ?>
-                    </div>
-
-                    <div class="col-md-8" id="div-rightPane">
-                        <ul class="progress-indicator">
-                            <li class="completed"><span class="bubble"></span> Check Availability</li>
-                            <li class="completed"><span class="bubble"></span> Select Hall</li>
-                            <li class="completed"><span class="bubble"></span> Payment</li>
-                            <li class="completed"><span class="bubble"></span> Success</li>
-                        </ul>                        
-                        <div style="text-align: center;">
-                            <div style="margin-top: 50px;">
-                                <h3>Reservation success</h3>
-                                <h1>Thank you!</h1>
-                            </div>
-                            <div style="margin-top: 30px;">                
-                                <h4>Your reservation confirmed successfully...</h4>
-                                <h5>You may print the summary of reservation for future reference.<br>
-                                    Click the button below to print the receipt.</h5>
-                            </div>
-                            <div>
-                                <a id="anchor-backtohome" href="customer-home.php">Back to homepage</a>
-                                <a class="btn btn-success btn-sm" href="./operations/print-hall-receipt.php">Print receipt</a>
-                            </div>
+                        <div class="col-md-3" id="div-leftPane">
+                            <?php include './common/sidebar-hall-reservation.php'; ?>
                         </div>
-                    </div>                    
+
+                        <div class="col-md-8" id="div-rightPane">
+                            <ul class="progress-indicator">
+                                <li class="completed"><span class="bubble"></span> Check Availability</li>
+                                <li class="completed"><span class="bubble"></span> Select Hall</li>
+                                <li class="completed"><span class="bubble"></span> Payment</li>
+                                <li class="completed"><span class="bubble"></span> Success</li>
+                            </ul>                        
+                            <div style="text-align: center;">
+                                <img src="../images/icons/success-icon.png" width="150px" height="150px"/>
+                                <div style="margin-top: 30px;">
+                                    <h3>Reservation success.</h3>
+                                    <h1>Thank you!</h1>
+                                </div>
+                                <div style="margin-top: 30px;">                
+                                    <h4>Your reservation confirmed successfully...</h4>
+                                    <h5>You may print the summary of reservation for future reference.<br>
+                                        Click the button below to print the receipt.</h5>
+                                </div>
+                                <div>
+                                    <a id="anchor-backtohome" href="customer-home.php">Back to homepage</a>
+                                    <a class="btn btn-success btn-sm" href="./operations/print-hall-receipt.php">Print receipt</a>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
                 </div>
             </div>
-        </div>
+            <?php
+        } else {
+            ?>
+            <div> 
+                <div style="margin-top: 80px;">
+                    <div class="row">
+
+                        <div class="col-md-2">
+
+                        </div>
+
+                        <div class="col-md-8" id="div-rightPane">                            
+                            <div style="text-align: center;margin-top: 10px;">
+                                <img src="../images/icons/error.png" width="150px" height="150px"/>
+                                <div style="margin-top: 30px;">
+                                    <h3>Making reservation failed</h3>
+                                </div>
+                                <div style="margin-top: 30px;">                
+                                    <h4>Error processing the hall reservation.</h4>
+                                    <h5>Something went wrong whilte processing thr payment.<br>
+                                        Please try again later.</h5>
+                                </div>
+                                <div>
+                                    <a id="anchor-backtohome" href="customer-home.php">Back to homepage</a>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
         <div id="site-footer">
             <?php include './common/footer.php'; ?>
         </div>

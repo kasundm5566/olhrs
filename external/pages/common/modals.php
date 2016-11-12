@@ -113,12 +113,27 @@
                 <div style="text-align:center">
                     <form>
                         <lable>Code:</lable>
-                        <input type="text">
-                        <div style="margin-left:40px; margin-top:5px;">
-                            <button class="btn btn-primary btn-sm">Resend code</button>
-                            <button class="btn btn-success btn-sm">Verify</button>
+                        <input type="text" id="regd-code">
+                        <div style="margin-left:40px; margin-top:5px;margin-bottom: 10px;">
+                            <button class="btn btn-primary btn-sm" id="btn-regResend">Resend code</button>
+                            <button class="btn btn-success btn-sm" id="btn-regVerify">Verify</button>
                         </div>
                     </form>
+                </div>
+                <div id="veri-success" class="alert alert-success" style="font-size: 15px;">
+                    <strong>Success!</strong> Account verified... <strong><a href="index.php#login-section">Click here to login.</a></strong>
+                </div>
+
+                <div id="resend-success" class="alert alert-success" style="font-size: 15px;">
+                    <strong>Success!</strong> New code sent to your email.
+                </div>
+
+                <div id="veri-failed" class="alert alert-danger" style="font-size: 15px;">
+                    <strong>Failed!</strong> Incorrect verification code...
+                </div>
+
+                <div id="resend-failed" class="alert alert-danger" style="font-size: 15px;">
+                    <strong>Failed!</strong> Error sending new verification code...
                 </div>
             </div>
             <div class="modal-footer">

@@ -2,9 +2,7 @@ var background_color = "#fde99c";
 
 // Validate the amount when making a payment using the payment history modal
 function validateMakePaymentAmount() {
-    alert($("#due-amount-hdn").val());
     var inputVal = $("#make-payment-amount").val();
-    alert(inputVal);
     var telReg = /^[^0]\d+$/;
     if (!telReg.test(inputVal)) {
         $("#make-payment-amount").css("background-color", background_color);

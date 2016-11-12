@@ -88,7 +88,7 @@ $GLOBALS['connection'] = $connection;
             </div>
             <?php
         } else {
-            echo "No hall reservations available.";
+            echo "<h5 style='padding-left:15px;'>No hall reservations available.</h5>";
         }
         ?>
 
@@ -143,7 +143,7 @@ $GLOBALS['connection'] = $connection;
             </div>
             <?php
         } else {
-            echo "No hall reservations available.";
+            echo "<h5 style='padding-left:15px;'>No room reservations available.</h5>";
         }
         ?>
 

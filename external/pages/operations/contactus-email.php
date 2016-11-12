@@ -12,13 +12,14 @@ $mail = new PHPMailer();
 $mail->isSMTP();                            // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                     // Enable SMTP authentication
-$mail->Username = 'kasundinesh5566@gmail.com';          // SMTP username
-$mail->Password = 'MyPass'; // SMTP password
+$mail->Username = 'sandboxtest23@gmail.com';          // SMTP username
+$mail->Password = 'testAccount123'; // SMTP password
 $mail->SMTPSecure = 'ssl';                  // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 465;                          // TCP port to connect to
 
-$mail->setFrom('kasundinesh5566@gmail.com');
+$mail->setFrom('sandboxtest23@gmail.com');
 $mail->addAddress($senderEmail);   // Add a recipient
+$mail->AddBCC('sandboxtest23@gmail.com');
 
 $mail->isHTML(true);  // Set email format to HTML
 

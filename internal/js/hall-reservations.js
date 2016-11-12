@@ -51,6 +51,18 @@ function initHallReservTable() {
                         valign: 'bottom',
                         sortable: true
                     }, {
+                        field: 'time',
+                        title: 'Session',
+                        align: 'right',
+                        valign: 'bottom',
+                        sortable: true
+                    }, {
+                        field: 'pax',
+                        title: 'Pax',
+                        align: 'right',
+                        valign: 'bottom',
+                        sortable: true
+                    }, {
                         field: 'username',
                         title: 'Username',
                         align: 'left',
@@ -67,14 +79,65 @@ function initHallReservTable() {
                         title: 'Total',
                         align: 'right',
                         valign: 'bottom'
+                    }, {
+                        field: 'operate',
+                        title: 'Operations',
+                        align: 'center',
+                        valign: 'middle',
+                        formatter: operateFormatter,
+                        events: operateEvents
                     }]
             });
+            if ($("#lbl-user-group").text() == "Admin") {
+                $('#table-hall-reservations').bootstrapTable('hideColumn', 'operate');
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             $("#modal-commonError").modal('show');
             $("#common-error-msg").text("Error loading data. Message: " + errorThrown);
         }
     });
+    function operateFormatter(value, row, index) {
+        return [
+            '<center>',
+            '<a class="cancel" href="javascript:void(0)" title="Cancel">',
+            '<i class="glyphicon glyphicon-edit"></i>Cancel',
+            '</a>&nbsp;&nbsp;'
+        ].join('');
+    }
+
+    window.operateEvents = {
+        'click .cancel': function (e, value, row, index) {
+            var js = JSON.stringify(row);
+            var obj = JSON.parse(js);
+            $("#modal-cancelHallConfirm").modal('show');
+            $('#hallCancelOk').off('click');
+            $("#hallCancelOk").click(function () {
+                $.ajax({
+                    url: "../../dao/hall_reservations/cancel_reservation.php",
+                    type: "POST",
+                    data: {
+                        "res_date": obj['reservation_date'],
+                        "hall_name": obj['hall_name'],
+                        "time": obj['time']
+                    },
+                    success: function (data) {
+                        if (data != 0) {
+                            $("#modal-cancelHallConfirm").modal('hide');
+                            $("#modal-cancelSuccess").modal('show');
+                        } else {
+                            $("#modal-cancelHallConfirm").modal('hide');
+                            $("#modal-commonError").modal('show');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $("#modal-commonError").modal('show');
+                        $("#common-error-msg").text("Error refreshing table. Message: " + errorThrown);
+                    }
+                });
+            });
+        }
+    };
 }
 
 // Define the pagination bar

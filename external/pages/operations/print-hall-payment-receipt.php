@@ -14,7 +14,7 @@ $printedDate = date('Y-m-d H:i:s', time());
 
 <?php
 
-//$html = "<img src='../../images/icons/logo.png'><br><br>";
+$html = "<img src='../../images/icons/logo.png'><br><br>";
 $html.="<h2 align='center'>Room Reservation Receipt</h2>";
 $html.="<h4 align='center'>Aqua Pearl Lake Resort-Moratuwa</h4>";
 $html.="<hr>";

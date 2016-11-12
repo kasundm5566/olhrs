@@ -41,19 +41,25 @@ function initRoomReservTable() {
                     }, {
                         field: 'placed_date',
                         title: 'Placed date',
-                        align: 'left',
+                        align: 'right',
                         valign: 'bottom',
                         sortable: true
                     }, {
                         field: 'check_in',
                         title: 'Check in',
-                        align: 'left',
+                        align: 'right',
                         valign: 'bottom',
                         sortable: true
                     }, {
                         field: 'check_out',
                         title: 'Check out',
-                        align: 'left',
+                        align: 'right',
+                        valign: 'bottom',
+                        sortable: true
+                    }, {
+                        field: 'count',
+                        title: 'Room count',
+                        align: 'right',
                         valign: 'bottom',
                         sortable: true
                     }, {
@@ -63,24 +69,72 @@ function initRoomReservTable() {
                         valign: 'bottom',
                         sortable: true
                     }, {
-                        field: 'reservation_status',
-                        title: 'Reservation status',
-                        align: 'left',
-                        valign: 'bottom',
-                        sortable: true
-                    }, {
                         field: 'total',
                         title: 'Total',
                         align: 'right',
                         valign: 'bottom'
+                    }, {
+                        field: 'operate',
+                        title: 'Operations',
+                        align: 'center',
+                        valign: 'middle',
+                        formatter: operateFormatter,
+                        events: operateEvents
                     }]
             });
+            if ($("#lbl-user-group").text() == "Admin") {
+                $('#table-room-reservations').bootstrapTable('hideColumn', 'operate');
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             $("#modal-commonError").modal('show');
             $("#common-error-msg").text("Error loading data. Message: " + errorThrown);
         }
     });
+    function operateFormatter(value, row, index) {
+        return [
+            '<center>',
+            '<a class="cancel" href="javascript:void(0)" title="Cancel">',
+            '<i class="glyphicon glyphicon-edit"></i>Cancel',
+            '</a>&nbsp;&nbsp;'
+        ].join('');
+    }
+
+    window.operateEvents = {
+        'click .cancel': function (e, value, row, index) {
+            var js = JSON.stringify(row);
+            var obj = JSON.parse(js);
+            $("#modal-cancelRoomConfirm").modal('show');
+            $('#roomCancelOk').off('click');
+            $("#roomCancelOk").click(function () {
+                $.ajax({
+                    url: "../../dao/room_reservations/cancel_reservation.php",
+                    type: "POST",
+                    data: {
+                        "check_in": obj['check_in'],
+                        "check_out": obj['check_out'],
+                        "room_type_name": obj['room_type_name'],
+                        "placed_date": obj['placed_date'],
+                        "username": obj['username'],
+                        "count": obj['count']
+                    },
+                    success: function (data) {
+                        if (data != 0) {
+                            $("#modal-cancelRoomConfirm").modal('hide');
+                            $("#modal-cancelSuccess").modal('show');
+                        } else {
+                            $("#modal-cancelRoomConfirm").modal('hide');
+                            $("#modal-commonError").modal('show');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $("#modal-commonError").modal('show');
+                        $("#common-error-msg").text("Error refreshing table. Message: " + errorThrown);
+                    }
+                });
+            });
+        }
+    };
 }
 
 // Define the pagination bar

@@ -244,7 +244,7 @@ function validateCustomerUserName(field, error_field) {
 function validateStaffUserName(field, error_field) {
     $(error_field).css("color", "red");
     var userName = $(field).val();
-    var unameRegex = /^[a-zA-Z0-9_]+$/;
+    var unameRegex = /^[a-zA-Z0-9_]+$/;    
     if (userName.length == 0) {
         $(error_field).show();
         $(field).css("background-color", background_color);

@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 function setHallDatePicker() {
     var date = new Date();
-    date.setDate(date.getDate() + 10);
+    date.setDate(date.getDate() + 5);
     var date_input = $('input[name="hall-date"]'); //our date input has the name "hall-date"
     var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
     var options = {

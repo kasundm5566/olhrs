@@ -2,7 +2,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
+if ($_SESSION['username'] == "" || $_SESSION['group'] == "Receptionist") {
     header("Location:../login/index.php");
     exit;
 }
@@ -100,6 +100,7 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
         </div> 
 
         <?php include '../../common/common_modals.php'; ?>
+        <?php include './modal.php'; ?>
         <div id="footer">
             <?php include '../../common/footer.php'; ?> 
         </div>

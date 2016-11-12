@@ -46,13 +46,6 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
             &nbsp;
         </div>
 
-
-        <!--            <div>
-                        <ol class="breadcrumb">
-                            <li class="active">Dashboard</li>                        
-                        </ol>
-                    </div>-->
-
         <div class="center-div">
             <div class="section">
                 <div class="panel panel-default">

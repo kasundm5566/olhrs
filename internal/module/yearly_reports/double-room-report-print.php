@@ -3,7 +3,7 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
+if ($_SESSION['username'] == "" || $_SESSION['group'] == "Receptionist") {
     header("Location:../login/index.php");
     exit;
 }

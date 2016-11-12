@@ -120,6 +120,9 @@ function initUsersTable() {
                         events: operateEvents
                     }]
             });
+            if ($("#lbl-user-group").text() == "Manager") {
+                $('#table-users').bootstrapTable('hideColumn', 'operate');
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             $("#modal-commonError").modal('show');

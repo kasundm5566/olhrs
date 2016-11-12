@@ -20,7 +20,7 @@
             </a>
         </div>
         <div class="col-sm-2 col-xs-4">
-            <a href="" data-toggle="tooltip" data-placement="bottom" title="Manage events related things.">
+            <a href="../event/menus.php" data-toggle="tooltip" data-placement="bottom" title="Manage food menus.">
                 <!-- Events tile -->
                 <div id="tile8" class="tile">
                     <div class="carousel slide" data-ride="carousel">
@@ -46,7 +46,7 @@
             </a> 
         </div>
         <div class="col-sm-2 col-xs-4">
-            <a href="../payment/payment.php" data-toggle="tooltip" data-placement="bottom" title="Manage payments related things.">    
+            <a href="../payment/payment.php" data-toggle="tooltip" data-placement="bottom" title="View payments.">    
                 <!-- Payments tile -->
                 <div id="tile9" class="tile">
                     <div class="carousel slide" data-ride="carousel">
@@ -62,10 +62,10 @@
                                     <span class="fa fa-book bigicon"></span>
                                 </div>
                                 <div class="icontext">
-                                    Recent payments
+                                    Veiw recent
                                 </div>
                                 <div class="icontext">
-                                    20000
+                                    payments
                                 </div>
                             </div>                              
                         </div>
@@ -148,7 +148,7 @@
         </div>
 
         <div class="col-sm-2 col-xs-4">
-            <a href="" data-toggle="tooltip" data-placement="bottom" title="Manage system contents.">    
+            <a href="" data-toggle="tooltip" data-placement="bottom" title="To be implemented.">    
                 <!-- Content tile -->
                 <div id="tile4" class="tile">
                     <div class="carousel slide" data-ride="carousel">                                        
@@ -164,7 +164,7 @@
                                     <span class="fa fa-cab bigicon"></span>
                                 </div>
                                 <div class="icontext">
-                                    Cab
+                                    To be implemented
                                 </div>
                                 <div class="icontext">
                                     <span class="fa fa-close"></span>
@@ -176,22 +176,18 @@
             </a>
         </div>
         <div class="col-sm-4 col-xs-8">
-            <a href="../feedback/feedback.php" data-toggle="tooltip" data-placement="bottom" title="Manage customer feedbacks.">    
+            <a href="../feedback/feedback.php" data-toggle="tooltip" data-placement="bottom" title="View feedbacks customers given.">    
                 <!-- Feedback tile -->
                 <div id="tile10" class="tile">
                     <div class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img src="../../images/tiles/feedback.jpg" class="img-responsive"/>
+                                <img src="../../images/tiles/feedback2.jpg" class="img-responsive" />
                                 <h1 class="tilecaption">Feedbacks</h1>
                             </div>
                             <div class="item">
-                                <img src="../../images/tiles/feedback2.jpg" class="img-responsive" />
-                                <h1 class="tilecaption">Latest feedbacks</h1>
-                            </div>
-                            <div class="item">
                                 <img src="../../images/tiles/feedback3.jpg" class="img-responsive" />
-                                <h1 class="tilecaption">Total feedbacks</h1>
+                                <h1 class="tilecaption">View latest feedbacks</h1>
                             </div>
                         </div>
                     </div>

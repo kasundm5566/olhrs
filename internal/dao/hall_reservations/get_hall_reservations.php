@@ -9,9 +9,7 @@ $page = $_REQUEST['page'];
 $recPerPage = $_REQUEST['recordsCount'];
 $offset = ($page - 1) * $recPerPage;
 
-//$sql = "SELECT first_name, last_name, username, password, email, telephone, status FROM user LIMIT 10 OFFSET $offset;";
-
-$sql = "SELECT hall_name,placed_date,reservation_date,reservation_status,total,username"
+$sql = "SELECT hall_name,placed_date,reservation_date,time,pax,reservation_status,total,username"
         . " FROM reservation r,hall_reservation hr,customer c,hall h WHERE"
         . " r.reservation_id=hr.reservation_id AND r.customer_id=c.customer_id AND"
         . " hr.hall_id=h.hall_id LIMIT $recPerPage OFFSET $offset;";
