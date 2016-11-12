@@ -19,6 +19,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "Receptionist") {
         </script>
         <script type="text/javascript" src="../../js/common.js">
         </script>
+        <link rel="stylesheet" type="text/css" href="../../css/m-styles.min.css" />
+        <script type="text/javascript" src="../../js/m-radio.min.js"></script>
     </head>
 
     <body>
@@ -39,15 +41,15 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "Receptionist") {
                         <h3 class="header-panel">&nbsp;Reports</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="container" style="width: 600px;">
+                        <div class="container" style="width: 700px;">
                             <div>
-                                <a href="../daily_reports/daily_reports.php" class="btn btn-success" style="width:100%;">Generate Daily Reports</a>
+                                <a href="../daily_reports/daily_reports.php" class="m-btn blue-stripe big" style="width:100%; height: 80px;">Generate Daily Reports <i class="m-icon-big-swapright m-icon-black"></i></a>
                             </div>
                             <div style="margin-top: 15px;">
-                                <a href="../monthly_reports/monthly_reports.php" class="btn btn-success" style="width:100%;">Generate Monthly Reports</a>
+                                <a href="../monthly_reports/monthly_reports.php" class="m-btn blue-stripe big" style="width:100%; height: 80px;">Generate Monthly Reports <i class="m-icon-big-swapright m-icon-black"></i></a>
                             </div>
                             <div style="margin-top: 15px;">
-                                <a href="../yearly_reports/yearly_reports.php" class="btn btn-success" style="width:100%;">Generate Yearly Reports</a>
+                                <a href="../yearly_reports/yearly_reports.php" class="m-btn blue-stripe big" style="width:100%; height: 80px;">Generate Yearly Reports <i class="m-icon-big-swapright m-icon-black"></i></a>
                             </div>
                         </div>
                     </div>

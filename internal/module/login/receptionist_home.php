@@ -6,7 +6,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="#" class="zoom" id="event" data-toggle="tooltip" data-placement="top" title="View food menus."><img class="recep-thumbs" src="../../images/icons/events.png"/></a>
+            <a href="../event/view-menu.php" class="zoom" id="event" data-toggle="tooltip" data-placement="top" title="View food menus."><img class="recep-thumbs" src="../../images/icons/events.png"/></a>
             <h3 class="recep-thumbs-titles">Events</h3>
         </div>
 

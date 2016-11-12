@@ -23,6 +23,8 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
         <script type="text/javascript" src="../../js/bootstrap-datepicker.min.js"></script>
         <script type="text/javascript" src="../../js/datepicker.js"></script>
         <script type="text/javascript" src="../../js/validations/reservation-rec.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../css/m-styles.min.css" />
+        <script type="text/javascript" src="../../js/m-radio.min.js"></script>
     </head>
 
     <body>
@@ -144,10 +146,10 @@ if ($_SESSION['username'] == "" || $_SESSION['group'] == "") {
                         <div class="panel-body">
                             <div class="container" style="width: 600px;">
                                 <div>
-                                    <a href="../hall_reservations/hall-reservations.php" class="btn btn-success" style="width:100%;">Hall Reservations</a>
+                                    <a href="../hall_reservations/hall-reservations.php" class="m-btn red-stripe big" style="width:100%; height: 80px;">Hall Reservations <i class="m-icon-big-swapright m-icon-black"></i></a>
                                 </div>
                                 <div style="margin-top: 20px;">
-                                    <a href="../room_reservations/room-reservations.php" class="btn btn-success" style="width:100%;">Room Reservations</a>
+                                    <a href="../room_reservations/room-reservations.php" class="m-btn red-stripe big" style="width:100%; height: 80px;">Room Reservations <i class="m-icon-big-swapright m-icon-black"></i></a>
                                 </div>
                             </div>
                         </div>

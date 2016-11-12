@@ -31,6 +31,8 @@ $GLOBALS['connection'] = $connection;
         <script src="../js/reservation-history.js"></script>
         <script src="../js/jquery-rate-picker.js"></script>
         <script src="../js/validations/make-payment.js"></script>
+                <link rel="stylesheet" href="../css/m-styles.min.css"/>
+        <script src="../js/m-radio.min.js"></script>
     </head>
 
     <body>
@@ -76,8 +78,8 @@ $GLOBALS['connection'] = $connection;
                                 <td class="res-total"><?php echo $row['total']; ?></td>
                                 <td><?php echo $row['reservation_status']; ?></td>
                                 <td style="text-align: center;">
-                                    <button class="btn btn-primary btn-xs btn-payment-history" style="width: 35%;">Payment history</button>
-                                    <button class="btn btn-primary btn-xs btn-add-feedback" style="width: 35%;">Add feedback</button>
+                                    <button class="m-btn blue btn-payment-history" style="width: 35%;">Payment history</button>
+                                    <button class="m-btn green btn-add-feedback" style="width: 35%;">Add feedback</button>
                                 </td>
                                 <td class="res-id" style="visibility: hidden;"><?php echo $row['reservation_id']; ?></td>
                             </tr>                
@@ -131,8 +133,8 @@ $GLOBALS['connection'] = $connection;
                                 <td><?php echo $row2['reservation_status']; ?></td>
                                 <td class="res-total"><?php echo $row2['total']; ?></td>
                                 <td style="text-align: center;">
-                                    <button class="btn btn-primary btn-xs btn-payment-history" style="width: 35%;">Payment history</button>
-                                    <button class="btn btn-primary btn-xs btn-add-feedback" style="width: 35%;">Add feedback</button>
+                                    <button class="m-btn blue btn-payment-history" style="width: 35%;">Payment history</button>
+                                    <button class="m-btn green btn-add-feedback" style="width: 35%;">Add feedback</button>
                                 </td>
                                 <td class="res-id" style="visibility: hidden;"><?php echo $row2['reservation_id']; ?></td>
                             </tr>                

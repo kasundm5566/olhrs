@@ -14,7 +14,7 @@ if ($_SESSION['username'] == "") {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min_1.css"/>
         <link rel="stylesheet" href="../css/site-layout.css"/>
-        <link rel="stylesheet" href="../css/styles.css"/>
+        <link rel="stylesheet" href="../css/styles.css"/>        
         <script src="../js/jquery-1.12.2.min.js"></script>
         <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script> 
         <script src="../js/loader.js"></script>
@@ -24,6 +24,8 @@ if ($_SESSION['username'] == "") {
         <script src="../js/profile.js"></script>
         <script src="../js/validations/signup-validate.js"></script>
         <script src="../js/validations/profile-validate.js"></script>
+        <link rel="stylesheet" href="../css/m-styles.min.css"/>
+        <script src="../js/m-radio.min.js"></script>
 
         <style>
             #site-footer{
@@ -70,19 +72,19 @@ if ($_SESSION['username'] == "") {
                                 <input class="form-control" type="text" id="profile-tel" name="profile-tel" readonly="true" value="<?php echo $_SESSION['userinfo']['telephone']; ?>">
                             </div>
 
-                            <button type="submit" id="btn-updateProfile" class="btn btn-success" style="width: 50%; float: right;">Update Profile</button>
+                            <button type="submit" id="btn-updateProfile" class="m-btn green" style="width: 50%; float: right;">Update Profile</button>
                         </form>
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-4" style="margin-top: 50px;">
                         <div style="margin-bottom: 10px;">
-                            <a class="btn btn-success" id="btn-reserv-history" style="width: 100%;" href="reservation-history.php" target="_blank">View Reservations History</a>
+                            <a class="m-btn blue big" id="btn-reserv-history" style="width: 100%; height: 80px" href="reservation-history.php" target="_blank">View Reservations History <i class="m-icon-big-swapright m-icon-white"></i></a>
                         </div>
                         <div style="margin-bottom: 10px;">
-                            <button class="btn btn-success" id="btn-update-customer" style="width: 100%;">Update Profile</button>
+                            <button class="m-btn blue big" id="btn-update-customer" style="width: 100%; height: 80px">Update Profile <i class="m-icon-big-swapright m-icon-white"></i></button>
                         </div>
                         <div style="margin-bottom: 10px;">
-                            <button class="btn btn-success" id="btn-change-pass" style="width: 100%;">Change Password</button>
+                            <button class="m-btn blue big" id="btn-change-pass" style="width: 100%; height: 80px">Change Password <i class="m-icon-big-swapright m-icon-white"></i></button>
                         </div>
                         <div style="text-indent: 3px;">
                             <?php
